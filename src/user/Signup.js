@@ -10,9 +10,10 @@ const Signup = () => {
     password: "",
     error: "",
     success: false,
+    role: 1,
   });
 
-  const { name, email, password, success, error } = values;
+  const { name, email, password, success, error, role } = values;
 
   const handleChange = (name) => (event) => {
     setValues({ ...values, error: false, [name]: event.target.value });
@@ -21,7 +22,7 @@ const Signup = () => {
   const clickSubmit = (event) => {
     event.preventDefault();
     setValues({ ...values, error: false });
-    signup({ name, email, password }).then((data) => {
+    signup({ name, email, password, role }).then((data) => {
       console.log("Signup: ", data);
       if (!data) {
         console.log("Something wrong");
@@ -34,6 +35,7 @@ const Signup = () => {
           email: "",
           password: "",
           error: "",
+          role: 1,
           success: true,
         });
       }
@@ -71,6 +73,34 @@ const Signup = () => {
           value={password}
         />
       </div>
+      <label className="text-muted">Role</label>
+
+      <div class="form-check">
+        <input
+          onChange={handleChange("role")}
+          class="form-check-input"
+          type="radio"
+          name="role"
+          id="Influencer"
+          value={1}
+        />
+        <label class="form-check-label" for="Influencer">
+          Influencer
+        </label>
+        <br />
+        <input
+          onChange={handleChange("role")}
+          class="form-check-input"
+          type="radio"
+          name="role"
+          id="Customer"
+          value={2}
+        />
+        <label class="form-check-label" for="Customer">
+          Customer
+        </label>
+      </div>
+      <br />
       <button onClick={clickSubmit} className="btn btn-primary">
         Submit
       </button>
