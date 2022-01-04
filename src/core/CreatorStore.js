@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import HighlightedLinks from "./components/CreatorStore/HighlightedLinks";
 import ProductList from "./components/CreatorStore/ProductList";
 import "./components/CreatorStore/style.css";
 
-const CreatorStore = () => {
+const CreatorStore = ({ match }) => {
   return (
     <>
       <div className="store-heading">
@@ -18,7 +18,7 @@ const CreatorStore = () => {
         <i className="fab fa-reddit"></i>
       </div>
       <HighlightedLinks />
-      <ProductList />
+      <ProductList userId={match.params.influencerId} />
     </>
   );
 };
