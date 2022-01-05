@@ -99,7 +99,7 @@ strong {
   font-size: 20px;
 }
 .hero-content .hero-footer {
-  margin-top: 2rem;
+  margin-top: 1Srem;
   font-size: 18px;
   text-align: center;
 }
@@ -113,42 +113,120 @@ strong {
 .d-table {
   width: 100%;
   height: 100%;
+  /* margin-bottom: -100px; */
 }
 .main-banner .d-table {
-  margin-top: -120px;
+  /* margin-top: -120px; */
   position: absolute;
 }
 .d-table-cell {
   vertical-align: middle;
+  /* display: block; */
 }
 
 .container {
   width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
+  /* padding-right: 15px; */
+  /* padding-left: 15px; */
   margin-right: auto;
   margin-left: auto;
 }
-@media (min-width: 576px) {
-  .container {
-    max-width: 540px;
+/* @media (max-width: 998px) {
+  html{
+    font-size: 55%;
   }
 }
-@media (min-width: 768px) {
+
+@media (max-width: 768px) {
+  html{
+    font-size: 45%;
+  }
+} */
+
+@media (max-width: 576px) {
   .container {
-    max-width: 720px;
+    width: 100%;
+  }
+  .hero-content h1{
+    font-size: 45px;
+  }
+  .d-table-cell {
+    margin-top: 15px;
+    position: absolute;
+  }
+  .hero-content p{
+    font-size: 20px;
+  }
+  .hero-video {
+   display: block;
+   /* max-width: 576px; */
+  }
+  .d-table{
+    max-height: 750px;
+  }
+  .main-banner {
+    height: 750px;
+  }
+  .launching-Steps h1 {
+    font-size: 40px;
+  }
+  .paddstorefront{
+    padding-bottom: 100px;
+  }
+  .why-choose-us{
+    padding-top: 0px;
+  }
+  .footer {
+    font-size: 10px;
   }
 }
-@media (min-width: 992px) {
+@media (min-width: 577px) {
   .container {
-    max-width: 960px;
+    width: 100%;
+  }
+  .hero-content h1{
+    font-size: 70px;
+  }
+  .d-table{
+    max-height: 750px;
+    margin-top: 20px;
+    padding-top: 20px;
+  }
+  .hero-footer{
+    padding-top: 20px;
+  }
+  .paddstorefront{
+    padding-bottom: 50px;
   }
 }
-@media (min-width: 1200px) {
+@media (max-width: 992px) {
   .container {
-    max-width: 1140px;
+    width: 100%;
+  }
+  .hero-video {
+    display: none;
+   }
+  .why-choose-options:before {
+    display: none;
   }
 }
+@media (min-width: 993px) {
+  .cta-input__container{
+    margin-top: -50px;
+  }
+  .d-table-cell {
+    padding-top: 35px;
+  }
+  .hero-footer{
+    padding-top: 0px;
+  }
+}
+@media (max-width: 1200px) {
+  .container {
+    width: 100%;
+  }
+}
+
 .header {
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
@@ -176,6 +254,49 @@ strong {
 }
 .header ul {
   gap: var(--header-cta-gap, 32px);
+}
+
+.button-72 {
+  align-items: center;
+  background-color: initial;
+  background-image: linear-gradient(rgba(91, 25, 104, 0.84), rgba(255, 0, 128, 0.84) 70%);
+  border-radius: 42px;
+  border-width: 0;
+  /* box-shadow: rgba(57, 31, 91, 0.24) 0 2px 2px,rgba(179, 132, 201, 0.4) 0 8px 12px; */
+  color: #FFFFFF;
+  cursor: pointer;
+  display: flex;
+  font-family: Quicksand,sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  justify-content: center;
+  letter-spacing: .04em;
+  line-height: 16px;
+  margin: 18px;
+  padding: 18px 18px;
+  text-align: center;
+  text-decoration: none;
+  /* text-shadow: rgba(255, 255, 255, 0.4) 0 0 4px,rgba(255, 255, 255, 0.2) 0 0 12px,rgba(57, 31, 91, 0.6) 1px 1px 4px,rgba(57, 31, 91, 0.32) 4px 4px 16px; */
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+}
+
+.button-72:hover {
+  background-image: linear-gradient(#d81d58
+  ,#d81d58  50%);
+  border-color: #ec415d;
+  border-width: 2px;
+  text-decoration: none;
+  color:#ffffff;
+}
+
+@media (min-width: 768px) {
+  .button-72 {
+    font-size: 21px;
+    padding: 18px 34px;
+  }
 }
 
 @media (min-width: 600px) {
@@ -359,6 +480,7 @@ a.button {
   box-shadow: 0 0 38px rgba(0, 0, 0, 0.5);
   text-align: center;
   padding: 35px 20px 40px;
+  margin-bottom: 40px;
   background: #fff;
   position: relative;
   -moz-transition: 0.3s;
@@ -607,7 +729,7 @@ a.button {
 }
 .single-choose .single-choose-left,
 .single-choose .single-choose-right {
-  float: left;
+  /* float: left; */
   display: inline-block;
   padding: 25px 15px;
 }
@@ -749,7 +871,6 @@ a.button {
 .footer__copyright {
   font-size: 1rem;
   color: #383838;
-  margin-top: 10px;
   position: absolute;
 }
 .footer__links {

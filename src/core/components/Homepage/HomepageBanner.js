@@ -15,20 +15,19 @@ const HomepageBanner = () => {
             <ul>
               <li>
                 <Link
-                  className="button header__cta"
+                  className="button-72"
                   href="https://forms.gle"
-                  target="_blank"
-                >
+                  target="_blank">
                   Get early access
                 </Link>
               </li>
             </ul>
           </nav>
         </header>
-        <div className="d-table" style={{ marginTop: "30px" }}>
+        <div className="d-table" style={{ marginTop: "-10px" }}>
           <div className="d-table-cell">
             <div className="container">
-              <div className="row">
+              <div className="row" style={{ marginBottom: "100px" }}>
                 <div className="col-lg-6 col-md-12">
                   <div className="hero-content">
                     <h1>Build Your Creator Business</h1>
@@ -48,7 +47,7 @@ const HomepageBanner = () => {
                             type="text"
                           />
                         </div>
-                        <button className="button cta-input__submit-button">
+                        <button className="button-72">
                           Get early access
                         </button>
                       </form>

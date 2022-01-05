@@ -2,10 +2,10 @@ import React from "react";
 
 const AboutProducts = () => {
   return (
-    <div className="why-choose-us">
+    <div className="why-choose-us" >
       <div className="why-choose-us-wrapper-top">
         <div className="container">
-          <div className="section-title">
+          <div className="section-title" >
             <h2>What about Products?</h2>
           </div>
         </div>

@@ -3,26 +3,33 @@ import user from "./img/user.png";
 import endQuote from "./img/endQuote.svg";
 const AdditionalDetails = () => {
   return (
-    <div className="additional-details container">
-      <div className="feature-section--two">
-        <div className="feature-section__text">
-          <span>
-            Your Brand. <br />
-            Your Website.
-            <br /> Your Audience.
-          </span>
-        </div>
-        <div className="feature-section__text">
-          <p>
-            We will connect your website to instagram shop, Youtube store,
-            Google search and Google shooping
-          </p>
-        </div>
-        <div className="feature-section__text">
-          <p>
-            Not only this we will also run your website ads on instagram to
-            retarget your website visitors
-          </p>
+    <div className="launching-Steps">
+      <div className="boxes-area">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-4 col-md-6">
+              <div className="single-box additional-details">
+                <div style={{float: "left"}}>
+                  <i className="fas fa-bullseye-arrow"></i>
+                </div>
+                <p>Your Brand.<br/>Your Website.<br/>Your Audience.</p>
+              </div>
+            </div>
+
+            <div className="col-lg-4 col-md-6">
+              <div className="single-box additional-details">
+                <p>"We will connect your website to instagram shop, Youtube store,
+            Google search and Google shooping"</p>
+              </div>
+            </div>
+
+            <div className="col-lg-4 col-md-6 offset-lg-0 offset-md-3">
+              <div className="single-box additional-details">
+                <p>"Not only this we will also run your website ads on instagram to
+            retarget your website visitors"</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div className="testimonial">
@@ -36,8 +43,7 @@ const AdditionalDetails = () => {
             <img
               src={user}
               loading="eager"
-              alt="Aakash gupta headshot
-"
+              alt="Aakash gupta headshot"
               className="author-headshot"
             />
             <div className="author-details">

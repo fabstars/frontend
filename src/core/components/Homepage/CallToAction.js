@@ -4,12 +4,14 @@ const CallToAction = () => {
   return (
     <div className="call-to-action">
       <div className="create-storefront-cta u-container">
-        <h2 className="create-storefront-cta__heading heading-2">
-          Ready to create your own website?
-        </h2>
-        <p className="create-storefront-cta__note">
-          Replace link tree with your own website and earn money
-        </p>
+        <div className="paddstorefront">
+          <h2 className="create-storefront-cta__heading heading-2">
+            Ready to create your own website?
+          </h2>
+          <p className="create-storefront-cta__note">
+              Replace link tree with your own website and earn money
+          </p>
+        </div>
         <div className="create-storefront-cta__button-container">
           <section className="cta-input">
             <form className="cta-input__container">
@@ -22,7 +24,7 @@ const CallToAction = () => {
                   type="text"
                 />
               </div>
-              <button className="button cta-input__submit-button">Start</button>
+              <button className="button-72" style={{ padding: "18px 18px 18px 18px" }}>Start</button>
             </form>
           </section>
         </div>
