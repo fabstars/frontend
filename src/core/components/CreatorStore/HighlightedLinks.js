@@ -13,11 +13,11 @@ const HighlightedLinks = () => {
           <button className="btn btn-highlights">Highlighted Links</button>
         </div>
       </div>
-      <div className="col-md-12">
+      {/* <div className="col-md-12">
         <div className="btn-wrapper text-center mt-3">
           <button className="btn btn-more">View more</button>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

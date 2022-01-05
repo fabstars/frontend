@@ -27,7 +27,7 @@ const Dashboard = () => {
     init(_id, token);
   }, []);
 
-  const userLinks = () => {
+  const customerLinks = () => {
     return (
       <div className="card">
         <h4 className="card-header">User Links</h4>
@@ -35,6 +35,26 @@ const Dashboard = () => {
           <li className="list-group-item">
             <Link className="nav-link" to="/cart">
               My Cart
+            </Link>
+          </li>
+          <li className="list-group-item">
+            <Link className="nav-link" to={`/profile/${_id}`}>
+              Update Profile
+            </Link>
+          </li>
+        </ul>
+      </div>
+    );
+  };
+
+  const influencerLinks = () => {
+    return (
+      <div className="card">
+        <h4 className="card-header">User Links</h4>
+        <ul className="list-group">
+          <li className="list-group-item">
+            <Link className="nav-link" to={`/creatorStore/${_id}`}>
+              My Store
             </Link>
           </li>
           <li className="list-group-item">
@@ -97,7 +117,9 @@ const Dashboard = () => {
       className="container-fluid"
     >
       <div className="row">
-        <div className="col-3">{userLinks()}</div>
+        <div className="col-3">
+          {role === "1" ? influencerLinks() : customerLinks()}
+        </div>
         <div className="col-9">
           {userInfo()}
           {purchaseHistory(history)}
