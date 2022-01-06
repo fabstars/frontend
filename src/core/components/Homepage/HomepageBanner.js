@@ -1,24 +1,32 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
-import Menu from "../../Menu";
+// import Menu from "../../Menu";
 import main from "./img/main.jpg";
 
 const HomepageBanner = () => {
   return (
     <>
-      <Menu></Menu>
+      {/* <Menu></Menu> */}
       <div className="main-banner main-banner-show">
         <header className="header u-container skip-parallax">
           <h1 className="qaya-logo">fab</h1>
           <nav>
             <ul>
+              <li style={{"margin-right": "-70px"}}>
+                <Link
+                  className="button-72"
+                  href="https://forms.gle"
+                  target="_blank">
+                  Log in
+                </Link>
+              </li>
               <li>
                 <Link
                   className="button-72"
                   href="https://forms.gle"
                   target="_blank">
-                  Get early access
+                  Get Started
                 </Link>
               </li>
             </ul>
@@ -48,7 +56,7 @@ const HomepageBanner = () => {
                           />
                         </div>
                         <button className="button-72">
-                          Get early access
+                          Get Started
                         </button>
                       </form>
                     </section>

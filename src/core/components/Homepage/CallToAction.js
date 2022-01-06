@@ -24,7 +24,7 @@ const CallToAction = () => {
                   type="text"
                 />
               </div>
-              <button className="button-72" style={{ padding: "18px 18px 18px 18px" }}>Start</button>
+              <button className="button-72" style={{ padding: "18px 18px 18px 18px" }}> Get Started</button>
             </form>
           </section>
         </div>

@@ -12,7 +12,7 @@ const launchingSteps = () => {
               <div className="single-box">
                 <i className="fas fa-browser"></i>
                 <h3>Select your website name</h3>
-                <p>Name your site, customize the url and pray to God</p>
+                <p>Name your site, customize the url and leave rest on us</p>
               </div>
             </div>
 
