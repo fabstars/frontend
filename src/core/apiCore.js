@@ -134,3 +134,19 @@ export const getInfluencerProducts = (userId, token) => {
     })
     .catch((err) => console.log(err));
 };
+
+export const addInfluenerItemToSite = (userId, token, products) => {
+  return fetch(`${API}/user/influencer/${userId}/add-product`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({ products }),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};

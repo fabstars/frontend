@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import tshirt from "./tshirt.webp";
 import { API } from "../../../config";
 
-const SingleProduct = ({ product }) => {
+const SingleProduct = ({ product, margin}) => {
   useEffect(() => {
     console.log(product);
   }, []);

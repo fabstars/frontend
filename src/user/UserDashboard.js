@@ -2,11 +2,14 @@ import React, { useState, useEffect } from "react";
 import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
+import { getInfluencerProducts } from "../core/apiCore";
 import { getPurchaseHistory } from "./apiUser";
 import moment from "moment";
+import SingleProduct from "../core/components/CreatorStore/SingleProduct";
 
 const Dashboard = () => {
   const [history, setHistory] = useState([]);
+  const [products, setProducts] = useState([]);
 
   const {
     user: { _id, name, email, role },
@@ -21,8 +24,16 @@ const Dashboard = () => {
         setHistory(data);
       }
     });
+    getInfluencerProducts(userId, token).then((data) => {
+      console.log(products);
+      setProducts((arr) => [...arr, data]);
+      console.log(products);
+    });
   };
 
+  useEffect(() => {
+    console.log(products[0]);
+  }, [products]);
   useEffect(() => {
     init(_id, token);
   }, []);
@@ -110,6 +121,28 @@ const Dashboard = () => {
     );
   };
 
+  const influencerProducts = () => {
+    return (
+      <div className="card mb-5">
+        <h3 className="card-header">Influencer Products</h3>
+        <ul className="list-group">
+          <li className="list-group-item">
+            {products.length &&
+              products[0].length &&
+              products[0].map((p, i) => {
+                return (
+                  <div>
+                    <hr />
+                    <SingleProduct product={p} margin={true}/>
+                  </div>
+                );
+              })}
+          </li>
+        </ul>
+      </div>
+    );
+  };
+
   return (
     <Layout
       title="Dashboard"
@@ -122,7 +155,7 @@ const Dashboard = () => {
         </div>
         <div className="col-9">
           {userInfo()}
-          {purchaseHistory(history)}
+          {role === "1" ? influencerProducts() : purchaseHistory(history)}
         </div>
       </div>
     </Layout>
