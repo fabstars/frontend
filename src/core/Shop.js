@@ -6,6 +6,7 @@ import Checkbox from "./Checkbox";
 import RadioBox from "./RadioBox";
 import { prices } from "./fixedPrices";
 import Search from "../core/Search";
+import { isAuthenticated } from "../auth";
 
 const Shop = () => {
   const [myFilters, setMyFilters] = useState({
@@ -127,7 +128,11 @@ const Shop = () => {
           <div className="row">
             {filteredResults.map((product, i) => (
               <div key={i} className="col-4 mb-3">
-                <Card product={product} />
+                {isAuthenticated() && isAuthenticated().user.role === "1" ? (
+                  <Card product={product} showAddToSiteButton={true} />
+                ) : (
+                  <Card product={product} />
+                )}
               </div>
             ))}
           </div>

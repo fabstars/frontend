@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
 // import Menu from "../../Menu";
 import main from "./img/main.jpg";
+import { isAuthenticated } from "../../../auth";
 
 const HomepageBanner = () => {
   return (
@@ -10,22 +11,37 @@ const HomepageBanner = () => {
       {/* <Menu></Menu> */}
       <div className="main-banner main-banner-show">
         <header className="header u-container skip-parallax">
-          <h1 className="qaya-logo">fab</h1>
+          <h1 className="qaya-logo">Fab</h1>
           <nav>
             <ul>
-              <li style={{"margin-right": "-70px"}}>
-                <Link
-                  className="button-72"
-                  href="https://forms.gle"
-                  target="_blank">
-                  Log in
-                </Link>
-              </li>
+              {!isAuthenticated() && (
+                <li style={{ "margin-right": "-70px" }}>
+                  <Link className="button-72" to="/signin">
+                    Log in
+                  </Link>
+                </li>
+              )}
+
+              {isAuthenticated() &&
+                (isAuthenticated().user.role === "1" ||
+                  isAuthenticated().user.role === "2") && (
+                  <li style={{ "margin-right": "-70px" }}>
+                    <Link className="button-72" to="/user/dashboard">
+                      Dashboard
+                    </Link>
+                  </li>
+                )}
+
+              {isAuthenticated() && isAuthenticated().user.role === "0" && (
+                <li style={{ "margin-right": "-70px" }}>
+                  <Link className="button-72" to="/admin/dashboard">
+                    Dashboard
+                  </Link>
+                </li>
+              )}
+
               <li>
-                <Link
-                  className="button-72"
-                  href="https://forms.gle"
-                  target="_blank">
+                <Link className="button-72" to="/get-started" target="_blank">
                   Get Started
                 </Link>
               </li>
@@ -55,9 +71,7 @@ const HomepageBanner = () => {
                             type="text"
                           />
                         </div>
-                        <button className="button-72">
-                          Get Started
-                        </button>
+                        <button className="button-72">Get Started</button>
                       </form>
                     </section>
                     <p className="hero-footer">

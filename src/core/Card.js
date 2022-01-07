@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, Redirect } from "react-router-dom";
 import ShowImage from "./ShowImage";
 import moment from "moment";
@@ -11,15 +11,25 @@ const Card = ({
   showAddToCartButton = true,
   cartUpdate = false,
   showRemoveProductButton = false,
+  showAddMarginBtn = false,
+  removeFromSiteBtn = false,
+  showAddToSiteButton = false,
   setRun = (f) => f,
   run = undefined,
   // changeCartSize
 }) => {
-  const {
-    user: { _id, name, email, role },
-  } = isAuthenticated();
   const [redirect, setRedirect] = useState(false);
   const [count, setCount] = useState(product.count);
+  const [user, setUser] = useState({});
+
+  const { id, name, email, role } = user;
+
+  useEffect(() => {
+    const auth_user = isAuthenticated();
+    if (auth_user) {
+      setUser(auth_user.user);
+    }
+  }, []);
 
   const showViewButton = (showViewProductButton) => {
     return (
@@ -32,7 +42,7 @@ const Card = ({
       )
     );
   };
-  
+
   const addToCart = () => {
     addItem(product, setRedirect(true));
   };
@@ -57,17 +67,51 @@ const Card = ({
   };
 
   const addToSite = () => {
-    console.log('Added to site');
+    console.log("Added to site");
   };
 
-  const showAddToSiteBtn = () => {
+  const showAddToSiteBtn = (showAddToSiteButton) => {
     return (
-      showAddToCartButton && (
+      showAddToSiteButton && (
         <button
           onClick={addToSite}
           className="btn btn-outline-warning mt-2 mb-2 card-btn-1  "
         >
           Add to Site
+        </button>
+      )
+    );
+  };
+
+  const addMargin = () => {
+    console.log("Add margin");
+  };
+
+  const showAddMarginButton = (showAddMarginBtn) => {
+    return (
+      showAddMarginBtn && (
+        <button
+          onClick={addMargin}
+          className="btn btn-outline-warning card-btn-1  "
+        >
+          Add Margin
+        </button>
+      )
+    );
+  };
+
+  const removeFromSite = () => {
+    console.log("Removed from site");
+  };
+
+  const showRemoveFromSiteButton = (removeFromSiteBtn) => {
+    return (
+      removeFromSiteBtn && (
+        <button
+          onClick={removeFromSite}
+          className="btn btn-outline-danger card-btn-1 ml-2"
+        >
+          Remove from site
         </button>
       )
     );
@@ -123,6 +167,15 @@ const Card = ({
       )
     );
   };
+
+  const showLoginToViewBtn = () => {
+    return (
+      <Link to="/signin" className="btn btn-outline-warning mt-2 mb-2">
+        Login to Proceed
+      </Link>
+    );
+  };
+
   return (
     <div className="card ">
       <div className="card-header card-header-1 ">{product.name}</div>
@@ -142,11 +195,15 @@ const Card = ({
 
         {showViewButton(showViewProductButton)}
 
-        {role === "1"
-          ? showAddToSiteBtn()
-          : showAddToCartBtn(showAddToCartButton)}
+        {user && role === "1" && showAddToSiteBtn(showAddToSiteButton)}
+        {user && role === "2" && showAddToCartBtn(showAddToCartButton)}
+        {Object.entries(user).length === 0 && showLoginToViewBtn()}
+
+        {showAddMarginButton(showAddMarginBtn)}
 
         {showRemoveButton(showRemoveProductButton)}
+
+        {showRemoveFromSiteButton(removeFromSiteBtn)}
 
         {showCartUpdateOptions(cartUpdate)}
       </div>

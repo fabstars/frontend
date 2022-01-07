@@ -86,7 +86,7 @@ const Dashboard = () => {
           <li className="list-group-item">{name}</li>
           <li className="list-group-item">{email}</li>
           <li className="list-group-item">
-            {role === 1 ? "Admin" : "Registered User"}
+            {role === "0" ? "Admin" : role === "1" ? "Influencer" : "Customer"}
           </li>
         </ul>
       </div>
@@ -133,7 +133,7 @@ const Dashboard = () => {
                 return (
                   <div>
                     <hr />
-                    <SingleProduct product={p} margin={true}/>
+                    <SingleProduct product={p} margin={true} />
                   </div>
                 );
               })}
@@ -155,7 +155,7 @@ const Dashboard = () => {
         </div>
         <div className="col-9">
           {userInfo()}
-          {role === "1" ? influencerProducts() : purchaseHistory(history)}
+          {/* {role === "1" ? influencerProducts() : purchaseHistory(history)} */}
         </div>
       </div>
     </Layout>

@@ -19,6 +19,7 @@ import ManageProducts from "./admin/ManageProducts";
 import UpdateProduct from "./admin/UpdateProduct";
 import UpdateCategory from "./admin/updateCategory";
 import CreatorStore from "./core/CreatorStore";
+import InfluencerProducts from "./core/components/InfluenerProducts";
 
 const Routes = () => {
   return (
@@ -28,7 +29,12 @@ const Routes = () => {
         <Route path="/shop" exact component={Shop} />
         <Route path="/signin" exact component={Signin} />
         <Route path="/signup" exact component={Signup} />
-        <Route path="/creatorstore/:influencerId" exact component={CreatorStore} />
+        <Route
+          path="/creatorstore/:influencerId"
+          exact
+          component={CreatorStore}
+        />
+        <Route path="/user/my-products" exact component={InfluencerProducts} />
         <PrivateRoute path="/user/dashboard" exact component={Dashboard} />
         <AdminRoute path="/admin/dashboard" exact component={AdminDashboard} />
         <AdminRoute path="/create/category" exact component={AddCategory} />
