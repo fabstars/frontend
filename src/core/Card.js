@@ -3,7 +3,67 @@ import { Link, Redirect } from "react-router-dom";
 import ShowImage from "./ShowImage";
 import moment from "moment";
 import { addItem, updateItem, removeItem } from "./cartHelpers";
+import {
+  updateMargin,
+  addInfluenerItemToSite,
+  removInfluencerProducts,
+} from "../core/apiCore";
 import { isAuthenticated } from "../auth";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Modal, Button, Form } from "react-bootstrap";
+import { useAlert } from "react-alert";
+
+function MyVerticallyCenteredModal(props) {
+  const alert = useAlert();
+  const [margin, setMargin] = useState(0);
+  const handleMarginSubmit = (e) => {
+    e.preventDefault();
+    updateMargin(
+      isAuthenticated().token,
+      props.userId,
+      props.product._id,
+      margin
+    ).then((data) => {
+      alert.show("Margin updated");
+    });
+  };
+  const handleChange = (e) => {
+    setMargin(e.target.value);
+  };
+  return (
+    <Modal
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          Update margin for {props.product.name}
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <form>
+          <div className="form-group">
+            <label className="text-muted">Margin</label>
+            <input
+              type="number"
+              className="form-control"
+              onChange={handleChange}
+              value={margin}
+            />
+          </div>
+          <Button style={{ marginLeft: "5px" }} onClick={handleMarginSubmit}>
+            Update
+          </Button>
+        </form>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button onClick={props.onHide}>Close</Button>
+      </Modal.Footer>
+    </Modal>
+  );
+}
 
 const Card = ({
   product,
@@ -14,6 +74,8 @@ const Card = ({
   showAddMarginBtn = false,
   removeFromSiteBtn = false,
   showAddToSiteButton = false,
+  showMargin = false,
+  userId = "",
   setRun = (f) => f,
   run = undefined,
   // changeCartSize
@@ -21,14 +83,33 @@ const Card = ({
   const [redirect, setRedirect] = useState(false);
   const [count, setCount] = useState(product.count);
   const [user, setUser] = useState({});
+  const [currentMargin, setCurrentMargin] = useState(0);
+  const [modalShow, setModalShow] = React.useState(false);
+  const [refresh, setRefresh] = useState(true);
+  const alert = useAlert();
 
   const { id, name, email, role } = user;
+
+  const getMargin = () => {
+    {
+      product.influencer_list.map((influencer, idx) => {
+        if (influencer.user_id === userId) {
+          setCurrentMargin(influencer.margin);
+        }
+      });
+    }
+  };
+
+  useEffect(() => {}, [refresh]);
+
+  useEffect(() => {}, [currentMargin]);
 
   useEffect(() => {
     const auth_user = isAuthenticated();
     if (auth_user) {
       setUser(auth_user.user);
     }
+    getMargin();
   }, []);
 
   const showViewButton = (showViewProductButton) => {
@@ -67,7 +148,12 @@ const Card = ({
   };
 
   const addToSite = () => {
-    console.log("Added to site");
+    const products = [product._id];
+    addInfluenerItemToSite(user._id, isAuthenticated().token, products).then(
+      (data) => {
+        alert.show(`${data.message}`);
+      }
+    );
   };
 
   const showAddToSiteBtn = (showAddToSiteButton) => {
@@ -83,25 +169,35 @@ const Card = ({
     );
   };
 
-  const addMargin = () => {
-    console.log("Add margin");
-  };
-
   const showAddMarginButton = (showAddMarginBtn) => {
     return (
       showAddMarginBtn && (
-        <button
-          onClick={addMargin}
-          className="btn btn-outline-warning card-btn-1  "
-        >
-          Add Margin
-        </button>
+        <>
+          <button
+            onClick={() => setModalShow(true)}
+            className="btn btn-outline-warning card-btn-1  "
+          >
+            Update Margin
+          </button>
+          <MyVerticallyCenteredModal
+            show={modalShow}
+            onHide={() => setModalShow(false)}
+            product={product}
+            userId={userId}
+          />
+        </>
       )
     );
   };
 
   const removeFromSite = () => {
-    console.log("Removed from site");
+    const products = [product._id];
+    removInfluencerProducts(user._id, isAuthenticated().token, products).then(
+      (data) => {
+        alert.show(`${data.message}`);
+        window.location.reload(false);
+      }
+    );
   };
 
   const showRemoveFromSiteButton = (removeFromSiteBtn) => {
@@ -176,6 +272,12 @@ const Card = ({
     );
   };
 
+  const showMarginQuantity = () => {
+    return <p className="black-7">Margin: {currentMargin}</p>;
+  };
+
+  const noShow = () => <div></div>;
+
   return (
     <div className="card ">
       <div className="card-header card-header-1 ">{product.name}</div>
@@ -190,6 +292,7 @@ const Card = ({
         <p className="black-8">
           Added on {moment(product.createdAt).fromNow()}
         </p>
+        {showMargin ? showMarginQuantity() : noShow()}
         {showStock(product.quantity)}
         <br />
 

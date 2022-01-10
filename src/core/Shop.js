@@ -106,7 +106,7 @@ const Shop = () => {
       <div className="row">
         <div className="col-4">
           <h4>Filter by categories</h4>
-          <ul style={{ marginLeft: "2.7em" }}>
+          <ul style={{ marginLeft: "0.7em" }}>
             <Checkbox
               categories={categories}
               handleFilters={(filters) => handleFilters(filters, "category")}

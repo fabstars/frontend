@@ -1,10 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import tshirt from "./tshirt.webp";
 import { API } from "../../../config";
 
-const SingleProduct = ({ product, margin}) => {
+const SingleProduct = ({ product, userId }) => {
+  const [currentMargin, setCurrentMargin] = useState(0);
+
+  const getMargin = () => {
+    {
+      product.influencer_list.map((influencer, idx) => {
+        // console.log(influencer.user_id, userId);
+        if (influencer.user_id === userId) {
+          // console.log(influencer.margin);
+          setCurrentMargin(influencer.margin);
+        }
+      });
+    }
+  };
+  useEffect(() => {}, [currentMargin]);
   useEffect(() => {
-    console.log(product);
+    getMargin();
   }, []);
   return (
     <div className="col-lg-4 col-md-6 col-sm-6 col-12">
@@ -58,7 +72,8 @@ const SingleProduct = ({ product, margin}) => {
                 <i className="fas fa-rupee-sign"></i> 500.00
               </span> */}
               <span className="new-price">
-                <i className="fas fa-rupee-sign"></i> {product.price}
+                <i className="fas fa-rupee-sign"></i>{" "}
+                {product.price + currentMargin}
               </span>
             </div>
           </div>

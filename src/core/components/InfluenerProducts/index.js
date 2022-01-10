@@ -36,7 +36,7 @@ const MyProducts = () => {
             products[0] &&
             products[0].map((product, i) => (
               <div key={i} className="col-6 mb-5">
-                <Card product={product} showAddMarginBtn={true} removeFromSiteBtn={true}/>
+                <Card product={product} showAddMarginBtn={true} removeFromSiteBtn={true} showMargin={true} userId={_id}/>
               </div>
             ))}
         </div>

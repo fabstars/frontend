@@ -24,7 +24,7 @@ const ProductList = ({ userId }) => {
 
   const showProducts = () => {
     return products[0].map((product, i) => (
-      <SingleProduct key={i} product={product} />
+      <SingleProduct key={i} product={product} userId={userId}/>
     ));
   };
 
