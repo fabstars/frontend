@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import tshirt from "./tshirt.webp";
 import { API } from "../../../config";
+import "./style1.css";
 
 const SingleProduct = ({ product, userId }) => {
   const [currentMargin, setCurrentMargin] = useState(0);
@@ -19,67 +20,124 @@ const SingleProduct = ({ product, userId }) => {
   useEffect(() => {}, [currentMargin]);
   useEffect(() => {
     getMargin();
-  }, []);
+  }, [getMargin]);
   return (
-    <div className="col-lg-4 col-md-6 col-sm-6 col-12">
-      <div className="product-style mt-4 mb-4">
-        <div className="thumb">
-          <img
-            src={`${API}/product/photo/${product._id}`}
-            alt={product.name}
-            style={{ maxHeight: "100%", maxWidth: "100%" }}
-          />
-          {/* <span className="sale">SALE 10%</span>
-          <span className="new mt-5">NEW</span> */}
-          <ul className="cart-action">
-            <li>
-              <i className="far fa-heart"></i>
-            </li>
-            <li>
-              <i className="far fa-eye"></i>
-            </li>
-          </ul>
-        </div>
-        <div className="content ">
-          <span className="brand">{product.category.name}</span>
-          {/* <ul className="justify-content-start mb-3">
-            <li>
-              <i className="fas fa-star"></i>
-            </li>
-            <li>
-              <i className="fas fa-star"></i>
-            </li>
-            <li>
-              <i className="fas fa-star"></i>
-            </li>
-            <li>
-              <i className="fas fa-star"></i>
-            </li>
-            <li>
-              <i className="far fa-star"></i>
-            </li>
-          </ul> */}
-          <h6 className="title">{product.name}</h6>
-          <div className="d-flex position-relative">
-            {/* <div className="content-hover-cart">
-              <i className="fas fa-bags-shopping" /> Add to cart
-            </div> */}
-            <div className="content-cart">
-              <i className="fas fa-bags-shopping" />
+    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+      <div class="col">
+        <div class="product-card">
+          <div class="product-media">
+            <div class="product-label">
+              <label class="label-text off">-10%</label>
             </div>
-            <div className="content-price d-flex flex-column align-self-center">
-              {/* <span className="old-price">
-                <i className="fas fa-rupee-sign"></i> 500.00
-              </span> */}
-              <span className="new-price">
-                <i className="fas fa-rupee-sign"></i>{" "}
-                {product.price + currentMargin}
-              </span>
+            <button class="product-wish wish">
+              <i class="fas fa-heart">
+              </i>
+            </button>
+            <a class="product-image" href="product-video.html">
+              <img src={`${API}/product/photo/${product._id}`} alt={product.name} style={{ height: "200px", width: "180px" }}/>
+            </a>
+            <div class="product-widget">
+              {/* <a title="Product Compare" href="compare.html" class="fas fa-random"></a>
+              <a title="Product Video" href="https://youtu.be/9xzcVxSBbG8" class="venobox fas fa-play vbox-item" data-autoplay="true" data-vbtype="video"></a> */}
+              <a title="Product View" href="#" class="fas fa-eye" data-bs-toggle="modal" data-bs-target="#product-view"></a>
+            </div>
+          </div>
+          <div class="product-content">
+            <div class="product-rating">
+              <i className="active fas fa-star"></i>
+              <i className="active fas fa-star"></i>
+              <i className="active fas fa-star"></i>
+              <i className="active fas fa-star"></i>
+              <i className="active far fa-star"></i>
+              <a href="product-video.html">(4)</a>
+            </div>
+            <h6 class="product-name">
+              <a href="product-video.html">
+                {product.name}
+              </a>
+            </h6>
+            <h6 class="product-price">
+              <del><i className="fas fa-rupee-sign"></i>34</del>
+              <span><i className="fas fa-rupee-sign"></i>{" "}{product.price + currentMargin}</span>
+            </h6>
+            <button class="product-add" title="Add to Cart">
+              <i class="fas fa-shopping-basket"></i>
+              <span>add</span>
+            </button>
+            <div class="product-action">
+              <button class="action-minus" title="Quantity Minus">
+                <i class="icofont-minus"></i>
+              </button>
+              <input class="action-input" title="Quantity Number" type="text" name="quantity" value="1" />
+              <button class="action-plus" title="Quantity Plus">
+                <i class="icofont-plus"></i>
+              </button>
             </div>
           </div>
         </div>
       </div>
     </div>
+
+    
+    //<div className="col-lg-4 col-md-6 col-sm-6 col-12">
+    //   <div className="product-style mt-4 mb-4">
+    //     <div className="thumb">
+    //       <img
+    //         src={`${API}/product/photo/${product._id}`}
+    //         alt={product.name}
+    //         style={{ maxHeight: "100%", maxWidth: "100%" }}
+    //       />
+    //       {/* <span className="sale">SALE 10%</span>
+    //       <span className="new mt-5">NEW</span> */}
+    //       <ul className="cart-action">
+    //         <li>
+    //           <i className="far fa-heart"></i>
+    //         </li>
+    //         <li>
+    //           <i className="far fa-eye"></i>
+    //         </li>
+    //       </ul>
+    //     </div>
+    //     <div className="content ">
+    //       <span className="brand">{product.category.name}</span>
+    //       {/* <ul className="justify-content-start mb-3">
+    //         <li>
+    //           <i className="fas fa-star"></i>
+    //         </li>
+    //         <li>
+    //           <i className="fas fa-star"></i>
+    //         </li>
+    //         <li>
+    //           <i className="fas fa-star"></i>
+    //         </li>
+    //         <li>
+    //           <i className="fas fa-star"></i>
+    //         </li>
+    //         <li>
+    //           <i className="far fa-star"></i>
+    //         </li>
+    //       </ul> */}
+    //       <h6 className="title">{product.name}</h6>
+    //       <div className="d-flex position-relative">
+    //         {/* <div className="content-hover-cart">
+    //           <i className="fas fa-bags-shopping" /> Add to cart
+    //         </div> */}
+    //         <div className="content-cart">
+    //           <i className="fas fa-bags-shopping" />
+    //         </div>
+    //         <div className="content-price d-flex flex-column align-self-center">
+    //           {/* <span className="old-price">
+    //             <i className="fas fa-rupee-sign"></i> 500.00
+    //           </span> */}
+    //           <span className="new-price">
+    //             <i className="fas fa-rupee-sign"></i>{" "}
+    //             {product.price + currentMargin}
+    //           </span>
+    //         </div>
+    //       </div>
+    //     </div>
+    //   </div>
+    // </div>
   );
 };
 
