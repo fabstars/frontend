@@ -1,3 +1,6 @@
+/*Pacifico font*/
+@import url('https://fonts.googleapis.com/css?family=Pacifico&display=swap');
+
 /*whole bg color */
 .bgcolor{
   background-color: rgb(223, 223, 223);
@@ -95,36 +98,37 @@ hr.divider2 {
   margin-top: 2rem;
 }
 .store-heading h1 {
-  font-family: "Raleway", sans-serif;
-  font-size: 30px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+  font-family: "Pacifico";
+  font-size: 50px;
+  font-weight: 800;
+  letter-spacing: 4.5px;
+  text-shadow: 4px 6px 8px rgb(184, 4, 4);
+  /* text-transform: uppercase; */
   text-align: center;
   margin: auto;
-  color: #cf563e;
+  color: #5eb424;
   white-space: nowrap;
   padding-bottom: 13px;
+  margin-bottom: 5px;
 }
 .store-heading h1:before {
-  background-color: #c50000;
+  background-color: #800d0d;
   content: "";
   display: block;
   text-align: center;
-  height: 3px;
+  height: 5px;
   width: 30%;
-  margin-bottom: 5px;
+  margin-bottom: 8px;
 }
 .store-heading h1:after {
-  background-color: #c50000;
+  background-color: #811a1a;
   content: "";
   display: block;
   position: absolute;
   right: 0;
   bottom: 0;
-  height: 3px;
+  height: 5px;
   width: 30%;
-  margin-bottom: 0.25em;
 }
 /*Links*/
 .creator-social-profiles {
@@ -134,10 +138,12 @@ hr.divider2 {
   text-align: center;
 }
 .creator-social-profiles i {
-  font-size: 30px;
+  font-size: 40px;
   margin: 1rem;
-  color: #cf563e;
+  color: #fbff00;
+  text-shadow: 4px 6px 8px rgb(184, 4, 4);
 }
+
 .btn-highlights {
   background-color: #54cabf;
   border-radius: 0px;
@@ -340,11 +346,14 @@ hr.divider2 {
 }
 
 .adjust-height{
-  margin-bottom: 80px;
+  margin-bottom: 70px;
 }
 
-@media (max-width: 368px) {
+@media (max-width: 426px) {
   .adjust-height {
-    margin-bottom: 35px;
+    margin-bottom: -35px;
+  }
+  .store-heading h1{
+    font-size: 45px;
   }
 }

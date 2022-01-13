@@ -10,15 +10,15 @@ const CreatorStore = ({ match }) => {
       <div className="main-banner-creator">
         <hr className="divider1" />
         <div className="store-heading">
-          <h1>HRITHIK ROSHAN</h1>
+          <h1>Hritik Roshan</h1>
         </div>
         <div className="creator-social-profiles adjust-height">
-          <i className="fab fa-facebook"></i>
-          <i className="fab fa-instagram"></i>
-          <i className="fab fa-twitter"></i>
-          <i className="fab fa-youtube"></i>
-          <i className="fab fa-discord"></i>
-          <i className="fab fa-reddit"></i>
+          <a href="#"><i className="fab fa-facebook"></i></a>
+          <a href="#"><i className="fab fa-instagram"></i></a>
+          <a href="#"><i className="fab fa-twitter"></i></a>
+          <a href="#"><i className="fab fa-youtube"></i></a>
+          <a href="#"><i className="fab fa-discord"></i></a>
+          <a href="#"><i className="fab fa-reddit"></i></a>
         </div>
         <HighlightedLinks />
       </div>
