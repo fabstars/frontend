@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
-// import Menu from "../../Menu";
-import main from "./img/main.jpg";
 import { isAuthenticated } from "../../../auth";
 
-const HomepageBanner = () => {
+const ContactUs = () => {
   return (
     <>
-      {/* <Menu></Menu> */}
       <div className="main-banner main-banner-show">
         <header className="header u-container skip-parallax">
           <Link to="/" style={{ marginLeft: "2.8em" }}>
@@ -71,50 +68,70 @@ const HomepageBanner = () => {
             </ul>
           </nav>
         </header>
-        <div className="d-table" style={{ marginTop: "-10px" }}>
-          <div className="d-table-cell">
-            <div className="container">
-              <div className="row" style={{ marginBottom: "100px" }}>
-                <div className="col-lg-6 col-md-12">
-                  <div className="hero-content">
-                    <h1>Build Your Creator Business</h1>
-                    <p>
-                      Launch your personalized website <br />
-                      Share it with your Auidence <br />
-                      Earn more Money
-                    </p>
-                    <section className="cta-input">
-                      <form className="cta-input__container">
-                        <div className="cta-input__qaya-name">
-                          <span aria-hidden="true">fab.store/</span>
-                          <input
-                            aria-label="Your requested name to be used for a fab store with the URL like https://fab.store/your-name"
-                            className="cta-input__input"
-                            placeholder="your-name"
-                            type="text"
-                          />
-                        </div>
-                        <button className="button-72">Get Started</button>
-                      </form>
-                    </section>
-                    <p className="hero-footer">
-                      Totally free & takes less than 30 seconds
-                    </p>
-                  </div>
-                </div>
-
-                <div className="col-lg-6 col-md-12">
-                  <div className="hero-video">
-                    <img className="site-owner" src={main} alt="" />
-                  </div>
-                </div>
-              </div>
+        <div style={{ marginTop: "10px" }} className="container">
+          <h1 style={{ textAlign: "center", marginTop: "10px" }}>Contact us</h1>
+          <form
+            action="https://getform.io/f/36683389-bdfe-448c-8222-9fc3b5ba757c"
+            method="POST"
+          >
+            <div class="form-group">
+              <input
+                type="text"
+                className="form-control"
+                id="name"
+                placeholder="Name"
+                name="name"
+                style={{ backgroundColor: "White" }}
+                required
+              />
             </div>
-          </div>
+            <div class="form-group">
+              <input
+                type="email"
+                className="form-control"
+                id="email"
+                placeholder="Email"
+                name="email"
+                style={{ backgroundColor: "White" }}
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <input
+                type="text"
+                className="form-control"
+                id="subject"
+                placeholder="Subject"
+                name="subject"
+                style={{ backgroundColor: "White" }}
+                required
+              />
+            </div>
+            <div class="form-group">
+              <textarea
+                placeholder="Write Your Message Here...."
+                className="form-control"
+                id="message"
+                name="message"
+                rows="3"
+                style={{ backgroundColor: "white" }}
+                required
+              ></textarea>
+            </div>
+
+            <br />
+            <button
+              type="submit"
+              class="btn btn-dark"
+            >
+              Send
+            </button>
+          </form>
         </div>
       </div>
     </>
   );
 };
 
-export default HomepageBanner;
+export default ContactUs;

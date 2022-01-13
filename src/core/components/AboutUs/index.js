@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
-// import Menu from "../../Menu";
-import main from "./img/main.jpg";
 import { isAuthenticated } from "../../../auth";
 
-const HomepageBanner = () => {
+const AboutUs = () => {
   return (
     <>
-      {/* <Menu></Menu> */}
       <div className="main-banner main-banner-show">
         <header className="header u-container skip-parallax">
           <Link to="/" style={{ marginLeft: "2.8em" }}>
@@ -71,45 +68,19 @@ const HomepageBanner = () => {
             </ul>
           </nav>
         </header>
-        <div className="d-table" style={{ marginTop: "-10px" }}>
-          <div className="d-table-cell">
-            <div className="container">
-              <div className="row" style={{ marginBottom: "100px" }}>
-                <div className="col-lg-6 col-md-12">
-                  <div className="hero-content">
-                    <h1>Build Your Creator Business</h1>
-                    <p>
-                      Launch your personalized website <br />
-                      Share it with your Auidence <br />
-                      Earn more Money
-                    </p>
-                    <section className="cta-input">
-                      <form className="cta-input__container">
-                        <div className="cta-input__qaya-name">
-                          <span aria-hidden="true">fab.store/</span>
-                          <input
-                            aria-label="Your requested name to be used for a fab store with the URL like https://fab.store/your-name"
-                            className="cta-input__input"
-                            placeholder="your-name"
-                            type="text"
-                          />
-                        </div>
-                        <button className="button-72">Get Started</button>
-                      </form>
-                    </section>
-                    <p className="hero-footer">
-                      Totally free & takes less than 30 seconds
-                    </p>
-                  </div>
-                </div>
-
-                <div className="col-lg-6 col-md-12">
-                  <div className="hero-video">
-                    <img className="site-owner" src={main} alt="" />
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div style={{ marginTop: "10px" }} className="container">
+          <h1 style={{ textAlign: "center", marginTop: "10px" }}>About us</h1>
+          <div>
+            Our Mission is to support millions of entrepreneurs with everything
+            they need in selling online. We genuinely want to create a platform
+            where anyone who want to launch their online store can do so within
+            a minute. They shouldn’t have to worry about products, website,
+            payments or logistics. Everything will be handled by us. If they
+            need something, then It’s their willingness to become a real
+            entrepreneur. We are Fabsters who are inspired to democratize
+            selling online.
+            <br /> Have any doubts?
+            <br /> Send us a message at +91-8445814825
           </div>
         </div>
       </div>
@@ -117,4 +88,4 @@ const HomepageBanner = () => {
   );
 };
 
-export default HomepageBanner;
+export default AboutUs;

@@ -21,6 +21,8 @@ import UpdateCategory from "./admin/updateCategory";
 import CreatorStore from "./core/CreatorStore";
 import CreatorDashboard from "./core/CreatorDashboard";
 import InfluencerProducts from "./core/components/InfluenerProducts";
+import About from "./core/components/AboutUs";
+import Contact from "./core/components/ContactUs";
 
 const Routes = () => {
   return (
@@ -35,6 +37,9 @@ const Routes = () => {
           exact
           component={CreatorStore}
         />
+        <Route path="/about" exact component={About} />
+        <Route path="/contact" exact component={Contact} />
+
         <Route path="/creator/dashboard" exact component={CreatorDashboard} />
         <Route path="/user/my-products" exact component={InfluencerProducts} />
         <PrivateRoute path="/user/dashboard" exact component={Dashboard} />
