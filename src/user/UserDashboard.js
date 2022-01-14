@@ -6,8 +6,40 @@ import { getInfluencerProducts } from "../core/apiCore";
 import { getPurchaseHistory } from "./apiUser";
 import moment from "moment";
 import SingleProduct from "../core/components/CreatorStore/SingleProduct";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Modal, Button, Form } from "react-bootstrap";
+
+function MyVerticallyCenteredModal(props) {
+  return (
+    <Modal
+      {...props}
+      size="lg"
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          Modal heading
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <h4>Centered Modal</h4>
+        <p>
+          Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+          dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
+          consectetur ac, vestibulum at eros.
+        </p>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button onClick={props.onHide}>Close</Button>
+      </Modal.Footer>
+    </Modal>
+  );
+}
 
 const Dashboard = () => {
+  const [modalShow, setModalShow] = useState(false);
+
   const [history, setHistory] = useState([]);
   const [products, setProducts] = useState([]);
 
@@ -72,6 +104,16 @@ const Dashboard = () => {
             <Link className="nav-link" to={`/profile/${_id}`}>
               Update Profile
             </Link>
+          </li>
+          <li className="list-group-item">
+            <Link className="nav-link" onClick={() => setModalShow(true)}>
+              Highlight Link
+            </Link>
+
+            <MyVerticallyCenteredModal
+              show={modalShow}
+              onHide={() => setModalShow(false)}
+            />
           </li>
         </ul>
       </div>
