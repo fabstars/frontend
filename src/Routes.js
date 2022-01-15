@@ -23,6 +23,7 @@ import CreatorDashboard from "./core/CreatorDashboard";
 import InfluencerProducts from "./core/components/InfluenerProducts";
 import About from "./core/components/AboutUs";
 import Contact from "./core/components/ContactUs";
+import ProductDetails from "./core/components/ProductDetails/ProductDetails";
 
 const Routes = () => {
   return (
@@ -47,6 +48,7 @@ const Routes = () => {
         <AdminRoute path="/create/category" exact component={AddCategory} />
         <AdminRoute path="/create/product" exact component={AddProduct} />
         <Route path="/product/:productId" exact component={Product} />
+        <Route path="/products/:productId" exact component={ProductDetails} />
         <Route path="/cart" exact component={Cart} />
         <AdminRoute path="/admin/orders" exact component={Orders} />
         <PrivateRoute path="/profile/:userId" exact component={Profile} />
