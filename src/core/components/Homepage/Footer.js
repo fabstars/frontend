@@ -5,11 +5,14 @@ const Footer = () => {
   return (
     <footer className="footer u-container">
       <p className="footer-logo" style={{"fontSize": "15px"}}>
-        fab &copy; 2021 All rights reserved.
+        fab &copy; 2022 All rights reserved.
       </p>
       <div className="footer__links">
-        <Link className="footer__link" href="" target="_blank" style={{"fontSize": "20px"}}>
+        <Link className="footer__link" href="" to="/PrivacyPolicy" target="_blank" style={{"fontSize": "20px"}}>
           Privacy
+        </Link>
+        <Link className="footer__link" href="" to="/ReturnPolicy"  target="_blank" style={{"fontSize": "20px"}}>
+          Return Policy
         </Link>
         <Link className="footer__link" href="" target="_blank" style={{"fontSize": "20px"}}>
           Terms
