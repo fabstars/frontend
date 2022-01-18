@@ -22,6 +22,9 @@ import CreatorDashboard from "./core/CreatorDashboard";
 import InfluencerProducts from "./core/components/InfluenerProducts";
 import About from "./core/components/AboutUs";
 import Contact from "./core/components/ContactUs";
+import ProductDetails from "./core/components/ProductDetails/ProductDetails";
+import ReturnPolicy from "./core/components/AdditionalPages/ReturnPolicy";
+import PrivacyPolicy from "./core/components/AdditionalPages/Privacy"
 
 const Routes = () => {
   return (
@@ -31,6 +34,8 @@ const Routes = () => {
         <Route path="/shop" exact component={Shop} />
         <Route path="/signin" exact component={Signin} />
         <Route path="/signup" exact component={Signup} />
+        <Route path="/ReturnPolicy" exact component={ReturnPolicy} />
+        <Route path="/PrivacyPolicy" exact component={PrivacyPolicy} />
         <Route
           path="/creatorstore/:influencerId"
           exact
@@ -46,6 +51,7 @@ const Routes = () => {
         <AdminRoute path="/create/category" exact component={AddCategory} />
         <AdminRoute path="/create/product" exact component={AddProduct} />
         <Route path="/product/:productId" exact component={Product} />
+        <Route path="/products/:productId" exact component={ProductDetails} />
         <Route path="/cart" exact component={Cart} />
         <AdminRoute path="/admin/orders" exact component={Orders} />
         <PrivateRoute path="/profile/:userId" exact component={Profile} />

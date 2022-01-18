@@ -1,0 +1,38 @@
+.banner {
+  position: relative;
+  background-image: url(./img/banner-bg.jpg);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  z-index: 1;
+  padding-bottom: 100px;
+  height: fit-content;
+}
+.bgcolora{
+  padding: 40px 40px 40px 40px;
+  height: 100%;
+  width: 100%;
+}
+.bgarea{
+  margin: auto;
+  color: rgb(248, 242, 242);
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.3); /* Black w/opacity/see-through */
+  border: 2px solid black;
+  border-radius: 20px;
+  /* box-shadow: 2px 2px 2px 2px rgb(173, 169, 169); */
+  padding: 15px 20px 20px 20px;
+  height: fit-content;
+  width: fit-content;
+  max-width: 800px;
+}
+.start-heading{
+  margin-bottom: 30px;
+}
+.beautify{
+  padding-bottom: 10px;
+}
+.bgarea h3{
+  color: rgb(235, 225, 225);
+  padding-bottom: 5px;
+}
