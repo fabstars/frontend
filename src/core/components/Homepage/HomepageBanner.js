@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import "./style.css";
 // import Menu from "../../Menu";
 import main from "./img/main.jpg";
-import { isAuthenticated } from "../../../auth";
+import { isAuthenticated, signout } from "../../../auth";
 
-const HomepageBanner = () => {
+const HomepageBanner = ({ history }) => {
   return (
     <>
       {/* <Menu></Menu> */}
@@ -16,8 +16,13 @@ const HomepageBanner = () => {
           </Link>
           <nav>
             <ul>
+              <li>
+                <Link className="button-72" to="/get-started">
+                  Get Started
+                </Link>
+              </li>
               {!isAuthenticated() && (
-                <li style={{ "margin-right": "-70px" }}>
+                <li>
                   <Link className="button-72" to="/signin">
                     Log in
                   </Link>
@@ -27,7 +32,7 @@ const HomepageBanner = () => {
               {isAuthenticated() &&
                 (isAuthenticated().user.role === "1" ||
                   isAuthenticated().user.role === "2") && (
-                  <li style={{ "margin-right": "-70px" }}>
+                  <li>
                     <Link className="button-72" to="/user/dashboard">
                       Dashboard
                     </Link>
@@ -35,39 +40,27 @@ const HomepageBanner = () => {
                 )}
 
               {isAuthenticated() && isAuthenticated().user.role === "0" && (
-                <li style={{ "margin-right": "-70px" }}>
+                <li>
                   <Link className="button-72" to="/admin/dashboard">
                     Dashboard
                   </Link>
                 </li>
               )}
 
-              <li>
-                <Link
-                  className="button-72"
-                  style={{ "margin-right": "-45px" }}
-                  to="/get-started"
-                  target="_blank"
-                >
-                  Get Started
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  style={{ "margin-right": "-45px" }}
-                  className="button-72"
-                  to="/about"
-                >
-                  About Us
-                </Link>
-              </li>
-
-              <li>
-                <Link className="button-72" to="/contact">
-                  Contact Us
-                </Link>
-              </li>
+              {isAuthenticated() && (
+                <li>
+                  <Link
+                    className="button-72"
+                    onClick={() =>
+                      signout(() => {
+                        history.push("/");
+                      })
+                    }
+                  >
+                    Signout
+                  </Link>
+                </li>
+              )}
             </ul>
           </nav>
         </header>

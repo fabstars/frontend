@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./style.css";
-import { isAuthenticated } from "../../../auth";
+import { isAuthenticated, signout } from "../../../auth";
+import Footer from "../Homepage/Footer";
 
 const AboutUs = () => {
   return (
@@ -13,8 +14,13 @@ const AboutUs = () => {
           </Link>
           <nav>
             <ul>
+              <li>
+                <Link className="button-72" to="/get-started">
+                  Get Started
+                </Link>
+              </li>
               {!isAuthenticated() && (
-                <li style={{ "margin-right": "-70px" }}>
+                <li>
                   <Link className="button-72" to="/signin">
                     Log in
                   </Link>
@@ -24,47 +30,20 @@ const AboutUs = () => {
               {isAuthenticated() &&
                 (isAuthenticated().user.role === "1" ||
                   isAuthenticated().user.role === "2") && (
-                  <li style={{ "margin-right": "-70px" }}>
+                  <li>
                     <Link className="button-72" to="/user/dashboard">
                       Dashboard
                     </Link>
                   </li>
                 )}
 
-              {isAuthenticated() && isAuthenticated().user.role === "0" && (
-                <li style={{ "margin-right": "-70px" }}>
-                  <Link className="button-72" to="/admin/dashboard">
-                    Dashboard
+              {isAuthenticated() && (
+                <li>
+                  <Link className="button-72" onClick={() => signout(() => {})}>
+                    Signout
                   </Link>
                 </li>
               )}
-
-              <li>
-                <Link
-                  className="button-72"
-                  style={{ "margin-right": "-45px" }}
-                  to="/get-started"
-                  target="_blank"
-                >
-                  Get Started
-                </Link>
-              </li>
-
-              <li>
-                <Link
-                  style={{ "margin-right": "-45px" }}
-                  className="button-72"
-                  to="/about"
-                >
-                  About Us
-                </Link>
-              </li>
-
-              <li>
-                <Link className="button-72" to="/contact">
-                  Contact Us
-                </Link>
-              </li>
             </ul>
           </nav>
         </header>
@@ -84,6 +63,7 @@ const AboutUs = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };

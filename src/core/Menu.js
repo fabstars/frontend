@@ -13,15 +13,24 @@ const isActive = (history, path) => {
 
 const Menu = ({ history }) => (
   <div>
-    <ul className="nav nav-tabs bg-primary">
-      <li className="nav-item">
+    <ul
+      className="nav nav-tabs bg-primary"
+      style={{ padding: "0", borderRadius: "0px" }}
+    >
+      <li
+        className="nav-item"
+        style={{ padding: "0", width: "10em", textAlign: "center" }}
+      >
         <Link className="nav-link" style={isActive(history, "/")} to="/">
           Home
         </Link>
       </li>
 
       {isAuthenticated() && isAuthenticated().user.role !== "2" && (
-        <li className="nav-item">
+        <li
+          className="nav-item"
+          style={{ padding: "0", width: "10em", textAlign: "center" }}
+        >
           <Link
             className="nav-link"
             style={isActive(history, "/shop")}
@@ -33,7 +42,10 @@ const Menu = ({ history }) => (
       )}
 
       {isAuthenticated() && isAuthenticated().user.role === "1" && (
-        <li className="nav-item">
+        <li
+          className="nav-item"
+          style={{ padding: "0", width: "10em", textAlign: "center" }}
+        >
           <Link
             className="nav-link"
             style={isActive(history, "/user/my-products")}
@@ -44,7 +56,10 @@ const Menu = ({ history }) => (
         </li>
       )}
       {isAuthenticated() && isAuthenticated().user.role === "2" && (
-        <li className="nav-item">
+        <li
+          className="nav-item"
+          style={{ padding: "0", width: "10em", textAlign: "center" }}
+        >
           <Link
             className="nav-link"
             style={isActive(history, "/cart")}
@@ -61,7 +76,10 @@ const Menu = ({ history }) => (
       {isAuthenticated() &&
         (isAuthenticated().user.role === "1" ||
           isAuthenticated().user.role == "2") && (
-          <li className="nav-item">
+          <li
+            className="nav-item"
+            style={{ padding: "0", width: "10em", textAlign: "center" }}
+          >
             <Link
               className="nav-link"
               style={isActive(history, "/user/dashboard")}
@@ -73,7 +91,10 @@ const Menu = ({ history }) => (
         )}
 
       {isAuthenticated() && isAuthenticated().user.role === "0" && (
-        <li className="nav-item">
+        <li
+          className="nav-item"
+          style={{ padding: "0", width: "10em", textAlign: "center" }}
+        >
           <Link
             className="nav-link"
             style={isActive(history, "/admin/dashboard")}
@@ -86,7 +107,10 @@ const Menu = ({ history }) => (
 
       {!isAuthenticated() && (
         <Fragment>
-          <li className="nav-item">
+          <li
+            className="nav-item"
+            style={{ padding: "0", width: "10em", textAlign: "center" }}
+          >
             <Link
               className="nav-link"
               style={isActive(history, "/signin")}
@@ -96,7 +120,10 @@ const Menu = ({ history }) => (
             </Link>
           </li>
 
-          <li className="nav-item">
+          <li
+            className="nav-item"
+            style={{ padding: "0", width: "10em", textAlign: "center" }}
+          >
             <Link
               className="nav-link"
               style={isActive(history, "/signup")}
@@ -109,7 +136,10 @@ const Menu = ({ history }) => (
       )}
 
       {isAuthenticated() && (
-        <li className="nav-item">
+        <li
+          className="nav-item"
+          style={{ padding: "0", width: "10em", textAlign: "center" }}
+        >
           <span
             className="nav-link"
             style={{ cursor: "pointer", color: "#ffffff" }}
