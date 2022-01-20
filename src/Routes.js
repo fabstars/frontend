@@ -24,7 +24,8 @@ import About from "./core/components/AboutUs";
 import Contact from "./core/components/ContactUs";
 import ProductDetails from "./core/components/ProductDetails/ProductDetails";
 import ReturnPolicy from "./core/components/AdditionalPages/ReturnPolicy";
-import PrivacyPolicy from "./core/components/AdditionalPages/Privacy";
+import PrivacyPolicy from "./core/components/AdditionalPages/Privacy"
+import Terms from "./core/components/AdditionalPages/Terms";
 
 const Routes = () => {
   return (
@@ -36,6 +37,7 @@ const Routes = () => {
         <Route path="/signup" exact component={Signup} />
         <Route path="/ReturnPolicy" exact component={ReturnPolicy} />
         <Route path="/PrivacyPolicy" exact component={PrivacyPolicy} />
+        <Route path="/Terms" exact component={Terms} />
         <Route
           path="/creatorstore/:influencerId"
           exact
