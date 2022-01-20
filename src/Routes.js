@@ -24,7 +24,7 @@ import About from "./core/components/AboutUs";
 import Contact from "./core/components/ContactUs";
 import ProductDetails from "./core/components/ProductDetails/ProductDetails";
 import ReturnPolicy from "./core/components/AdditionalPages/ReturnPolicy";
-import PrivacyPolicy from "./core/components/AdditionalPages/Privacy"
+import PrivacyPolicy from "./core/components/AdditionalPages/Privacy";
 
 const Routes = () => {
   return (
@@ -44,7 +44,11 @@ const Routes = () => {
         <Route path="/about" exact component={About} />
         <Route path="/contact" exact component={Contact} />
 
-        <Route path="/creator/dashboard" exact component={CreatorDashboard} />
+        <PrivateRoute
+          path="/creator/dashboard"
+          exact
+          component={CreatorDashboard}
+        />
         <Route path="/user/my-products" exact component={InfluencerProducts} />
         <PrivateRoute path="/user/dashboard" exact component={Dashboard} />
         <AdminRoute path="/admin/dashboard" exact component={AdminDashboard} />
