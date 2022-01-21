@@ -3,7 +3,7 @@ import Layout from "../../Layout";
 import { isAuthenticated } from "../../../auth";
 import { getInfluencerProducts } from "../../apiCore";
 import Card from "../../Card";
-
+  
 const MyProducts = () => {
   const {
     token,

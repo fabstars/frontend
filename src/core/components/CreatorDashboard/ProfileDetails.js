@@ -86,6 +86,7 @@ const ProfileDetails = () => {
                         onClick={() => toggleSocialInputs(!displaySocialInputs)}
                         type="button"
                         className="btn btn-light"
+                        style={{ border: "1px solid black" }}
                       >
                         Add Social Network Links
                       </button>
@@ -96,6 +97,7 @@ const ProfileDetails = () => {
                         <div className="form-group social-input">
                           <i className="fab fa-twitter fa-2x"></i>
                           <input
+                            style={{ marginLeft: "1rem" }}
                             type="text"
                             placeholder="Twitter URL"
                             name="twitter"
@@ -107,6 +109,7 @@ const ProfileDetails = () => {
                         <div className="form-group social-input">
                           <i className="fab fa-facebook fa-2x"></i>
                           <input
+                            style={{ marginLeft: "1rem" }}
                             type="text"
                             placeholder="Facebook URL"
                             name="facebook"
@@ -118,6 +121,7 @@ const ProfileDetails = () => {
                         <div className="form-group social-input">
                           <i className="fab fa-youtube fa-2x"></i>
                           <input
+                            style={{ marginLeft: "1rem" }}
                             type="text"
                             placeholder="YouTube URL"
                             name="youtube"
@@ -129,6 +133,7 @@ const ProfileDetails = () => {
                         <div className="form-group social-input">
                           <i className="fab fa-linkedin fa-2x"></i>
                           <input
+                            style={{ marginLeft: "1rem" }}
                             type="text"
                             placeholder="Linkedin URL"
                             name="linkedin"
@@ -140,6 +145,7 @@ const ProfileDetails = () => {
                         <div className="form-group social-input">
                           <i className="fab fa-instagram fa-2x"></i>
                           <input
+                            style={{ marginLeft: "1rem" }}
                             type="text"
                             placeholder="Instagram URL"
                             name="instagram"
@@ -150,56 +156,7 @@ const ProfileDetails = () => {
                       </Fragment>
                     )}
 
-                    <div className="form-group row">
-                      <div className="col-lg-3" style={{ paddingTop: "5px" }}>
-                        Facebook <span className="text-danger">*</span>
-                      </div>
-                      <div className="col-lg-9 custom-input-wrapper">
-                        <input className="form-control float-right custom-input" />
-                      </div>
-                    </div>
-                    <div className="form-group row">
-                      <div className="col-lg-3" style={{ paddingTop: "5px" }}>
-                        Instagram <span className="text-danger">*</span>
-                      </div>
-                      <div className="col-lg-9 custom-input-wrapper">
-                        <input className="form-control float-right custom-input" />
-                      </div>
-                    </div>
-                    <div className="form-group row">
-                      <div className="col-lg-3" style={{ paddingTop: "5px" }}>
-                        Youtube <span className="text-danger">*</span>
-                      </div>
-                      <div className="col-lg-9 custom-input-wrapper">
-                        <input className="form-control float-right custom-input" />
-                      </div>
-                    </div>
-                    <div className="form-group row">
-                      <div className="col-lg-3" style={{ paddingTop: "5px" }}>
-                        Twitter
-                      </div>
-                      <div className="col-lg-9 custom-input-wrapper">
-                        <input className="form-control float-right custom-input" />
-                      </div>
-                    </div>
-                    <div className="form-group row">
-                      <div className="col-lg-3" style={{ paddingTop: "5px" }}>
-                        Reddit
-                      </div>
-                      <div className="col-lg-9 custom-input-wrapper">
-                        <input className="form-control float-right custom-input" />
-                      </div>
-                    </div>
-                    <div className="form-group row">
-                      <div className="col-lg-3" style={{ paddingTop: "5px" }}>
-                        Discord
-                      </div>
-                      <div className="col-lg-9 custom-input-wrapper">
-                        <input className="form-control float-right custom-input" />
-                      </div>
-                    </div>
-
-                    <div className="form-group row">
+                    {/* <div className="form-group row">
                       <div className="col-lg-3" style={{ paddingTop: "5px" }}>
                         Gender
                       </div>
@@ -210,7 +167,7 @@ const ProfileDetails = () => {
                           <option>Others</option>
                         </select>
                       </div>
-                    </div>
+                    </div> */}
 
                     <div className="  text-center">
                       <button className="btn btn-primary">Save</button>

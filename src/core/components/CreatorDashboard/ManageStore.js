@@ -1,8 +1,41 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import StoreSummary from "./StoreSummary";
+import { isAuthenticated } from "../../../auth";
+import { getInfluencerProducts } from "../../apiCore";
 
 const ManageStore = () => {
+  const {
+    token,
+    user: { _id },
+  } = isAuthenticated();
+  const [products, setProducts] = useState([]);
+  const [margins, setMargins] = useState([]);
+
+  const init = (userId, token) => {
+    getInfluencerProducts(userId, token).then((data) => {
+      setProducts((arr) => [...arr, data]);
+    });
+  };
+
+  const getMargin = (product) => {
+    {
+      product.influencer_list.map((influencer, idx) => {
+        if (influencer.user_id === _id) {
+          console.log(influencer.user_id, _id);
+          console.log(influencer.margin);
+          product["margin"] = influencer.margin;
+        }
+      });
+    }
+  };
+
+  useEffect(() => {}, [products]);
+
+  useEffect(() => {
+    init(_id, token);
+  }, []);
+
   return (
     <>
       <div className="row">
@@ -46,36 +79,28 @@ const ManageStore = () => {
                 <th>Product </th>
                 <th className="text-center">Price per Item</th>
                 <th className="text-center">margin per Item</th>
-                <th className="text-center">status</th>
+                {/* <th className="text-center">status</th> */}
               </tr>
             </thead>
-            <tbody>
-              <tr className=" ">
-                <td>Round neck Tshirt</td>
-                <td className="text-center">
-                  <i className="fas fa-rupee-sign"></i> 400
-                </td>
-                <td className="text-center">
-                  <i className="fas fa-rupee-sign"></i> 40
-                </td>
-                <td className="text-center">
-                  <span className="status active">Active</span>
-                </td>
-              </tr>
-
-              <tr className="  ">
-                <td>Sweat shirt</td>
-                <td className="text-center">
-                  <i className="fas fa-rupee-sign"></i> 700
-                </td>
-                <td className="text-center">
-                  <i className="fas fa-rupee-sign"></i> 50
-                </td>
-                <td className="text-center">
-                  <span className="status inactive">In Active</span>
-                </td>
-              </tr>
-            </tbody>
+            {products &&
+              products[0] &&
+              products[0].map((product, i) => (
+                <tbody key={i}>
+                  <tr className=" ">
+                    <td>{product.name}</td>
+                    <td className="text-center">
+                      <i className="fas fa-rupee-sign"></i> {product.price}
+                    </td>
+                    <td className="text-center">
+                      <i className="fas fa-rupee-sign"></i>
+                      {getMargin(product)} {product["margin"]}
+                    </td>
+                    {/* <td className="text-center">
+                      <span className="status active">Active</span>
+                    </td> */}
+                  </tr>
+                </tbody>
+              ))}
           </table>
         </div>
       </div>

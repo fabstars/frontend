@@ -24,7 +24,7 @@ import About from "./core/components/AdditionalPages/AboutUs";
 import Contact from "./core/components/ContactUs";
 import ProductDetails from "./core/components/ProductDetails/ProductDetails";
 import ReturnPolicy from "./core/components/AdditionalPages/ReturnPolicy";
-import PrivacyPolicy from "./core/components/AdditionalPages/Privacy"
+import PrivacyPolicy from "./core/components/AdditionalPages/Privacy";
 import Terms from "./core/components/AdditionalPages/Terms";
 
 const Routes = () => {
@@ -46,13 +46,13 @@ const Routes = () => {
         <Route path="/about" exact component={About} />
         <Route path="/contact" exact component={Contact} />
 
+        <PrivateRoute path="/creator/dashboard" exact component={Dashboard} />
+        <Route path="/user/my-products" exact component={InfluencerProducts} />
         <PrivateRoute
-          path="/creator/dashboard"
+          path="/user/dashboard"
           exact
           component={CreatorDashboard}
         />
-        <Route path="/user/my-products" exact component={InfluencerProducts} />
-        <PrivateRoute path="/user/dashboard" exact component={Dashboard} />
         <AdminRoute path="/admin/dashboard" exact component={AdminDashboard} />
         <AdminRoute path="/create/category" exact component={AddCategory} />
         <AdminRoute path="/create/product" exact component={AddProduct} />
