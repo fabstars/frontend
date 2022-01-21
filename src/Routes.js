@@ -20,7 +20,7 @@ import UpdateCategory from "./admin/updateCategory";
 import CreatorStore from "./core/CreatorStore";
 import CreatorDashboard from "./core/CreatorDashboard";
 import InfluencerProducts from "./core/components/InfluenerProducts";
-import About from "./core/components/AboutUs";
+import About from "./core/components/AdditionalPages/AboutUs";
 import Contact from "./core/components/ContactUs";
 import ProductDetails from "./core/components/ProductDetails/ProductDetails";
 import ReturnPolicy from "./core/components/AdditionalPages/ReturnPolicy";
