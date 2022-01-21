@@ -16,15 +16,18 @@ const HomepageBanner = ({ history }) => {
           </Link>
           <nav>
             <ul>
-              <li>
-                <Link className="button-72" to="/get-started">
-                  Get Started
-                </Link>
-              </li>
               {!isAuthenticated() && (
                 <li>
                   <Link className="button-72" to="/signin">
                     Log in
+                  </Link>
+                </li>
+              )}
+
+              {!isAuthenticated() && (
+                <li>
+                  <Link className="button-72" to="/signup">
+                    Start For Free
                   </Link>
                 </li>
               )}
@@ -78,16 +81,20 @@ const HomepageBanner = ({ history }) => {
                     </p>
                     <section className="cta-input">
                       <form className="cta-input__container">
-                        <div className="cta-input__qaya-name">
-                          <span aria-hidden="true">fab.store/</span>
+                        <div className="cta-input__qaya-name mb-2">
+                          <span aria-hidden="true">fabstores.co/</span>
                           <input
-                            aria-label="Your requested name to be used for a fab store with the URL like https://fab.store/your-name"
+                            aria-label="Your requested name to be used for a fab store with the URL like https://fabstores.co/your-name"
                             className="cta-input__input"
                             placeholder="your-name"
                             type="text"
                           />
                         </div>
-                        <button className="button-72">Get Started</button>
+                        {!isAuthenticated() && (
+                          <Link className="button-72" to="/signup">
+                            Start For Free
+                          </Link>
+                        )}
                       </form>
                     </section>
                     <p className="hero-footer">

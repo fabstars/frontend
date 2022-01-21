@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import userImage from "./user.png";
+import { isAuthenticated, signout } from "../../../auth";
+
 const Sidebar = ({ toggle, setToggle, setCurrentTab, currentTab }) => {
   const [width, setWidth] = useState(window.innerWidth);
   const [height, setHeight] = useState(window.innerHeight);
@@ -34,7 +36,7 @@ const Sidebar = ({ toggle, setToggle, setCurrentTab, currentTab }) => {
             <i className="fas fa-bars"></i>
           </div>
           <Link className="navbar-brand" to="/">
-            fabStar
+            FabStores
           </Link>
         </div>
         <div className="clearfix"></div>
@@ -51,24 +53,27 @@ const Sidebar = ({ toggle, setToggle, setCurrentTab, currentTab }) => {
           </div>
           <div className="clearfix"></div>
 
-          <ul className="nav">
+          <ul
+            className="nav"
+            style={{ display: "flex", flexDirection: "column" }}
+          >
             <li>
               {" "}
               <Link
-                to="#"
+                to="/user/dashboard"
                 className={currentTab === "Profile" && "active"}
                 onClick={() => {
                   setCurrentTab("Profile");
                 }}
               >
                 <i className="fas fa-user"></i>
-                <span>Profile</span>
+                <span>Dashboard</span>
               </Link>{" "}
             </li>
             <li>
               <Link to="/shop">
                 <i className="fas fa-cubes"></i>
-                <span> FabStore Products</span>
+                <span>Shop</span>
               </Link>
             </li>
             <li>
@@ -80,19 +85,7 @@ const Sidebar = ({ toggle, setToggle, setCurrentTab, currentTab }) => {
                 }}
               >
                 <i className="fas fa-boxes"></i>
-                <span> Manage Store</span>
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="#"
-                className={currentTab === "Orders" && "active"}
-                onClick={() => {
-                  setCurrentTab("Orders");
-                }}
-              >
-                <i className="fas fa-shopping-bag"></i>
-                <span> Orders</span>
+                <span>Manage Products</span>
               </Link>
             </li>
             <li>
@@ -104,7 +97,7 @@ const Sidebar = ({ toggle, setToggle, setCurrentTab, currentTab }) => {
                 }}
               >
                 <i className="fas fa-cog"></i>
-                <span> Settings</span>
+                <span>Highlight Links</span>
               </Link>
             </li>
           </ul>

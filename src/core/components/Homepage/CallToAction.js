@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { isAuthenticated } from "../../../auth";
 
 const CallToAction = () => {
   return (
@@ -9,22 +11,26 @@ const CallToAction = () => {
             Ready to create your own website?
           </h2>
           <p className="create-storefront-cta__note">
-              Replace link tree with your own website and earn money
+            Replace your linktree website with your own website and earn money
           </p>
         </div>
         <div className="create-storefront-cta__button-container">
           <section className="cta-input">
             <form className="cta-input__container">
               <div className="cta-input__qaya-name">
-                <span aria-hidden="true">fab.store/</span>
+                <span aria-hidden="true">fabstores.co/</span>
                 <input
-                  aria-label="Your requested name to be used for a fab store with the URL like https://fab.store/your-name"
+                  aria-label="Your requested name to be used for a fab store with the URL like https://fabstores.co/your-name"
                   className="cta-input__input"
                   placeholder="your-name"
                   type="text"
                 />
               </div>
-              <button className="button-72" style={{ padding: "18px 18px 18px 18px" }}> Get Started</button>
+              {!isAuthenticated() && (
+                <Link className="button-72" to="/signup">
+                  Start For Free
+                </Link>
+              )}
             </form>
           </section>
         </div>

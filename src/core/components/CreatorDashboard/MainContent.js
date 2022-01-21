@@ -4,6 +4,7 @@ import ManageOrders from "./ManageOrders";
 import ManageStore from "./ManageStore";
 import ProfileDetails from "./ProfileDetails";
 import UserSettings from "./UserSettings";
+import { isAuthenticated, signout } from "../../../auth";
 
 const MainContent = ({ toggle, currentTab }) => {
   return (
@@ -15,13 +16,15 @@ const MainContent = ({ toggle, currentTab }) => {
         >
           <ul className="nav navbar-top-links navbar-right float-right">
             <li>
-              <Link to="/creatorstore/hrithik-roshan" className="btn ">
+              <Link
+                to={`/creatorstore/${isAuthenticated().user._id}`}
+                className="btn "
+              >
                 View Store
               </Link>
             </li>
             <li>
-              {" "}
-              <Link to="login.html" className="btn">
+              <Link onClick={() => signout(() => {})} className="btn">
                 <i className="fa fa-sign-out fa-fw"></i> Logout
               </Link>{" "}
             </li>

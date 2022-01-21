@@ -46,7 +46,11 @@ const Routes = () => {
         <Route path="/about" exact component={About} />
         <Route path="/contact" exact component={Contact} />
 
-        <Route path="/creator/dashboard" exact component={CreatorDashboard} />
+        <PrivateRoute
+          path="/creator/dashboard"
+          exact
+          component={CreatorDashboard}
+        />
         <Route path="/user/my-products" exact component={InfluencerProducts} />
         <PrivateRoute path="/user/dashboard" exact component={Dashboard} />
         <AdminRoute path="/admin/dashboard" exact component={AdminDashboard} />

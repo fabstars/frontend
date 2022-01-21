@@ -880,6 +880,13 @@ a.button {
   color: #383838;
   position: absolute;
 }
+@media only screen and (max-width: 770px) {
+  .footer__links {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
 .footer__links {
   -webkit-box-pack: center;
   -webkit-justify-content: center;
