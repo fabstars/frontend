@@ -12,6 +12,7 @@ const Footer = () => {
           className="footer__link"
           href=""
           to="/PrivacyPolicy"
+          target="_top"
           style={{ fontSize: "20px" }}
         >
           Privacy
@@ -20,6 +21,7 @@ const Footer = () => {
           className="footer__link"
           href=""
           to="/ReturnPolicy"
+          target="_top"
           style={{ fontSize: "20px" }}
         >
           Return Policy
@@ -28,16 +30,23 @@ const Footer = () => {
           className="footer__link"
           href=""
           to="/Terms"
+          target="_top"
           style={{ fontSize: "20px" }}
         >
           Terms of Service
         </Link>
-        <Link className="footer__link" to="/about" style={{ fontSize: "20px" }}>
+        <Link
+          className="footer__link"
+          to="/about"
+          target="_top"
+          style={{ fontSize: "20px" }}
+        >
           About us
         </Link>
         <Link
           className="footer__link"
           to="/contact"
+          target="_top"
           style={{ fontSize: "20px" }}
         >
           Contact us
