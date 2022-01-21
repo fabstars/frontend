@@ -14,11 +14,6 @@ const ContactUs = () => {
           </Link>
           <nav>
             <ul>
-              <li>
-                <Link className="button-72" to="/get-started">
-                  Get Started
-                </Link>
-              </li>
               {!isAuthenticated() && (
                 <li>
                   <Link className="button-72" to="/signin">
