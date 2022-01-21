@@ -228,6 +228,7 @@ strong {
 }
 
 .header {
+  border: 1px solid red;
   -webkit-box-pack: justify;
   -webkit-justify-content: space-between;
   -moz-box-pack: justify;

@@ -10,63 +10,6 @@ const HomepageBanner = ({ history }) => {
     <>
       {/* <Menu></Menu> */}
       <div className="main-banner main-banner-show">
-        <header className="header u-container skip-parallax">
-          <Link to="/" style={{ marginLeft: "2.8em" }}>
-            <h1 className="qaya-logo">Fab</h1>
-          </Link>
-          <nav>
-            <ul>
-              {!isAuthenticated() && (
-                <li>
-                  <Link className="button-72" to="/signin">
-                    Log in
-                  </Link>
-                </li>
-              )}
-
-              {!isAuthenticated() && (
-                <li>
-                  <Link className="button-72" to="/signup">
-                    Start For Free
-                  </Link>
-                </li>
-              )}
-
-              {isAuthenticated() &&
-                (isAuthenticated().user.role === "1" ||
-                  isAuthenticated().user.role === "2") && (
-                  <li>
-                    <Link className="button-72" to="/user/dashboard">
-                      Dashboard
-                    </Link>
-                  </li>
-                )}
-
-              {isAuthenticated() && isAuthenticated().user.role === "0" && (
-                <li>
-                  <Link className="button-72" to="/admin/dashboard">
-                    Dashboard
-                  </Link>
-                </li>
-              )}
-
-              {isAuthenticated() && (
-                <li>
-                  <Link
-                    className="button-72"
-                    onClick={() =>
-                      signout(() => {
-                        history.push("/");
-                      })
-                    }
-                  >
-                    Signout
-                  </Link>
-                </li>
-              )}
-            </ul>
-          </nav>
-        </header>
         <div className="d-table" style={{ marginTop: "-10px" }}>
           <div className="d-table-cell">
             <div className="container">
