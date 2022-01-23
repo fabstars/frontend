@@ -26,6 +26,8 @@ import ProductDetails from "./core/components/ProductDetails/ProductDetails";
 import ReturnPolicy from "./core/components/AdditionalPages/ReturnPolicy";
 import PrivacyPolicy from "./core/components/AdditionalPages/Privacy";
 import Terms from "./core/components/AdditionalPages/Terms";
+import CreatorLogin from "./user/components/CreatorLogin";
+import CreatorSignup from "./user/components/CreatorSignup";
 
 const Routes = () => {
   return (
@@ -33,8 +35,9 @@ const Routes = () => {
       <Switch>
         <Route path="/" exact component={LandingPage} />
         <Route path="/shop" exact component={Shop} />
-        <Route path="/signin" exact component={Signin} />
-        <Route path="/signup" exact component={Signup} />
+        <Route path="/signin" exact component={CreatorLogin} />
+        <Route path="/signup" exact component={CreatorSignup} />
+
         <Route path="/ReturnPolicy" exact component={ReturnPolicy} />
         <Route path="/PrivacyPolicy" exact component={PrivacyPolicy} />
         <Route path="/Terms" exact component={Terms} />
@@ -43,6 +46,7 @@ const Routes = () => {
           exact
           component={CreatorStore}
         />
+
         <Route path="/about" exact component={About} />
         <Route path="/contact" exact component={Contact} />
 

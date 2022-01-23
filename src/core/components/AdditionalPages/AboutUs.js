@@ -5,6 +5,7 @@ import "./s1.css";
 import { isAuthenticated, signout } from "../../../auth";
 import Footer from "../Homepage/Footer";
 
+
 const AboutUs = () => {
   return (
     <>
