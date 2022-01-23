@@ -9,6 +9,8 @@ import { Link } from "react-router-dom";
 import Loader from "react-loader-spinner";
 import ProductSpecification from "./ProductSpecification";
 import RelatedProducts from "./RelatedProducts";
+import { addItemToCart } from "../../cartHelpers";
+
 const ProductDetails = (props) => {
   const [product, setProduct] = useState(null);
   const [relatedProduct, setRelatedProduct] = useState([]);
@@ -152,7 +154,11 @@ const ProductDetails = (props) => {
                       </ul>
                     </div>
                     <div className="details-add-group">
-                      <button className="product-add" title="Add to Cart">
+                      <button
+                        className="product-add"
+                        title="Add to Cart"
+                        onClick={() => addItemToCart(product, 1)}
+                      >
                         <i className="fas fa-shopping-basket"></i>
                         <span>add to cart</span>
                       </button>

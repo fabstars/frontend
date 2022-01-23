@@ -3,6 +3,7 @@ import tshirt from "./tshirt.webp";
 import { API } from "../../../config";
 import "./style1.css";
 import { Link } from "react-router-dom";
+import { addItemToCart } from "../../cartHelpers";
 
 const SingleProduct = ({ product, userId }) => {
   const [currentMargin, setCurrentMargin] = useState(0);
@@ -74,7 +75,11 @@ const SingleProduct = ({ product, userId }) => {
                 {product.price + currentMargin}
               </span>
             </h6>
-            <button class="product-add" title="Add to Cart">
+            <button
+              class="product-add"
+              title="Add to Cart"
+              onClick={() => addItemToCart(product, 1)}
+            >
               <i class="fas fa-shopping-basket"></i>
               <span>add</span>
             </button>

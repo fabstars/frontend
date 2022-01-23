@@ -28,6 +28,7 @@ import PrivacyPolicy from "./core/components/AdditionalPages/Privacy";
 import Terms from "./core/components/AdditionalPages/Terms";
 import CreatorLogin from "./user/components/CreatorLogin";
 import CreatorSignup from "./user/components/CreatorSignup";
+import Checkout from "./core/Checkout";
 
 const Routes = () => {
   return (
@@ -49,6 +50,7 @@ const Routes = () => {
 
         <Route path="/about" exact component={About} />
         <Route path="/contact" exact component={Contact} />
+        <Route path="/checkout" exact component={Checkout} />
 
         <PrivateRoute path="/creator/dashboard" exact component={Dashboard} />
         <Route path="/user/my-products" exact component={InfluencerProducts} />
