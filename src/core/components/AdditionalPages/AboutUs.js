@@ -10,9 +10,9 @@ const AboutUs = () => {
   return (
     <>
       <div className="banner">
-        <header className="header u-container skip-parallax">
-          <Link to="/" style={{ marginLeft: "2.8em" }}>
-            <h1 className="qaya-logo">Fab</h1>
+        <header className="header-style hcontainer" style={{ position: "sticky", top: "0px" }}>
+          <Link to="/" className="sitename">
+            <h1 className="qlogo">Fabstores</h1>
           </Link>
           <nav>
             <ul>
