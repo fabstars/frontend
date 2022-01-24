@@ -8,10 +8,10 @@ const ContactUs = () => {
   return (
     <>
       <div className="main-banner main-banner-show">
-        <header className="header u-container skip-parallax">
-          <Link to="/" style={{ marginLeft: "2.8em" }}>
-            <h1 className="qaya-logo">Fab</h1>
-          </Link>
+      <header className="header-style hcontainer" style={{ position: "sticky", top: "0px" }}>
+        <Link to="/" className="sitename">
+          <h1 className="qlogo">Fabstores</h1>
+        </Link>
           <nav>
             <ul>
               {!isAuthenticated() && (
