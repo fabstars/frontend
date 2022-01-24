@@ -88,7 +88,7 @@ const Sidebar = ({ toggle, setToggle, setCurrentTab, currentTab }) => {
                 <span>Manage Products</span>
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link
                 to="#"
                 className={currentTab === "Settings" && "active"}
@@ -99,7 +99,7 @@ const Sidebar = ({ toggle, setToggle, setCurrentTab, currentTab }) => {
                 <i className="fas fa-cog"></i>
                 <span>Highlight Links</span>
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>
