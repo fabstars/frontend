@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Layout from "./Layout";
 import Card from "./Card";
-import { getCategories, getFilteredProducts } from "./apiCore";
+import { getCategories, getFilteredProducts, list } from "./apiCore";
 import Checkbox from "./Checkbox";
 import RadioBox from "./RadioBox";
 import { prices } from "./fixedPrices";
 import Search from "../core/Search";
 import { isAuthenticated } from "../auth";
+import SingleShopProduct from "./components/Shop/SingleShopProduct";
 
 const Shop = () => {
   const [myFilters, setMyFilters] = useState({
-    filters: { category: [], price: [] },
+    filters: { category: [], price: [], search: "" },
   });
   const [categories, setCategories] = useState([]);
   const [error, setError] = useState(false);
-  const [limit, setLimit] = useState(6);
+  const [limit, setLimit] = useState(12);
   const [skip, setSkip] = useState(0);
   const [size, setSize] = useState(0);
   const [filteredResults, setFilteredResults] = useState([]);
@@ -60,7 +61,7 @@ const Shop = () => {
     return (
       size > 0 &&
       size >= limit && (
-        <button onClick={loadMore} className="btn btn-warning mb-5">
+        <button onClick={loadMore} className="btn btn-success mb-5">
           Load more
         </button>
       )
@@ -96,50 +97,134 @@ const Shop = () => {
     }
     return array;
   };
-
+  const [clearCategoryFilter, setClearCategoryFilter] = useState(false);
+  const [search, setSearch] = useState("");
+  useEffect(() => {
+    loadSearchResults();
+  }, [search]);
+  const loadSearchResults = () => {
+    list({ search: search }).then((data) => {
+      if (data.error) {
+        setError(data.error);
+      } else {
+        setFilteredResults(data);
+        setSize(data.size);
+        setSkip(0);
+      }
+    });
+  };
+  const text = useRef("");
+  const [filteredCategory, setFilteredCategory] = useState(null);
+  const onChange = (e) => {
+    if (text.current.value !== "") {
+      let filtered;
+      if (!filteredCategory)
+        filtered = categories.filter((category) => {
+          return category.name
+            .toLowerCase()
+            .includes(text.current.value.toLowerCase());
+        });
+      else
+        filtered = filteredCategory.filter((category) => {
+          return category.name
+            .toLowerCase()
+            .includes(text.current.value.toLowerCase());
+        });
+      setFilteredCategory(filtered);
+    } else {
+      setFilteredCategory(null);
+    }
+  };
   return (
-    <Layout
-      title="Shop Page"
-      description="Search and find books of your choice"
-      className="container-fluid"
-    >
-      <div className="row">
-        <div className="col-4">
-          <h4>Filter by categories</h4>
-          <ul style={{ marginLeft: "0.7em" }}>
-            <Checkbox
-              categories={categories}
-              handleFilters={(filters) => handleFilters(filters, "category")}
-            />
-          </ul>
-
-          <h4>Filter by price range</h4>
-          <div>
-            <RadioBox
-              prices={prices}
-              handleFilters={(filters) => handleFilters(filters, "price")}
-            />
-          </div>
-        </div>
-
-        <div className="col-8">
-          <Search />
-          <h2 className="mb-4">Products</h2>
-          <div className="row">
-            {filteredResults.map((product, i) => (
-              <div key={i} className="col-4 mb-3">
-                {isAuthenticated() && isAuthenticated().user.role === "1" ? (
-                  <Card product={product} showAddToSiteButton={true} />
-                ) : (
-                  <Card product={product} />
-                )}
+    <Layout className="container-fluid" jumbotron={false}>
+      <section className="inner-section shop-part mt-3">
+        <div className="container">
+          <div className="row content-reverse">
+            <div className="col-lg-3">
+              <div className="shop-widget">
+                <h6 className="shop-widget-title">Filter by Category</h6>
+                <>
+                  <input
+                    className="shop-widget-search"
+                    ref={text}
+                    type="text"
+                    onChange={onChange}
+                    placeholder="Search..."
+                  />
+                  <ul className="shop-widget-list shop-widget-scroll">
+                    <Checkbox
+                      categories={
+                        filteredCategory ? filteredCategory : categories
+                      }
+                      handleFilters={(filters) =>
+                        handleFilters(filters, "category")
+                      }
+                      clearCategoryFilter={clearCategoryFilter}
+                      setClearCategoryFilter={setClearCategoryFilter}
+                    />
+                  </ul>
+                  <button
+                    className="shop-widget-btn"
+                    onClick={() => {
+                      setCategories([]);
+                      window.location.reload();
+                      setClearCategoryFilter(true);
+                      setCategories(categories);
+                    }}
+                  >
+                    <i className="far fa-trash-alt"></i>
+                    <span>clear filter</span>
+                  </button>
+                </>
               </div>
-            ))}
+            </div>
+            <div className="col-lg-9">
+              <div className="row">
+                <div className="col-lg-12">
+                  <div className="top-filter">
+                    <div className="filter-short">
+                      <input
+                        className="shop-widget-search"
+                        type="text"
+                        style={{
+                          border: "1px solid #1494a9",
+                          color: "#1494a9",
+                          background: "white",
+                        }}
+                        value={myFilters.filters.search}
+                        onChange={(e) =>
+                          handleFilters(e.target.value, "search")
+                        }
+                        placeholder="Search..."
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="row row-cols-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-3">
+                {filteredResults.map((product, i) => (
+                  <>
+                    {isAuthenticated() &&
+                    isAuthenticated().user.role === "1" ? (
+                      <SingleShopProduct
+                        product={product}
+                        showAddToSiteButton={true}
+                      />
+                    ) : (
+                      <SingleShopProduct product={product} />
+                    )}
+                  </>
+                ))}
+              </div>
+              <div className="row">
+                <div className="col-lg-12">
+                  <div className="bottom-paginate">{loadMoreButton()}</div>
+                </div>
+              </div>
+            </div>
           </div>
-          <hr />
-          {loadMoreButton()}
         </div>
-      </div>
+      </section>
     </Layout>
   );
 };
