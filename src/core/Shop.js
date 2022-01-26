@@ -98,21 +98,7 @@ const Shop = () => {
     return array;
   };
   const [clearCategoryFilter, setClearCategoryFilter] = useState(false);
-  const [search, setSearch] = useState("");
-  useEffect(() => {
-    loadSearchResults();
-  }, [search]);
-  const loadSearchResults = () => {
-    list({ search: search }).then((data) => {
-      if (data.error) {
-        setError(data.error);
-      } else {
-        setFilteredResults(data);
-        setSize(data.size);
-        setSkip(0);
-      }
-    });
-  };
+
   const text = useRef("");
   const [filteredCategory, setFilteredCategory] = useState(null);
   const onChange = (e) => {
