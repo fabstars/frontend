@@ -30,8 +30,6 @@ const AddProduct = () => {
     price,
     categories,
     category,
-    shipping,
-    quantity,
     mrp,
     loading,
     error,
@@ -93,7 +91,6 @@ const AddProduct = () => {
           description: "",
           photo: "",
           price: "",
-          quantity: "",
           mrp: "",
           loading: false,
           createdProduct: data.name,
@@ -156,25 +153,6 @@ const AddProduct = () => {
               </option>
             ))}
         </select>
-      </div>
-
-      <div className="form-group">
-        <label className="text-muted">Shipping</label>
-        <select onChange={handleChange("shipping")} className="form-control">
-          <option>Please select</option>
-          <option value="0">No</option>
-          <option value="1">Yes</option>
-        </select>
-      </div>
-
-      <div className="form-group">
-        <label className="text-muted">Quantity</label>
-        <input
-          onChange={handleChange("quantity")}
-          type="number"
-          className="form-control"
-          value={quantity}
-        />
       </div>
 
       <div className="form-group">

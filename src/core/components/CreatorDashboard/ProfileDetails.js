@@ -13,6 +13,13 @@ const ProfileDetails = () => {
   // } = isAuthenticated();
   const alert = useAlert();
 
+  const [highlightLinks, setHighlightLinks] = useState([
+    {
+      text: "",
+      url: "",
+    },
+  ]);
+
   const [displayHightlightLinks, toggleDisplayHightlightLinks] =
     useState(false);
   const [displaySocialInputs, toggleSocialInputs] = useState(false);
@@ -29,12 +36,6 @@ const ProfileDetails = () => {
     instagram: "",
     role: "",
     store_name: "",
-    highlightLinks: [
-      {
-        text: "",
-        url: "",
-      },
-    ],
   });
   const { token } = isAuthenticated();
   const {
@@ -50,7 +51,6 @@ const ProfileDetails = () => {
     instagram,
     role,
     store_name,
-    highlightLinks,
   } = values;
 
   const handleChange = (name) => (e) => {
@@ -63,6 +63,7 @@ const ProfileDetails = () => {
       if (data.error) {
         setValues({ ...values, error: true });
       } else {
+        setHighlightLinks(data.highlightLinks);
         setValues({
           ...values,
           name: data.name,
@@ -91,6 +92,7 @@ const ProfileDetails = () => {
       youtube,
       instagram,
       store_name,
+      highlightLinks,
     }).then((data) => {
       if (data.error) {
         alert.show(data.error);
@@ -110,9 +112,31 @@ const ProfileDetails = () => {
     });
   };
 
+  const handleLink = (index, event) => {
+    const current_values = [...highlightLinks];
+    current_values[index][event.target.name] = event.target.value;
+    setHighlightLinks(current_values);
+  };
+
+  const handleRemove = (index) => {
+    const current_values = [...highlightLinks];
+    current_values.splice(index, 1);
+    setHighlightLinks(current_values);
+  };
+
   useEffect(() => {
     init(isAuthenticated().user._id);
   }, []);
+
+  const handleAddFields = () => {
+    setHighlightLinks([
+      ...highlightLinks,
+      {
+        text: "",
+        url: "",
+      },
+    ]);
+  };
 
   return (
     <>
@@ -255,6 +279,14 @@ const ProfileDetails = () => {
                       >
                         Highlight Links
                       </button>
+                      {highlightLinks.length === 0 ? (
+                        <IconButton onClick={() => handleAddFields()}>
+                          <AddIcon />
+                        </IconButton>
+                      ) : (
+                        <></>
+                      )}
+
                       <span>Optional</span>
                     </div>
 
@@ -263,6 +295,7 @@ const ProfileDetails = () => {
                         {highlightLinks.map((field, idx) => (
                           <div key={idx} style={{ display: "flex" }}>
                             <input
+                              name="text"
                               type="text"
                               value={field.text}
                               placeholder="Text"
@@ -271,17 +304,20 @@ const ProfileDetails = () => {
                                 marginRight: "1rem",
                                 width: "50%",
                               }}
+                              onChange={(e) => handleLink(idx, e)}
                             />
                             <input
+                              name="url"
                               type="text"
                               value={field.url}
                               placeholder="URL"
                               className="form-control"
+                              onChange={(e) => handleLink(idx, e)}
                             />
-                            <IconButton>
+                            <IconButton onClick={() => handleRemove(idx)}>
                               <RemoveIcon />
                             </IconButton>
-                            <IconButton>
+                            <IconButton onClick={() => handleAddFields()}>
                               <AddIcon />
                             </IconButton>
                           </div>
