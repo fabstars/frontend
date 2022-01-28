@@ -199,13 +199,7 @@ const SingleShopProduct = ({
     );
   };
 
-  const showStock = (quantity) => {
-    return quantity > 0 ? (
-      <span className="badge badge-primary badge-pill">In Stock </span>
-    ) : (
-      <span className="badge badge-primary badge-pill">Out of Stock </span>
-    );
-  };
+
 
   const handleChange = (productId) => (event) => {
     setRun(!run); // run useEffect in parent Cart
@@ -306,7 +300,6 @@ const SingleShopProduct = ({
                 <i className="fas fa-rupee-sign"></i> {product.price + 0}
               </span>
             </h6>
-            {showStock(product.quantity)}
 
             {user && role === "1" && showAddToSiteBtn(showAddToSiteButton)}
             {user && role === "2" && showAddToCartBtn(showAddToCartButton)}

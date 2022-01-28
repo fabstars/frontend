@@ -15,6 +15,20 @@ export const read = (userId, token) => {
     .catch((err) => console.log(err));
 };
 
+export const getById = (userId) => {
+  return fetch(`${API}/user/by/${userId}`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};
+
 export const update = (userId, token, user) => {
   return fetch(`${API}/user/${userId}`, {
     method: "PUT",

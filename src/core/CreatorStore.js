@@ -2,30 +2,101 @@ import React, { useEffect, useState } from "react";
 import HighlightedLinks from "./components/CreatorStore/HighlightedLinks";
 import ProductList from "./components/CreatorStore/ProductList";
 import "./components/CreatorStore/style.css";
+import { getById } from "../user/apiUser";
+import { Link } from "react-router-dom";
 
 const CreatorStore = ({ match }) => {
+  const [user, setUser] = useState(null);
+  const init = (id) => {
+    getById(id).then((data) => {
+      setUser(data);
+    });
+  };
+
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
+
+  useEffect(() => {
+    init(match.params.influencerId);
+  }, []);
+
   return (
-    <>
-    <div className="bgcolor">
-      <hr className="divider1" />
-      <div className="main-banner-creator">
-        <div className="store-heading">
-          <h1>BluePine Labs</h1>
+    <div>
+      {user && (
+        <div className="bgcolor">
+          <hr className="divider1" />
+          <div className="main-banner-creator">
+            <div className="store-heading">
+              <h1>{user.store_name}</h1>
+            </div>
+            <div className="creator-social-profiles adjust-height">
+              {user.social &&
+                user.social.facebook &&
+                user.social.facebook.length && (
+                  <Link
+                    onClick={() =>
+                      (window.location.href = user.social.facebook)
+                    }
+                    style={{ color: "#3b5998" }}
+                  >
+                    <i className="fab fa-facebook"></i>
+                  </Link>
+                )}
+              {user.social &&
+                user.social.instagram &&
+                user.social.instagram.length && (
+                  <Link
+                    onClick={() =>
+                      (window.location.href = user.social.instagram)
+                    }
+                    style={{ color: "#e95950" }}
+                  >
+                    <i className="fab fa-instagram"></i>
+                  </Link>
+                )}
+
+              {user.social &&
+                user.social.twitter &&
+                user.social.twitter.length && (
+                  <Link
+                    onClick={() => (window.location.href = user.social.twitter)}
+                    style={{ color: "#00acee" }}
+                  >
+                    <i className="fab fa-twitter"></i>
+                  </Link>
+                )}
+              {user.social &&
+                user.social.linkedin &&
+                user.social.linkedin.length && (
+                  <Link
+                    onClick={() =>
+                      (window.location.href = user.social.linkedin)
+                    }
+                    style={{ color: "#5663F7" }}
+                  >
+                    <i className="fab fa-linkedin"></i>
+                  </Link>
+                )}
+
+              {user.social &&
+                user.social.youtube &&
+                user.social.youtube.length && (
+                  <Link
+                    onClick={() => (window.location.href = user.social.youtube)}
+                    style={{ color: "#FF0000" }}
+                  >
+                    <i className="fab fa-youtube"></i>
+                  </Link>
+                )}
+            </div>
+            <HighlightedLinks links={user.highlightLinks} />
+          </div>
+          <hr className="divider2" />
+          <ProductList userId={match.params.influencerId} />
         </div>
-        <div className="creator-social-profiles adjust-height">
-          <a href="#" style={{"color": "#3b5998"}}><i className="fab fa-facebook"></i></a>
-          <a href="#" style={{"color": "#e95950"}}><i className="fab fa-instagram"></i></a>
-          <a href="#" style={{"color": "#00acee"}}><i className="fab fa-twitter"></i></a>
-          <a href="#" style={{"color": "#FF0000"}}><i className="fab fa-youtube"></i></a>
-          <a href="#" style={{"color": "#5663F7"}}><i className="fab fa-discord"></i></a>
-          <a href="#" style={{"color": "#FF4500"}}><i className="fab fa-reddit"></i></a>
-        </div>
-        <HighlightedLinks />
-      </div>
-      <hr className="divider2" />
-      <ProductList userId={match.params.influencerId} />
+      )}
     </div>
-    </>
   );
 };
 

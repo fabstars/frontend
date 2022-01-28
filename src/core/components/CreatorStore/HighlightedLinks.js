@@ -1,24 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
-const HighlightedLinks = () => {
+const HighlightedLinks = ({ links }) => {
+  useEffect(() => {
+    console.log(links);
+  }, []);
   return (
-    <div className="mt-5">
-      <div className="">
-        <div className="text-center mt-3">
-          <a  href=" " class="button-24">Watch my collaboration with this NGO</a>
-        </div>
-      </div>
-      <div className="">
-        <div className="text-center" style={{"margin-top": "10px"}}>
-          <button class="button-24">Watch my latest video on moj</button>
-        </div>
-      </div>
-      {/* <div className="col-md-12">
-        <div className="btn-wrapper text-center mt-3">
-          <button className="btn btn-more">View more</button>
-        </div>
-      </div> */}
-    </div>
+    <>
+      {links &&
+        links.length &&
+        links.map((link, idx) => (
+          <div className="">
+            <div className="text-center mt-3">
+              <Link
+                onClick={() => (window.location.href = link.url)}
+                className="button-24"
+              >
+                {link.text}
+              </Link>
+            </div>
+          </div>
+        ))}
+    </>
   );
 };
 
