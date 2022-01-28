@@ -5,7 +5,7 @@
   background-position: center center;
   background-repeat: no-repeat;
   z-index: 1;
-  padding-bottom: 100px;
+  padding-bottom: 50px;
   height: fit-content;
 }
 .bgcolora{
@@ -35,4 +35,43 @@
 .bgarea h3{
   color: rgb(235, 225, 225);
   padding-bottom: 5px;
+}
+
+@media (max-width: 480px){
+  .beautify{
+    font-size: 9px;
+  }
+  .start-heading{
+    font-size: 12px;
+  }
+  .bgarea h3{
+    font-size: 11px;
+  }
+  .bgcolora{
+    padding: 18px 15px 5px 15px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 600px){
+  .beautify{
+    font-size: 12px;
+  }
+  .start-heading{
+    font-size: 15px;
+  }
+  .bgarea h3{
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 1000px){
+  .beautify{
+    font-size: 15px;
+  }
+  .start-heading{
+    font-size: 18px;
+  }
+  .bgarea h3{
+    font-size: 18px;
+  }
 }

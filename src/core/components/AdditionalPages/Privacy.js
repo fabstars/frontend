@@ -69,7 +69,7 @@ const PrivacyPolicy = ({ history }) => {
           <div className="start-heading text-center">
             <h1>Privacy Policy</h1>
           </div>
-          <div className="bgarea" style={{ "max-width": "1120px" }}>
+          <div className="bgarea" style={{ "max-width": "1220px" }}>
             <p className="beautify">
               Fab Store and its affiliates (“Fab Store,” “we,” “our,” and/or
               “us”) value the privacy of individuals who use our website at
