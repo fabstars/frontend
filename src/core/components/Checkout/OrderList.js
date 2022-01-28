@@ -50,9 +50,9 @@ const OrderList = () => {
                       </td>
 
                       <td className="table-quantity">
-                        <div class="cart-action-group">
+                        <div className="cart-action-group">
                           <button
-                            class="action-minus"
+                            className="action-minus"
                             title="Quantity Minus"
                             onClick={() => {
                               if (Number(item.count) > 1)
@@ -60,10 +60,10 @@ const OrderList = () => {
                               setCartItems(getCartItems());
                             }}
                           >
-                            <i class="fas fa-minus"></i>
+                            <i className="fas fa-minus"></i>
                           </button>
                           <input
-                            class="action-input"
+                            className="action-input"
                             style={{ width: "50px", textAlign: "center" }}
                             title="Quantity Number"
                             type="text"
@@ -75,14 +75,14 @@ const OrderList = () => {
                             }}
                           />
                           <button
-                            class="action-plus"
+                            className="action-plus"
                             title="Quantity Plus"
                             onClick={() => {
                               addItemToCart(item, Number(item.count) + 1);
                               setCartItems(getCartItems());
                             }}
                           >
-                            <i class="fas fa-plus"></i>
+                            <i className="fas fa-plus"></i>
                           </button>
                         </div>
                       </td>

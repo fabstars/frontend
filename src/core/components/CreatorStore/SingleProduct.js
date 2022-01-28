@@ -41,18 +41,6 @@ const SingleProduct = ({ product, userId }) => {
                 style={{ height: "200px", width: "180px" }}
               />
             </Link>
-
-            <div class="product-widget">
-              {/* <a title="Product Compare" href="compare.html" class="fas fa-random"></a>
-              <a title="Product Video" href="https://youtu.be/9xzcVxSBbG8" class="venobox fas fa-play vbox-item" data-autoplay="true" data-vbtype="video"></a> */}
-              <Link
-                title="Product View"
-                to={`/products/${product._id}`}
-                class="fas fa-eye"
-                data-bs-toggle="modal"
-                data-bs-target="#product-view"
-              ></Link>
-            </div>
           </div>
           <div class="product-content">
             <div class="product-rating">

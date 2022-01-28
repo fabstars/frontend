@@ -17,42 +17,42 @@ const Cart = ({ cartActive, setCartActive }) => {
     if (cartActive === true) setCartItems(getCartItems());
   }, [cartActive]);
   return (
-    <aside class={cartActive ? "cart-sidebar active" : "cart-sidebar"}>
-      <div class="cart-header">
-        <div class="cart-total">
-          <i class="fas fa-shopping-basket"></i>
+    <aside className={cartActive ? "cart-sidebar active" : "cart-sidebar"}>
+      <div className="cart-header">
+        <div className="cart-total">
+          <i className="fas fa-shopping-basket"></i>
           <span>total item ({itemTotal()})</span>
         </div>
         <button
-          class="cart-close"
+          className="cart-close"
           onClick={() => {
             setCartStatusInActive();
             setCartActive(getCartStatus());
           }}
         >
-          <i class="fas fa-times"></i>
+          <i className="fas fa-times"></i>
         </button>
       </div>
-      <ul class="cart-list">
+      <ul className="cart-list">
         {cartItems.map((item, index) => {
           return (
-            <li class="cart-item">
-              <div class="cart-media">
+            <li className="cart-item">
+              <div className="cart-media">
                 <Link to={`/products/${item._id}`}>
                   <img src={`${API}/product/photo/${item._id}`} alt="product" />
                 </Link>
                 <button
-                  class="cart-delete"
+                  className="cart-delete"
                   onClick={() => {
                     removeItemFromCart(item);
                     setCartItems(getCartItems());
                   }}
                 >
-                  <i class="far fa-trash-alt"></i>
+                  <i className="far fa-trash-alt"></i>
                 </button>
               </div>
-              <div class="cart-info-group">
-                <div class="cart-info">
+              <div className="cart-info-group">
+                <div className="cart-info">
                   <h6>
                     <Link to={`/products/${item._id}`}>{item.name}</Link>
                   </h6>
@@ -61,10 +61,10 @@ const Cart = ({ cartActive, setCartActive }) => {
                     {item.price}
                   </p>
                 </div>
-                <div class="cart-action-group">
-                  <div class="product-action">
+                <div className="cart-action-group">
+                  <div className="product-action">
                     <button
-                      class="action-minus"
+                      className="action-minus"
                       title="Quantity Minus"
                       onClick={() => {
                         if (Number(item.count) > 1)
@@ -72,10 +72,10 @@ const Cart = ({ cartActive, setCartActive }) => {
                         setCartItems(getCartItems());
                       }}
                     >
-                      <i class="fas fa-minus"></i>
+                      <i className="fas fa-minus"></i>
                     </button>
                     <input
-                      class="action-input"
+                      className="action-input"
                       title="Quantity Number"
                       type="text"
                       name="quantity"
@@ -86,14 +86,14 @@ const Cart = ({ cartActive, setCartActive }) => {
                       }}
                     />
                     <button
-                      class="action-plus"
+                      className="action-plus"
                       title="Quantity Plus"
                       onClick={() => {
                         addItemToCart(item, Number(item.count) + 1);
                         setCartItems(getCartItems());
                       }}
                     >
-                      <i class="fas fa-plus"></i>
+                      <i className="fas fa-plus"></i>
                     </button>
                   </div>
                   <h6>
@@ -106,21 +106,21 @@ const Cart = ({ cartActive, setCartActive }) => {
           );
         })}
       </ul>
-      <div class="cart-footer">
-        {/* <button class="coupon-btn">Do you have a coupon code?</button>
-  <form class="coupon-form">
+      <div className="cart-footer">
+        {/* <button className="coupon-btn">Do you have a coupon code?</button>
+  <form className="coupon-form">
     <input type="text" placeholder="Enter your coupon code" />
     <button type="submit">
       <span>apply</span>
     </button>
   </form> */}
         <Link
-          class="cart-checkout-btn"
+          className="cart-checkout-btn"
           to="/checkout"
           onClick={() => setCartStatusInActive()}
         >
-          <span class="checkout-label">Proceed to Checkout</span>
-          <span class="checkout-price">₹{cartTotal()}</span>
+          <span className="checkout-label">Proceed to Checkout</span>
+          <span className="checkout-price">₹{cartTotal()}</span>
         </Link>
       </div>
     </aside>

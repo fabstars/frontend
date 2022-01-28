@@ -46,10 +46,10 @@ const Checkout = () => {
                 <div className="account-content">
                   <div className="row">
                     <div className="col-md-12 col-lg-10 alert fade show">
-                      <div class="form-group">
-                        <label class="form-label">Mobile Number</label>
+                      <div className="form-group">
+                        <label className="form-label">Mobile Number</label>
                         <input
-                          class="form-control"
+                          className="form-control"
                           type="text"
                           placeholder="Enter your number"
                           value={deliveryDetails.mobileNumber}
@@ -61,10 +61,10 @@ const Checkout = () => {
                           }
                         />
                       </div>
-                      <div class="form-group">
-                        <label class="form-label">address</label>
+                      <div className="form-group">
+                        <label className="form-label">address</label>
                         <input
-                          class="form-control"
+                          className="form-control"
                           type="text"
                           placeholder="Enter your Address (House no, Building, Street, Area)"
                           value={deliveryDetails.address}
@@ -76,11 +76,11 @@ const Checkout = () => {
                           }
                         />
                       </div>
-                      <div class="form-group row">
+                      <div className="form-group row">
                         <div className="col-sm-12 col-md-6 col-lg-4">
-                          <label class="form-label">City</label>
+                          <label className="form-label">City</label>
                           <input
-                            class="form-control"
+                            className="form-control"
                             type="text"
                             placeholder="Enter your City"
                             value={deliveryDetails.city}
@@ -93,9 +93,9 @@ const Checkout = () => {
                           />
                         </div>
                         <div className="col-sm-12 col-md-6  col-lg-4">
-                          <label class="form-label">State</label>
+                          <label className="form-label">State</label>
                           <input
-                            class="form-control"
+                            className="form-control"
                             type="text"
                             placeholder="Enter your State"
                             value={deliveryDetails.state}
@@ -108,9 +108,9 @@ const Checkout = () => {
                           />
                         </div>
                         <div className="col-sm-12 col-md-6  col-lg-4">
-                          <label class="form-label">Pincode</label>
+                          <label className="form-label">Pincode</label>
                           <input
-                            class="form-control"
+                            className="form-control"
                             type="text"
                             placeholder="Enter your pincode"
                             value={deliveryDetails.pincode}

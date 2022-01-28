@@ -6718,7 +6718,7 @@ tbody tr td:last-child {
   height: 40px;
   padding: 0px 15px;
   border-radius: 5px;
-  background: var(--chalk);
+  background: #f5f5f5;
   border: 1px solid var(--border);
   transition: all linear 0.3s;
   -webkit-transition: all linear 0.3s;
@@ -6798,7 +6798,8 @@ tbody tr td:last-child {
 }
 
 .filter-short {
-  width: 225px;
+  width: 100%;
+  margin: 0 1rem 0 1rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -6811,7 +6812,7 @@ tbody tr td:last-child {
 }
 
 .filter-show {
-  width: 125px;
+  width: 135px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -6880,12 +6881,6 @@ tbody tr td:last-child {
   .filter-label,
   .filter-action {
     display: none;
-  }
-  .filter-show {
-    width: 80px;
-  }
-  .filter-short {
-    width: 130px;
   }
 }
 
