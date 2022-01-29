@@ -474,6 +474,9 @@ hr.divider2 {
     width: 60px;
     font-size: 30px;
   }
+  .bgcolor{
+    margin-top: -120px;
+  }
 
   .store-heading, .store-heading h1{
     max-width: 270px;

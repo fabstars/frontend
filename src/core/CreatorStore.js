@@ -30,7 +30,7 @@ const CreatorStore = ({ match }) => {
         <nav>
           <ul>
             <li>
-              <Link className="bttn" to="/signin">
+              <Link className="bttn" to="/checkout">
               <i class="fas fa-shopping-bag"></i>
               </Link>
             </li>
