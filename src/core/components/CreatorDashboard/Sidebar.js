@@ -44,12 +44,20 @@ const Sidebar = ({ toggle, setToggle, setCurrentTab, currentTab }) => {
           <div className="userprofile text-center">
             <div className="userpic">
               {" "}
-              <img src={userImage} alt="" className="userpicimg" />{" "}
-              <Link to="#" className="btn btn-primary settingbtn">
-                <i className="fas fa-camera-retro"></i>
-              </Link>{" "}
+              <img
+                src={userImage}
+                alt=""
+                className="userpicimg"
+                style={{ marginTop: "0.7rem" }}
+              />{" "}
+              <input
+                type="file"
+                className="btn btn-primary settingbtn"
+                name="file"
+                style={{ fontSize: "0px", paddingLeft: "1.7rem" }}
+              />
             </div>
-            <h3 className="username">Hrithik Roshan</h3>
+            <h3 className="username">{isAuthenticated().user.name}</h3>
           </div>
           <div className="clearfix"></div>
 
