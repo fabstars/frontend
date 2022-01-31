@@ -12,10 +12,7 @@ const HighlightedLinks = ({ links }) => {
         links.map((link, idx) => (
           <div className="">
             <div className="text-center mt-3">
-              <Link
-                onClick={() => (window.location.href = link.url)}
-                className="button-24"
-              >
+              <Link onClick={() => window.open(link.url)} className="button-24">
                 {link.text}
               </Link>
             </div>

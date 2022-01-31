@@ -157,18 +157,6 @@ const ProfileDetails = () => {
                   <form>
                     <div className="form-group row">
                       <div className="col-lg-3" style={{ paddingTop: "5px" }}>
-                        Name<span className="text-danger">*</span>
-                      </div>
-                      <div className="col-lg-9">
-                        <input
-                          className="form-control"
-                          value={name}
-                          onChange={handleChange("name")}
-                        />
-                      </div>
-                    </div>
-                    <div className="form-group row">
-                      <div className="col-lg-3" style={{ paddingTop: "5px" }}>
                         Email<span className="text-danger">*</span>
                       </div>
                       <div className="col-lg-9">
