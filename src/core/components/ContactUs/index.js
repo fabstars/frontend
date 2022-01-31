@@ -3,15 +3,50 @@ import { Link } from "react-router-dom";
 import "./style.css";
 import { isAuthenticated, signout } from "../../../auth";
 import Footer from "../Homepage/Footer";
+import { useAlert } from "react-alert";
 
 const ContactUs = () => {
+  const [query, setQuery] = useState({
+    name: "",
+    email: "",
+    message: "",
+    mobile: "",
+  });
+
+  // Update inputs value
+  const handleParam = () => (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setQuery((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+  const formSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    Object.entries(query).forEach(([key, value]) => {
+      formData.append(key, value);
+    });
+    fetch("https://getform.io/f/36683389-bdfe-448c-8222-9fc3b5ba757c", {
+      method: "POST",
+      body: formData,
+    }).then(() => {
+      setQuery({ name: "", email: "", message: "", mobile: "" });
+      alert.show("Message sent!!");
+    });
+  };
+  alert = useAlert();
   return (
     <>
       <div className="main-banner main-banner-show">
-      <header className="header-style hcontainer" style={{ position: "sticky", top: "0px" }}>
-        <Link to="/" className="sitename">
-          <h1 className="qlogo">Fabstores</h1>
-        </Link>
+        <header
+          className="header-style hcontainer"
+          style={{ position: "sticky", top: "0px" }}
+        >
+          <Link to="/" className="sitename">
+            <h1 className="qlogo">Fabstores</h1>
+          </Link>
           <nav>
             <ul>
               {!isAuthenticated() && (
@@ -44,10 +79,7 @@ const ContactUs = () => {
         </header>
         <div style={{ marginTop: "10px" }} className="container">
           <h1 style={{ textAlign: "center", marginTop: "10px" }}>Contact us</h1>
-          <form
-            action="https://getform.io/f/36683389-bdfe-448c-8222-9fc3b5ba757c"
-            method="POST"
-          >
+          <form onSubmit={formSubmit}>
             <div class="form-group">
               <input
                 type="text"
@@ -57,6 +89,8 @@ const ContactUs = () => {
                 name="name"
                 style={{ backgroundColor: "White" }}
                 required
+                value={query.name}
+                onChange={handleParam()}
               />
             </div>
             <div class="form-group">
@@ -68,18 +102,22 @@ const ContactUs = () => {
                 name="email"
                 style={{ backgroundColor: "White" }}
                 required
+                value={query.email}
+                onChange={handleParam()}
               />
             </div>
-
             <div class="form-group">
               <input
-                type="text"
+                type="number"
+                minLength="10"
+                maxLength="10"
                 className="form-control"
-                id="subject"
-                placeholder="Subject"
-                name="subject"
+                id="mobile"
+                placeholder="Phone number"
+                name="mobile"
                 style={{ backgroundColor: "White" }}
-                required
+                value={query.mobile}
+                onChange={handleParam()}
               />
             </div>
             <div class="form-group">
@@ -91,6 +129,8 @@ const ContactUs = () => {
                 rows="3"
                 style={{ backgroundColor: "white" }}
                 required
+                value={query.message}
+                onChange={handleParam()}
               ></textarea>
             </div>
 
