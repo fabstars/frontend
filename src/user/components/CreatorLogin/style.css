@@ -23,7 +23,7 @@
   font-size: 28px;
   line-height: 36px;
   margin-bottom: 5px;
-  color: var(--primary);
+  color: #cc2549;
 }
 .user-form-title p {
   text-transform: capitalize;
@@ -129,11 +129,11 @@
   text-align: center;
   text-transform: uppercase;
   color: var(--white);
-  background: var(--primary);
+  background: #cc2549;
   transition: all 0.5s;
 }
 .form-button button:hover {
-  background: rgb(27, 95, 58);
+  background: #c91038;
   transition: all 0.5s;
 }
 .form-button p {

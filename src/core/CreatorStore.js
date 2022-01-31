@@ -23,15 +23,26 @@ const CreatorStore = ({ match }) => {
 
   return (
     <div>
-      <header className="header-style hcontainer" style={{"position": "sticky", "background-color": "transparent", "box-shadow": "0 8px 8px 2.5px rgba(0,0,0,0)" }}>
+      <header
+        className="header-style hcontainer"
+        style={{
+          position: "sticky",
+          "background-color": "transparent",
+          "box-shadow": "0 8px 8px 2.5px rgba(0,0,0,0)",
+        }}
+      >
         <Link to="/" className="sitename">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI1W6NYr7J2h-pxZVnhMGZ_0aIyHlSUn_Q7g&usqp=CAU" alt="Avatar" class="avatar" />
+          <img
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI1W6NYr7J2h-pxZVnhMGZ_0aIyHlSUn_Q7g&usqp=CAU"
+            alt="Avatar"
+            class="avatar"
+          />
         </Link>
         <nav>
           <ul>
             <li>
               <Link className="bttn" to="/checkout">
-              <i class="fas fa-shopping-bag"></i>
+                <i class="fas fa-shopping-bag"></i>
               </Link>
             </li>
           </ul>
@@ -49,9 +60,7 @@ const CreatorStore = ({ match }) => {
                 user.social.facebook &&
                 user.social.facebook.length && (
                   <Link
-                    onClick={() =>
-                      (window.location.href = user.social.facebook)
-                    }
+                    onClick={() => window.open(user.social.facebook)}
                     style={{ color: "#3b5998" }}
                   >
                     <i className="fab fa-facebook"></i>
@@ -61,9 +70,7 @@ const CreatorStore = ({ match }) => {
                 user.social.instagram &&
                 user.social.instagram.length && (
                   <Link
-                    onClick={() =>
-                      (window.location.href = user.social.instagram)
-                    }
+                    onClick={() => window.open(user.social.instagram)}
                     style={{ color: "#e95950" }}
                   >
                     <i className="fab fa-instagram"></i>
@@ -74,7 +81,7 @@ const CreatorStore = ({ match }) => {
                 user.social.twitter &&
                 user.social.twitter.length && (
                   <Link
-                    onClick={() => (window.location.href = user.social.twitter)}
+                    onClick={() => window.open(user.social.twitter)}
                     style={{ color: "#00acee" }}
                   >
                     <i className="fab fa-twitter"></i>
@@ -84,9 +91,7 @@ const CreatorStore = ({ match }) => {
                 user.social.linkedin &&
                 user.social.linkedin.length && (
                   <Link
-                    onClick={() =>
-                      (window.location.href = user.social.linkedin)
-                    }
+                    onClick={() => window.open(user.social.linkedin)}
                     style={{ color: "#5663F7" }}
                   >
                     <i className="fab fa-linkedin"></i>
@@ -97,7 +102,7 @@ const CreatorStore = ({ match }) => {
                 user.social.youtube &&
                 user.social.youtube.length && (
                   <Link
-                    onClick={() => (window.location.href = user.social.youtube)}
+                    onClick={() => window.open(user.social.youtube)}
                     style={{ color: "#FF0000" }}
                   >
                     <i className="fab fa-youtube"></i>

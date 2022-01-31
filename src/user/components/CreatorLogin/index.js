@@ -4,12 +4,10 @@ import { Link, Redirect } from "react-router-dom";
 import { signin, authenticate, isAuthenticated } from "../../../auth";
 import Menu from "../../../core/Menu";
 
-
 const CreatorLogin = () => {
-
   const [values, setValues] = useState({
-    email: "ryan@gmail.com",
-    password: "123456",
+    email: "",
+    password: "",
     error: "",
     loading: false,
     redirectToReferrer: false,

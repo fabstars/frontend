@@ -11,10 +11,19 @@ const CreatorSignup = () => {
     error: "",
     success: false,
     role: 1,
-    confirm_password: "",
+    loading: false,
+    redirectToReferrer: false,
   });
-  const { name, email, password, success, error, role, confirm_password } =
-    values;
+  const {
+    name,
+    email,
+    password,
+    success,
+    error,
+    role,
+    loading,
+    redirectToReferrer,
+  } = values;
 
   const handleChange = (name) => (event) => {
     setValues({ ...values, error: false, [name]: event.target.value });
@@ -34,44 +43,50 @@ const CreatorSignup = () => {
     </div>
   );
 
-  const showSuccess = () => (
-    <div
-      className="container"
-      style={{ paddingLeft: "30px", paddingRight: "30px", paddingTop: "10px" }}
-    >
-      <div
-        className="alert alert-info"
-        style={{ display: success ? "" : "none" }}
-      >
-        New account is created. Please <Link to="/signin">Signin</Link>
-      </div>
-    </div>
-  );
-
   const clickSubmit = (event) => {
-    if (confirm_password !== password) {
-      setValues({ ...values, error: "Passwords do not match", success: false });
-    } else {
-      event.preventDefault();
-      setValues({ ...values, error: false });
-      signup({ name, email, password, role }).then((data) => {
-        console.log("Signup: ", data);
-        if (!data) {
-          console.log("Something wrong");
-        } else if (data.error) {
-          setValues({ ...values, error: data.error, success: false });
-        } else {
+    event.preventDefault();
+    setValues({ ...values, error: false });
+    signup({ name, email, password, role }).then((data) => {
+      console.log("Signup: ", data);
+      if (!data) {
+        console.log("Something wrong");
+      } else if (data.error) {
+        setValues({ ...values, error: data.error, success: false });
+      } else {
+        authenticate(data, () => {
           setValues({
             ...values,
-            name: "",
-            email: "",
-            password: "",
-            error: "",
-            role: 1,
-            success: true,
+            redirectToReferrer: true,
           });
-        }
-      });
+        });
+      }
+    });
+  };
+  const showLoading = () =>
+    loading && (
+      <div
+        className="container"
+        style={{
+          paddingLeft: "30px",
+          paddingRight: "30px",
+          paddingTop: "10px",
+        }}
+      >
+        <div className="alert alert-info">
+          <h2>Loading...</h2>
+        </div>
+      </div>
+    );
+  const redirectUser = () => {
+    if (redirectToReferrer) {
+      if (role === 0) {
+        return <Redirect to="/admin/dashboard" />;
+      } else {
+        return <Redirect to="/user/dashboard" />;
+      }
+    }
+    if (isAuthenticated()) {
+      return <Redirect to="/" />;
     }
   };
   const signUpForm = () => (
@@ -126,15 +141,6 @@ const CreatorSignup = () => {
                       value={password}
                     />
                   </div>
-                  <div class="form-group">
-                    <input
-                      onChange={handleChange("confirm_password")}
-                      type="password"
-                      class="form-control"
-                      placeholder="Confirm Password"
-                      value={confirm_password}
-                    />
-                  </div>
 
                   <div class="form-button">
                     <button onClick={clickSubmit}>Register</button>
@@ -157,9 +163,10 @@ const CreatorSignup = () => {
   return (
     <>
       <Menu />
-      {showSuccess()}
+      {showLoading()}
       {showError()}
       {signUpForm()}
+      {redirectUser()}
     </>
   );
 };
