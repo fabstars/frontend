@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import RemoveIcon from "@material-ui/icons/Remove";
 import AddIcon from "@material-ui/icons/Add";
+import { Card } from "react-bootstrap";
 
 const ProfileDetails = () => {
   // const {
@@ -267,13 +268,9 @@ const ProfileDetails = () => {
                       >
                         Highlight Links
                       </button>
-                      {highlightLinks.length === 0 ? (
-                        <IconButton onClick={() => handleAddFields()}>
-                          <AddIcon />
-                        </IconButton>
-                      ) : (
-                        <></>
-                      )}
+                      <IconButton onClick={() => handleAddFields()}>
+                        <AddIcon />
+                      </IconButton>
 
                       <span>Optional</span>
                     </div>
@@ -282,32 +279,43 @@ const ProfileDetails = () => {
                       <Fragment>
                         {highlightLinks.map((field, idx) => (
                           <div key={idx} style={{ display: "flex" }}>
-                            <input
-                              name="text"
-                              type="text"
-                              value={field.text}
-                              placeholder="Text"
-                              className="form-control"
-                              style={{
-                                marginRight: "1rem",
-                                width: "50%",
-                              }}
-                              onChange={(e) => handleLink(idx, e)}
-                            />
-                            <input
-                              name="url"
-                              type="text"
-                              value={field.url}
-                              placeholder="URL"
-                              className="form-control"
-                              onChange={(e) => handleLink(idx, e)}
-                            />
-                            <IconButton onClick={() => handleRemove(idx)}>
-                              <RemoveIcon />
-                            </IconButton>
-                            <IconButton onClick={() => handleAddFields()}>
-                              <AddIcon />
-                            </IconButton>
+                            <Card
+                              style={{ width: "100%", marginBottom: "1rem" }}
+                            >
+                              <Card.Body>
+                                <Card.Text>
+                                  <input
+                                    name="text"
+                                    type="text"
+                                    value={field.text}
+                                    placeholder="Text"
+                                    className="form-control"
+                                    onChange={(e) => handleLink(idx, e)}
+                                  />
+                                  <input
+                                    name="url"
+                                    type="text"
+                                    value={field.url}
+                                    placeholder="URL"
+                                    className="form-control"
+                                    onChange={(e) => handleLink(idx, e)}
+                                  />
+                                </Card.Text>
+                                <button
+                                  className="mt-3"
+                                  style={{
+                                    fontSize: "0.8rem",
+                                    background: "red",
+                                    lineHeight: "1.5rem",
+                                    color: "white",
+                                    borderRadius: "0.2rem",
+                                  }}
+                                  onClick={() => handleRemove(idx)}
+                                >
+                                  Remove
+                                </button>
+                              </Card.Body>
+                            </Card>
                           </div>
                         ))}
                       </Fragment>
