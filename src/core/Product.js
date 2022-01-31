@@ -36,7 +36,7 @@ const Product = (props) => {
     const productId = props.match.params.productId;
     loadSingleProduct(productId);
     if (role === "1") setInfluencer(true);
-  }, [props]);
+  }, [props, role]);
 
   return (
     <Layout

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "./style.css";
 import "./s1.css";
 import { isAuthenticated, signout } from "../../../auth";
 import Footer from "../Homepage/Footer";
