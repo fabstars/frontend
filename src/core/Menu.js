@@ -173,7 +173,7 @@ const Menu = ({ history }) => {
           )}
         </ul>
       </div> */}
-      <header className="header-style hcontainer" style={{ position: "sticky", "marginBottom": "40px", top: "0px"}}>
+      <header className="header-style hcontainer" style={{  "marginBottom": "40px"}}>
         <Link to="/" className="sitename">
           <h1 className="qlogo">Fabstores</h1>
         </Link>

@@ -20,7 +20,7 @@ const ProductList = ({ userId }) => {
 
   useEffect(() => {
     init(userId, token);
-  }, []);
+  }, [token, userId]);
 
   const showProducts = () => {
     return products[0].map((product, i) => (
@@ -32,7 +32,7 @@ const ProductList = ({ userId }) => {
     <div style={{ marginTop: "3em" }}>
       {products.length ? (
         <div className="container">
-          <div className="row">{products.length ? showProducts() : ""}</div>
+          <div className="row row-cols-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-5">{products.length ? showProducts() : ""}</div>
         </div>
       ) : (
         <div style={{ textAlign: "center" }}>

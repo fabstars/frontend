@@ -14,7 +14,7 @@ const RelatedProducts = ({ products }) => {
             </div>
           </div>
         )}
-        <div className="row">
+        <div className="row row-cols-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-5">
           {products.map((product) => {
             return <SingleProduct product={product} />;
           })}
