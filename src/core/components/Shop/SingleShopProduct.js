@@ -100,7 +100,7 @@ const SingleShopProduct = ({
       setUser(auth_user.user);
     }
     getMargin();
-  }, []);
+  }, [getMargin]);
 
   const showViewButton = (showViewProductButton) => {
     return (
@@ -276,7 +276,6 @@ const SingleShopProduct = ({
               <img
                 src={`${API}/product/photo/${product._id}`}
                 alt={product.name}
-                style={{ height: "200px", width: "180px" }}
               />
             </Link>
           </div>

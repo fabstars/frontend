@@ -37,7 +37,6 @@ const SingleProduct = ({ product, userId }) => {
               <img
                 src={`${API}/product/photo/${product._id}`}
                 alt={product.name}
-                style={{ height: "200px", width: "180px" }}
               />
             </Link>
           </div>
