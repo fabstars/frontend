@@ -14,19 +14,14 @@ const MainContent = ({ toggle, currentTab }) => {
           className="navbar navbar-default navbar-static-top float-right"
           style={{ marginBottom: "0" }}
         >
-          <ul className="nav navbar-top-links navbar-right float-right">
+          <ul className="nav navbar-top-links navbar-right">
             <li>
               <Link
                 to={`/creatorstore/${isAuthenticated().user._id}`}
-                className="btn "
+                className="btn btn-success  "
               >
                 View Store
               </Link>
-            </li>
-            <li>
-              <Link onClick={() => signout(() => {})} className="btn">
-                <i className="fa fa-sign-out fa-fw"></i> Logout
-              </Link>{" "}
             </li>
           </ul>
         </nav>
