@@ -24,8 +24,7 @@ const SingleProduct = ({ product, userId }) => {
     getMargin();
   }, [getMargin]);
   return (
-    <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-      <div class="col">
+    <div class="col">
         <div class="product-card">
           <div class="product-media">
             <div class="product-label">
@@ -38,7 +37,6 @@ const SingleProduct = ({ product, userId }) => {
               <img
                 src={`${API}/product/photo/${product._id}`}
                 alt={product.name}
-                style={{ height: "200px", width: "180px" }}
               />
             </Link>
           </div>
@@ -88,7 +86,6 @@ const SingleProduct = ({ product, userId }) => {
             </div>
           </div>
         </div>
-      </div>
     </div>
 
     //<div className="col-lg-4 col-md-6 col-sm-6 col-12">

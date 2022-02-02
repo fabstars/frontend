@@ -75,13 +75,13 @@ const Sidebar = ({ toggle, setToggle, setCurrentTab, currentTab }) => {
                 }}
               >
                 <i className="fas fa-user"></i>
-                <span>Dashboard</span>
+                <div className="desc">Dashboard</div>
               </Link>{" "}
             </li>
             <li>
               <Link to="/shop">
                 <i className="fas fa-cubes"></i>
-                <span>Shop</span>
+                <div className="desc">Shop</div>
               </Link>
             </li>
             <li>
@@ -93,7 +93,13 @@ const Sidebar = ({ toggle, setToggle, setCurrentTab, currentTab }) => {
                 }}
               >
                 <i className="fas fa-boxes"></i>
-                <span>Manage Products</span>
+                <div className="desc">Manage Products</div>
+              </Link>
+            </li>
+            <li>
+              <Link to="#" onClick={() => signout(() => {})}>
+                <i className="fas fa-sign-out"></i>
+                <div className="desc">Logout</div>
               </Link>
             </li>
             {/* <li>
@@ -105,7 +111,7 @@ const Sidebar = ({ toggle, setToggle, setCurrentTab, currentTab }) => {
                 }}
               >
                 <i className="fas fa-cog"></i>
-                <span>Highlight Links</span>
+                <div className="desc">Highlight Links</div>
               </Link>
             </li> */}
           </ul>

@@ -1835,6 +1835,7 @@ tbody tr td:last-child {
 }
 
 .product-image img {
+  height: auto;
   width: 100%;
 }
 

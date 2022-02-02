@@ -117,7 +117,7 @@ const ReturnPolicy = () => {
             <h3>Contact Us:-</h3>
             <p className="beautify">
               8445814825<br></br>
-              contactfs24x7@gmail.com
+              hello@fabstores.co
             </p>
           </div>
         </div>

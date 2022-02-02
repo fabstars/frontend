@@ -29,7 +29,7 @@ body {
 #page-wrapper {
   position: inherit;
   margin: 0 40px 0 290px;
-  padding: 0 15px;
+  margin-right: 5px;
   min-height: 568px;
   transition: all ease 0.5s;
   -moz-transition: all ease 0.5s;
@@ -107,7 +107,7 @@ body {
   padding: 15px;
 }
 .sidebar ul li a {
-  line-height: 50px;
+  line-height: 40px;
   padding: 0 15px;
   text-transform: uppercase;
   font-size: 12px;
@@ -115,9 +115,10 @@ body {
   letter-spacing: 1px;
   position: relative;
   overflow: hidden;
+  text-decoration: none;
 }
 .menusmall .sidebar ul li a {
-  line-height: 5px;
+  padding-left: 2px;
 }
 .sidebar ul li a i {
   font-size: 14px;
@@ -143,6 +144,7 @@ body {
 }
 .sidebar-nav ul.nav {
   width: 250px;
+  padding-left: 20px;
 }
 .sidebar .navbar-header {
   width: 250px;
@@ -189,21 +191,23 @@ body {
   background: none;
 }
 .menusmall .sidebar {
-  width: 50px;
+  width: 70px;
   overflow: visible;
 }
+.menusmall .sidebar-nav ul.nav {
+  padding-left: 0px;
+}
 .menusmall .sidebar ul.nav {
-  width: 50px;
+  width: 70px;
 }
 .menusmall .sidebar ul.nav li {
-  width: 50px;
+  width: 70px;
   overflow: hidden;
+  text-align: center;
 }
-.menusmall .sidebar ul.nav li.active-hover {
-  width: 50px;
-}
+
 .menusmall .sidebar ul.nav li a {
-  width: 250px;
+  width: 70px;
   overflow: hidden;
   background: #ffffff;
 }
@@ -220,19 +224,12 @@ body {
   background: #f0f3f5;
   padding-left: 20px;
 }
-.menusmall .sidebar ul.nav li a:hover {
-  width: 250px;
-  overflow: hidden;
+.sidebar ul.nav li a .desc {
+  display: inline;
 }
-.menusmall .sidebar ul.nav li a span {
-  position: absolute;
-  left: 50px;
-  padding-left: 1rem;
-  background: #ffffff;
-  top: -10px;
-  padding-top: 12px;
-  width: 200px;
-  height: 30px;
+
+.menusmall .sidebar ul.nav li a .desc {
+  font-size: 10px;
 }
 .menusmall .sidebar ul.nav li .nav-second-level {
   position: absolute;
@@ -244,12 +241,9 @@ body {
   overflow-y: auto;
   display: block;
 }
-.menusmall .sidebar ul.nav li:hover {
-  width: 250px;
-  overflow: visible;
-}
+
 .menusmall .sidebar .userprofile .userpic {
-  width: 70%;
+  width: 85%;
   height: auto;
 }
 .menusmall .sidebar .userprofile .userpic img {

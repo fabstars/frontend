@@ -78,7 +78,7 @@ strong {
 }
 
 .hero-content {
-  padding-top: 0px;
+  padding: 3px 3px 3px 3px;
 }
 
 .hero-content h1 {
@@ -107,6 +107,8 @@ strong {
   width: 100%;
   text-align: center;
   line-height: normal;
+  border-radius: 5%;
+  overflow:hidden;
 }
 
 .d-table {
@@ -142,89 +144,6 @@ strong {
   }
 } */
 
-@media (max-width: 576px) {
-  .container {
-    width: 100%;
-  }
-  .hero-content h1 {
-    font-size: 45px;
-  }
-  .d-table-cell {
-    margin-top: 15px;
-    position: absolute;
-  }
-  .hero-content p {
-    font-size: 20px;
-  }
-  .hero-video {
-    display: block;
-    /* max-width: 576px; */
-  }
-  .d-table {
-    max-height: 750px;
-  }
-  .main-banner {
-    height: 750px;
-  }
-  .launching-Steps h1 {
-    font-size: 40px;
-  }
-  .paddstorefront {
-    padding-bottom: 100px;
-  }
-  .why-choose-us {
-    padding-top: 0px;
-  }
-  .footer {
-    font-size: 10px;
-  }
-}
-@media (min-width: 577px) {
-  .container {
-    width: 100%;
-  }
-  .hero-content h1 {
-    font-size: 70px;
-  }
-  .d-table {
-    max-height: 750px;
-    margin-top: 20px;
-    padding-top: 20px;
-  }
-  .hero-footer {
-    padding-top: 20px;
-  }
-  .paddstorefront {
-    padding-bottom: 50px;
-  }
-}
-@media (max-width: 992px) {
-  .container {
-    width: 100%;
-  }
-  .hero-video {
-    display: none;
-  }
-  .why-choose-options:before {
-    display: none;
-  }
-}
-@media (min-width: 993px) {
-  .cta-input__container {
-    margin-top: -50px;
-  }
-  .d-table-cell {
-    padding-top: 35px;
-  }
-  .hero-footer {
-    padding-top: 0px;
-  }
-}
-@media (max-width: 1200px) {
-  .container {
-    width: 100%;
-  }
-}
 
 .header {
   -webkit-box-pack: justify;
@@ -370,11 +289,10 @@ a.button {
   }
 }
 
-.cta-input {
-  margin: var(--cta-input-margin, 32px 8px 0);
-}
-.cta-input,
 .cta-input__container {
+  margin: 2px 2px 2px 2px;
+  width: 100%;
+  /* max-width: 200px; */
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -460,7 +378,7 @@ a.button {
     --cta-input-input-width: 300px;
     --cta-input-logo-width: 24px;
     --cta-input-name-font: 500 3.2rem/1.25 Google Sans, sans-serif;
-    --cta-input-name-padding: 15px 32px 15px 32px;
+    --cta-input-name-padding: 15px 32px 15px 20px;
   }
 }
 
@@ -965,5 +883,143 @@ a.button {
   }
   .testimonial p {
     font-size: 15px;
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    width: 100%;
+  }
+  .hero-content h1 {
+    font-size: 45px;
+  }
+  .d-table-cell {
+    margin-top: 15px;
+    position: absolute;
+    width: 100%;
+  }
+  .hero-content p {
+    font-size: 20px;
+  }
+  .hero-video {
+    display: block;
+    /* max-width: 576px; */
+  }
+  .d-table {
+    max-height: 750px;
+  }
+  .main-banner {
+    height: 750px;
+  }
+  .launching-Steps h1 {
+    font-size: 40px;
+  }
+  .paddstorefront {
+    padding-bottom: 100px;
+  }
+  .why-choose-us {
+    padding-top: 0px;
+  }
+  .footer {
+    font-size: 10px;
+  }
+}
+@media (min-width: 577px) {
+  .container {
+    width: 100%;
+  }
+  .hero-content h1 {
+    font-size: 70px;
+  }
+  .d-table {
+    max-height: 750px;
+    margin-top: 20px;
+    padding-top: 20px;
+  }
+  .hero-footer {
+    padding-top: 20px;
+  }
+  .paddstorefront {
+    padding-bottom: 50px;
+  }
+}
+@media (max-width: 992px) {
+  .container {
+    width: 100%;
+  }
+  .hero-video {
+    display: none;
+  }
+  .why-choose-options:before {
+    display: none;
+  }
+  /* .hero-footer{
+    padding-left: 80px;
+  } */
+}
+@media (min-width: 993px) {
+  .cta-input__container {
+    margin-top: -50px;
+  }
+  .d-table-cell {
+    padding-top: 35px;
+  }
+  .hero-footer {
+    padding-top: 0px;
+  }
+  .container {
+    width: 100%;
+  }
+  .why-choose-options:before {
+    display: none;
+  }
+}
+
+@media (max-width: 343px) {
+  .container {
+    width: 100%;
+  }
+  .hero-content{
+    max-width: 320px;
+  }
+
+  .hero-content h1 {
+    font-size: 40px;
+  }
+  .d-table-cell {
+    margin-top: 15px;
+    position: absolute;
+    width: 100%;
+  }
+  .hero-content p {
+    font-size: 13px;
+  }
+  .hero-footer p{
+    font-size: 10px;
+  }
+  .hero-video {
+    display: block;
+    /* max-width: 576px; */
+  }
+  .d-table {
+    max-height: 750px;
+  }
+  .main-banner {
+    height: 750px;
+  }
+  .launching-Steps h1 {
+    font-size: 30px;
+  }
+  .paddstorefront {
+    padding-bottom: 100px;
+  }
+  .why-choose-us {
+    padding-top: 0px;
+  }
+  .footer {
+    font-size: 10px;
+  }
+  .create-storefront-cta__heading{
+    font-size: 33px;
   }
 }
