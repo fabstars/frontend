@@ -976,3 +976,7 @@ a.button {
     font-size: 15px;
   }
 }
+
+.fixFooter{
+  margin-bottom: 10rem;
+}

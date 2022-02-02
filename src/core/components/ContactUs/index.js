@@ -39,7 +39,10 @@ const ContactUs = () => {
   alert = useAlert();
   return (
     <>
-      <div className="main-banner main-banner-show">
+      <div
+        className="main-banner main-banner-show fixFooter"
+        style={{ height: "100%" }}
+      >
         <header
           className="header-style hcontainer"
           style={{ position: "sticky", top: "0px" }}
@@ -78,6 +81,39 @@ const ContactUs = () => {
           </nav>
         </header>
         <div style={{ marginTop: "10px" }} className="container">
+          <div className="boxes-area" style={{ marginBottom: "-5rem" }}>
+            <div className="container">
+              <div className="row" style={{ height: "150%" }}>
+                <div className="col-lg-4 col-md-6">
+                  <div className="single-box">
+                    <i className="fas fa-browser"></i>
+                    <h3>Select your website name</h3>
+                    <p>
+                      Name your site, customize the url and leave rest on us
+                    </p>
+                  </div>
+                </div>
+
+                <div className="col-lg-4 col-md-6">
+                  <div className="single-box">
+                    <i className="fas fa-tshirt"></i>
+                    <h3>Add links & products</h3>
+                    <p>
+                      Add your links, select the products and set your price
+                    </p>
+                  </div>
+                </div>
+
+                <div className="col-lg-4 col-md-6 offset-lg-0 offset-md-3">
+                  <div className="single-box">
+                    <i className="fas fa-share-alt-square"></i>
+                    <h3>Start sharing</h3>
+                    <p>Woohoo! your site is ready now add it to your bio</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
           <h1 style={{ textAlign: "center", marginTop: "10px" }}>Contact us</h1>
           <form onSubmit={formSubmit}>
             <div class="form-group">
@@ -139,7 +175,7 @@ const ContactUs = () => {
               Send
             </button>
           </form>
-        </div>
+        </div>{" "}
       </div>
       <Footer />
     </>
