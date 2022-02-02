@@ -402,6 +402,7 @@ a.button {
 }
 .single-box {
   box-shadow: 0 0 38px rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
   text-align: center;
   padding: 35px 20px 40px;
   margin-bottom: 40px;
@@ -432,6 +433,7 @@ a.button {
 .single-box:hover::before {
   opacity: 1;
   height: 100%;
+  border-radius: 10px;
   visibility: visible;
 }
 .single-box i {

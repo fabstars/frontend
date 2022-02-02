@@ -39,10 +39,7 @@ const ContactUs = () => {
   alert = useAlert();
   return (
     <>
-      <div
-        className="main-banner main-banner-show fixFooter"
-        style={{ height: "100%" }}
-      >
+      <div className="banner">
         <header
           className="header-style hcontainer"
           style={{ position: "sticky", top: "0px" }}
@@ -80,41 +77,8 @@ const ContactUs = () => {
             </ul>
           </nav>
         </header>
-        <div style={{ marginTop: "10px" }} className="container">
-          <div className="boxes-area" style={{ marginBottom: "-5rem" }}>
-            <div className="container">
-              <div className="row" style={{ height: "150%" }}>
-                <div className="col-lg-4 col-md-6">
-                  <div className="single-box">
-                    <i className="fas fa-browser"></i>
-                    <h3>Select your website name</h3>
-                    <p>
-                      Name your site, customize the url and leave rest on us
-                    </p>
-                  </div>
-                </div>
-
-                <div className="col-lg-4 col-md-6">
-                  <div className="single-box">
-                    <i className="fas fa-tshirt"></i>
-                    <h3>Add links & products</h3>
-                    <p>
-                      Add your links, select the products and set your price
-                    </p>
-                  </div>
-                </div>
-
-                <div className="col-lg-4 col-md-6 offset-lg-0 offset-md-3">
-                  <div className="single-box">
-                    <i className="fas fa-share-alt-square"></i>
-                    <h3>Start sharing</h3>
-                    <p>Woohoo! your site is ready now add it to your bio</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <h1 style={{ textAlign: "center", marginTop: "10px" }}>Contact us</h1>
+        <div style={{ marginTop: "20px" }} className="container">
+          <h1 style={{ textAlign: "center", paddingTop: "20px" }}>Contact us</h1>
           <form onSubmit={formSubmit}>
             <div class="form-group">
               <input
@@ -171,11 +135,46 @@ const ContactUs = () => {
             </div>
 
             <br />
-            <button type="submit" class="btn btn-dark">
-              Send
-            </button>
+            <div style={{ textAlign: "center"}}>
+              <button type="submit" class="btn btn-dark">
+                Send
+              </button>
+            </div>
           </form>
-        </div>{" "}
+          <div className="boxes-area" style={{ marginBottom: "-5rem" }}>
+            <div className="container">
+              <div className="row" style={{ height: "150%" }}>
+                <div className="col-lg-4 col-md-6">
+                  <div className="single-box">
+                    <i class="fas fa-map-marked-alt"></i>
+                    <h3>Head Office</h3>
+                    <p style={{ fontSize: "17.5px" }}>
+                    M-2, TDI City, Sector-59, Patla, Haryana, 131023
+                    </p>
+                  </div>
+                </div>
+
+                <div className="col-lg-4 col-md-6">
+                  <div className="single-box">
+                    <i class="fas fa-phone"></i>
+                    <h3>Phone Number</h3>
+                    <p>
+                    +91-8445814825
+                    </p>
+                  </div>
+                </div>
+
+                <div className="col-lg-4 col-md-6 offset-lg-0 offset-md-3">
+                  <div className="single-box">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Support Mail</h3>
+                    <p> info@fabstores.co</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <Footer />
     </>
