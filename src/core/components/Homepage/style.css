@@ -976,6 +976,31 @@ a.button {
   }
 }
 
-.fixFooter{
+.fixFooter {
   margin-bottom: 10rem;
+}
+
+.mob-footer {
+  display: flex;
+  width: 100%;
+}
+.made-in-section {
+  display: flex;
+  justify-content: right;
+  width: 100%;
+  padding-right: 6rem;
+}
+
+@media (max-width: 1450px) {
+  .mob-footer {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+  }
+  .made-in-section {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding-right: 0px;
+  }
 }
