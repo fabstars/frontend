@@ -199,8 +199,6 @@ const SingleShopProduct = ({
     );
   };
 
-
-
   const handleChange = (productId) => (event) => {
     setRun(!run); // run useEffect in parent Cart
     setCount(event.target.value < 1 ? 1 : event.target.value);
@@ -258,52 +256,60 @@ const SingleShopProduct = ({
 
   const noShow = () => <div></div>;
   return (
-    <div className="col-sm-6 col-md-6">
-      <div className="col">
-        <div className="product-card">
-          <div className="product-media">
-            <div className="product-label">
-              <label className="label-text sale">
-                {product.category && product.category.name}
-              </label>
-            </div>
-            <button className="product-wish wish">
-              <i className="fas fa-heart"></i>
-            </button>
-            {shouldRedirect(redirect)}
-
-            <Link to={`/products/${product._id}`} className="product-image">
-              <img
-                src={`${API}/product/photo/${product._id}`}
-                alt={product.name}
-              />
-            </Link>
+    <div
+      className="col col-xs-12 col-sm-6 col-md-4 col-lg-3"
+      style={{ padding: "5px", minWidth: "160px" }}
+    >
+      <div className="product-card">
+        <div className="product-media">
+          <div className="product-label">
+            <label className="label-text sale">
+              {product.category && product.category.name}
+            </label>
           </div>
-          <div className="product-content">
-            <div className="product-rating">
-              <i className="active fas fa-star"></i>
-              <i className="active fas fa-star"></i>
-              <i className="active fas fa-star"></i>
-              <i className="active fas fa-star"></i>
-              <i className="active far fa-star"></i>
-              <a href="product-video.html">(4)</a>
-            </div>
-            <h6 className="product-name">
-              <Link to={`/products/${product._id}`}>{product.name}</Link>
-            </h6>
-            <h6 className="product-price">
-              {/* <del>
-                <i className="fas fa-rupee-sign"></i>34
-              </del> */}
-              <span>
-                <i className="fas fa-rupee-sign"></i> {product.price + 0}
-              </span>
-            </h6>
+          {/* <button className="product-wish wish">
+            <i className="fas fa-heart"></i>
+          </button> */}
+          {shouldRedirect(redirect)}
 
-            {user && role === "1" && showAddToSiteBtn(showAddToSiteButton)}
-            {user && role === "2" && showAddToCartBtn(showAddToCartButton)}
+          <Link to={`/products/${product._id}`} className="product-image">
+            <img
+              src={`${API}/product/photo/${product._id}`}
+              alt={product.name}
+              style={{
+                height: "180px",
+                margin: "0 auto",
+                display: "block",
+              }}
+            />
+          </Link>
+        </div>
+        <div className="product-content">
+          {/* <div className="product-rating">
+            <i className="active fas fa-star"></i>
+            <i className="active fas fa-star"></i>
+            <i className="active fas fa-star"></i>
+            <i className="active fas fa-star"></i>
+            <i className="active far fa-star"></i>
+            <a href="product-video.html">(4)</a>
+          </div> */}
+          <h6 className="product-name">
+            <Link to={`/products/${product._id}`}>{product.name}</Link>
+          </h6>
+          <h6 className="product-price">
+            <del>
+              <i className="fas fa-rupee-sign"></i>
+              {product.mrp}
+            </del>
+            <span>
+              <i className="fas fa-rupee-sign"></i> {product.price}
+            </span>
+          </h6>
 
-            {/* <button
+          {user && role === "1" && showAddToSiteBtn(showAddToSiteButton)}
+          {user && role === "2" && showAddToCartBtn(showAddToCartButton)}
+
+          {/* <button
           className="product-add"
           title="Add to Cart"
           onClick={() => addItemToCart(product, 1)}
@@ -311,21 +317,20 @@ const SingleShopProduct = ({
           <i className="fas fa-shopping-basket"></i>
           <span>add</span>
         </button> */}
-            <div className="product-action">
-              <button className="action-minus" title="Quantity Minus">
-                <i className="icofont-minus"></i>
-              </button>
-              <input
-                className="action-input"
-                title="Quantity Number"
-                type="text"
-                name="quantity"
-                value="1"
-              />
-              <button className="action-plus" title="Quantity Plus">
-                <i className="icofont-plus"></i>
-              </button>
-            </div>
+          <div className="product-action">
+            <button className="action-minus" title="Quantity Minus">
+              <i className="icofont-minus"></i>
+            </button>
+            <input
+              className="action-input"
+              title="Quantity Number"
+              type="text"
+              name="quantity"
+              value="1"
+            />
+            <button className="action-plus" title="Quantity Plus">
+              <i className="icofont-plus"></i>
+            </button>
           </div>
         </div>
       </div>

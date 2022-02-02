@@ -15,7 +15,7 @@ const Shop = () => {
   });
   const [categories, setCategories] = useState([]);
   const [error, setError] = useState(false);
-  const [limit, setLimit] = useState(12);
+  const [limit, setLimit] = useState(24);
   const [skip, setSkip] = useState(0);
   const [size, setSize] = useState(0);
   const [filteredResults, setFilteredResults] = useState([]);
@@ -124,88 +124,81 @@ const Shop = () => {
   return (
     <Layout className="container-fluid" jumbotron={false}>
       <section className="inner-section shop-part mt-3">
-        <div className="container">
-          <div className="row content-reverse">
-            <div className="col-lg-3">
-              <div className="shop-widget">
-                <h6 className="shop-widget-title">Filter by Category</h6>
-                <>
+        <div className="row content-reverse">
+          <div className="col-lg-3 col-sm-12">
+            <div className="shop-widget">
+              <h6 className="shop-widget-title">Filter by Category</h6>
+              <>
+                <input
+                  className="shop-widget-search"
+                  ref={text}
+                  type="text"
+                  onChange={onChange}
+                  placeholder="Search..."
+                />
+                <ul className="shop-widget-list shop-widget-scroll">
+                  <Checkbox
+                    categories={
+                      filteredCategory ? filteredCategory : categories
+                    }
+                    handleFilters={(filters) =>
+                      handleFilters(filters, "category")
+                    }
+                    clearCategoryFilter={clearCategoryFilter}
+                    setClearCategoryFilter={setClearCategoryFilter}
+                  />
+                </ul>
+                <button
+                  className="shop-widget-btn"
+                  onClick={() => {
+                    setCategories([]);
+                    window.location.reload();
+                    setClearCategoryFilter(true);
+                    setCategories(categories);
+                  }}
+                >
+                  <i className="far fa-trash-alt"></i>
+                  <span>clear filter</span>
+                </button>
+              </>
+            </div>
+          </div>
+          <div className="col-lg-9 col-sm-12">
+            <div className="row">
+              <div className="top-filter">
+                <div className="filter-short">
                   <input
                     className="shop-widget-search"
-                    ref={text}
                     type="text"
-                    onChange={onChange}
+                    style={{
+                      border: "1px solid #1494a9",
+                      color: "#1494a9",
+                      background: "white",
+                    }}
+                    value={myFilters.filters.search}
+                    onChange={(e) => handleFilters(e.target.value, "search")}
                     placeholder="Search..."
                   />
-                  <ul className="shop-widget-list shop-widget-scroll">
-                    <Checkbox
-                      categories={
-                        filteredCategory ? filteredCategory : categories
-                      }
-                      handleFilters={(filters) =>
-                        handleFilters(filters, "category")
-                      }
-                      clearCategoryFilter={clearCategoryFilter}
-                      setClearCategoryFilter={setClearCategoryFilter}
-                    />
-                  </ul>
-                  <button
-                    className="shop-widget-btn"
-                    onClick={() => {
-                      setCategories([]);
-                      window.location.reload();
-                      setClearCategoryFilter(true);
-                      setCategories(categories);
-                    }}
-                  >
-                    <i className="far fa-trash-alt"></i>
-                    <span>clear filter</span>
-                  </button>
-                </>
+                </div>
               </div>
             </div>
-            <div className="col-lg-9">
-              <div className="row">
-                <div className="col-lg-12">
-                  <div className="top-filter">
-                    <div className="filter-short">
-                      <input
-                        className="shop-widget-search"
-                        type="text"
-                        style={{
-                          border: "1px solid #1494a9",
-                          color: "#1494a9",
-                          background: "white",
-                        }}
-                        value={myFilters.filters.search}
-                        onChange={(e) =>
-                          handleFilters(e.target.value, "search")
-                        }
-                        placeholder="Search..."
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="row row-cols-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-3">
-                {filteredResults.map((product, i) => (
-                  <>
-                    {isAuthenticated() &&
-                    isAuthenticated().user.role === "1" ? (
-                      <SingleShopProduct
-                        product={product}
-                        showAddToSiteButton={true}
-                      />
-                    ) : (
-                      <SingleShopProduct product={product} />
-                    )}
-                  </>
-                ))}
-              </div>
-              <div className="row">
-                <div className="col-lg-12">
-                  <div className="bottom-paginate">{loadMoreButton()}</div>
-                </div>
+            <div className="row  ">
+              {filteredResults.map((product, i) => (
+                <>
+                  {isAuthenticated() && isAuthenticated().user.role === "1" ? (
+                    <SingleShopProduct
+                      product={product}
+                      showAddToSiteButton={true}
+                    />
+                  ) : (
+                    <SingleShopProduct product={product} />
+                  )}
+                </>
+              ))}
+            </div>
+            <div className="row">
+              <div className="col-lg-12">
+                <div className="bottom-paginate">{loadMoreButton()}</div>
               </div>
             </div>
           </div>

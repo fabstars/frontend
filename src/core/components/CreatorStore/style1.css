@@ -6800,7 +6800,6 @@ tbody tr td:last-child {
 
 .filter-short {
   width: 100%;
-  margin: 0 1rem 0 1rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
