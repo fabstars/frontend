@@ -35,7 +35,7 @@ const SingleProduct = ({ product, userId }) => {
             </button>
             <Link to={`/products/${product._id}`} class="product-image">
               <img
-                src={`${API}/product/photo/${product._id}`}
+                src={product.url}
                 alt={product.name}
               />
             </Link>

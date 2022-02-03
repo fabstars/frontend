@@ -38,7 +38,7 @@ const OrderList = () => {
                       </td>
                       <td className="table-image">
                         <img
-                          src={`${API}/product/photo/${item._id}`}
+                          src={item.url}
                           alt="product"
                         />
                       </td>

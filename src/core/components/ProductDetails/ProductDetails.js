@@ -77,7 +77,7 @@ const ProductDetails = (props) => {
                     <ul className="details-preview">
                       <li>
                         <img
-                          src={`${API}/product/photo/${product._id}`}
+                          src={product.url}
                           alt={product.name}
                         />
                       </li>

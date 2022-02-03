@@ -100,7 +100,7 @@ const SingleShopProduct = ({
       setUser(auth_user.user);
     }
     getMargin();
-  }, [getMargin]);
+  }, []);
 
   const showViewButton = (showViewProductButton) => {
     return (
@@ -274,7 +274,7 @@ const SingleShopProduct = ({
 
           <Link to={`/products/${product._id}`} className="product-image">
             <img
-              src={`${API}/product/photo/${product._id}`}
+              src={product.url}
               alt={product.name}
               style={{
                 height: "180px",

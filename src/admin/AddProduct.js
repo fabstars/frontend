@@ -21,6 +21,7 @@ const AddProduct = () => {
     redirectToProfile: false,
     formData: "",
     mrp: "",
+    base64Image: "",
   });
 
   const { user, token } = isAuthenticated();
@@ -36,6 +37,7 @@ const AddProduct = () => {
     createdProduct,
     redirectToProfile,
     formData,
+    base64Image,
   } = values;
 
   // load categories and set form data
@@ -59,6 +61,14 @@ const AddProduct = () => {
 
   const handleChange = (name) => (event) => {
     const value = name === "photo" ? event.target.files[0] : event.target.value;
+    if (name === "photo") {
+      const reader = new FileReader();
+      reader.readAsDataURL(value);
+      reader.onloadend = () => {
+        console.log(reader.result);
+      };
+      console.log(reader.result);
+    }
     formData.set(name, value);
     setValues({ ...values, [name]: value });
   };

@@ -39,7 +39,7 @@ const Cart = ({ cartActive, setCartActive }) => {
             <li className="cart-item">
               <div className="cart-media">
                 <Link to={`/products/${item._id}`}>
-                  <img src={`${API}/product/photo/${item._id}`} alt="product" />
+                  <img src={item.url} alt="product" />
                 </Link>
                 <button
                   className="cart-delete"
