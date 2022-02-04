@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Menu from "../../../core/Menu";
 import { Link, Redirect } from "react-router-dom";
-import { signup, authenticate, isAuthenticated } from "../../../auth";
+import { signup, authenticate, isAuthenticated, googleAuthSignUp } from "../../../auth";
+import { GoogleLogin } from "react-google-login";
+import { useAlert } from "react-alert";
 
 const CreatorSignup = () => {
+  const alert = useAlert();
+
   const [values, setValues] = useState({
     name: "",
     email: "",
@@ -42,6 +46,40 @@ const CreatorSignup = () => {
       </div>
     </div>
   );
+
+  const googleSuccess = async (res) => {
+    const result = res && res.profileObj ? res.profileObj : undefined;
+    const token = res && res.tokenId ? res.tokenId : undefined;
+    try {
+      setValues({ ...values, error: false });
+      googleAuthSignUp({ result, token }).then((data) => {
+        console.log("Signup: ", data);
+        if (!data) {
+          console.log("Something wrong");
+        } else if (data.error) {
+          setValues({ ...values, error: data.error, success: false });
+        } else {
+          authenticate(data, () => {
+            setValues({
+              ...values,
+              redirectToReferrer: true,
+            });
+          });
+        }
+      });
+    } catch (error) {
+      alert.show("Google auth was unsuccessful. Try again later", {
+        type: "error",
+      });
+    }
+  };
+
+  const googleFailure = () => {
+    console.log("Failed");
+    alert.show("Google auth was unsuccessful. Try again later", {
+      type: "error",
+    });
+  };
 
   const clickSubmit = (event) => {
     event.preventDefault();
@@ -103,13 +141,22 @@ const CreatorSignup = () => {
                 class="user-form-group"
                 style={{ display: "flex", flexDirection: "column" }}
               >
-                <ul class="user-form-social">
-                  <li>
-                    <a href="#" class="google">
-                      <i class="fab fa-google"></i>Join with google
-                    </a>
-                  </li>
-                </ul>
+                <GoogleLogin
+                  onSuccess={googleSuccess}
+                  onFailure={googleFailure}
+                  cookiePolicy="single_host_origin"
+                  className="user-form-social"
+                  clientId="680948374245-5t9426j4s76qg4e359k6pt2tip0bha5p.apps.googleusercontent.com"
+                  render={(renderProps) => (
+                    <button
+                      className="user-form-social google google-button-auth"
+                      onClick={renderProps.onClick}
+                      disabled={renderProps.disabled}
+                    >
+                      <i className="fab fa-google"></i> Join with Google
+                    </button>
+                  )}
+                />
                 <div class="user-form-divider">
                   <p>or</p>
                 </div>

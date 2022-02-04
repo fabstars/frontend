@@ -64,6 +64,14 @@
   color: var(--white);
   border-radius: "2rem";
   transition: all 0.5s;
+  height: 45px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 45px;
+  border-radius: 8px;
+  letter-spacing: 0.3px;
+  text-align: center;
+  text-transform: uppercase;
 }
 .google-button-auth:hover {
   background: rgb(0, 19, 128);
