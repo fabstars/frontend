@@ -19,6 +19,7 @@ const MainContent = ({ toggle, currentTab }) => {
               <Link
                 to={`/creatorstore/${isAuthenticated().user._id}`}
                 className="btn btn-success  "
+                target="_blank"
               >
                 View Store
               </Link>

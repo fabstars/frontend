@@ -58,6 +58,17 @@
   text-decoration: none;
   transition: all 0.5s;
 }
+
+.google-button-auth {
+  background: rgb(0, 132, 255);
+  color: var(--white);
+  border-radius: "2rem";
+  transition: all 0.5s;
+}
+.google-button-auth:hover {
+  background: rgb(0, 19, 128);
+  transition: all 0.5s;
+}
 .user-form-social li a:hover {
   background: rgb(0, 19, 128);
   transition: all 0.5s;
