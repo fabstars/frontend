@@ -65,8 +65,23 @@ const ShowRow = ({ product, i, products }) => {
     token,
     user: { _id },
   } = isAuthenticated();
-  const [modalShow, setModalShow] = useState(false);
+  const [margin, setMargin] = useState(0);
+  const alert = useAlert();
 
+  const handleMarginSubmit = (e, product) => {
+    e.preventDefault();
+    updateMargin(
+      isAuthenticated().token,
+      isAuthenticated().user._id,
+      product._id,
+      margin
+    ).then((data) => {
+      alert.show("Margin updated");
+    });
+  };
+  const handleChange = (e) => {
+    setMargin(e.target.value);
+  };
   const removeFromSite = (idx) => {
     if (products && products[0]) {
       const products_to_send = [products[0][idx]._id];
@@ -80,15 +95,14 @@ const ShowRow = ({ product, i, products }) => {
     }
   };
 
-  const getMargin = (product) => {
-    {
+  useEffect(() => {
+    if (product)
       product.influencer_list.map((influencer, idx) => {
         if (influencer.user_id === _id) {
-          product["margin"] = influencer.margin;
+          setMargin(influencer.margin);
         }
       });
-    }
-  };
+  }, [product]);
   return (
     <tr className=" ">
       <td>{product.name}</td>
@@ -97,12 +111,15 @@ const ShowRow = ({ product, i, products }) => {
       </td>
       <td className="text-center">
         <i className="fas fa-rupee-sign"></i>
-        {getMargin(product)} {product["margin"]}
-      </td>
-      <td className="text-center">
+        <input
+          type="number"
+          style={{ width: "80px" }}
+          value={margin}
+          onChange={handleChange}
+        />
         <button
           className="btn btn-success"
-          onClick={() => setModalShow(!modalShow)}
+          onClick={(e) => handleMarginSubmit(e, product)}
           style={{
             paddingRight: "5px",
             paddingLeft: "5px",
@@ -113,13 +130,8 @@ const ShowRow = ({ product, i, products }) => {
         >
           Update
         </button>
-        <MyVerticallyCenteredModal
-          show={modalShow}
-          onHide={() => setModalShow(false)}
-          product={product}
-          userId={_id}
-        />
       </td>
+
       <td className="text-center">
         <button
           className="btn btn-danger"
