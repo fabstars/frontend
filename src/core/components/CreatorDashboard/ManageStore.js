@@ -72,7 +72,7 @@ const ManageStore = () => {
             <thead>
               <tr>
                 <th>Product </th>
-                <th className="text-center">Price per Item</th>
+                <th className="text-center">Price per Item (MRP)</th>
                 <th className="text-center">margin per Item</th>
                 <th className="text-center">remove from site</th>
               </tr>

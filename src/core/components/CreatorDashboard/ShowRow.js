@@ -107,7 +107,8 @@ const ShowRow = ({ product, i, products }) => {
     <tr className=" ">
       <td>{product.name}</td>
       <td className="text-center">
-        <i className="fas fa-rupee-sign"></i> {product.price}
+        <i className="fas fa-rupee-sign"></i>{" "}
+        {Number(product.price) + Number(margin)} ({product.mrp})
       </td>
       <td className="text-center">
         <i className="fas fa-rupee-sign"></i>
@@ -115,7 +116,11 @@ const ShowRow = ({ product, i, products }) => {
           type="number"
           style={{ width: "80px" }}
           value={margin}
-          onChange={handleChange}
+          onChange={(e) => {
+            if (Number(e.target.value) + product.price < product.mrp)
+              handleChange(e);
+            else alert.error("Product price cannot exceed MRP");
+          }}
         />
         <button
           className="btn btn-success"

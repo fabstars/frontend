@@ -25,67 +25,53 @@ const SingleProduct = ({ product, userId }) => {
   }, [getMargin]);
   return (
     <div class="col">
-        <div class="product-card">
-          <div class="product-media">
-            <div class="product-label">
-              <label class="label-text off">-10%</label>
-            </div>
-            <button class="product-wish wish">
-              <i class="fas fa-heart"></i>
-            </button>
-            <Link to={`/products/${product._id}`} class="product-image">
-              <img
-                src={product.url}
-                alt={product.name}
-              />
-            </Link>
+      <div class="product-card">
+        <div class="product-media">
+          <div class="product-label">
+            <label class="label-text sale">
+              {product && product.category && product.category.name}
+            </label>
           </div>
-          <div class="product-content">
-            <div class="product-rating">
-              <i className="active fas fa-star"></i>
-              <i className="active fas fa-star"></i>
-              <i className="active fas fa-star"></i>
-              <i className="active fas fa-star"></i>
-              <i className="active far fa-star"></i>
-              <a href="product-video.html">(4)</a>
-            </div>
-            <h6 class="product-name">
-              <Link to={`/products/${product._id}`}>{product.name}</Link>
-            </h6>
-            <h6 class="product-price">
-              <del>
-                <i className="fas fa-rupee-sign"></i>34
-              </del>
-              <span>
-                <i className="fas fa-rupee-sign"></i>{" "}
-                {product.price + currentMargin}
-              </span>
-            </h6>
-            <button
-              class="product-add"
-              title="Add to Cart"
-              onClick={() => addItemToCart(product, 1)}
-            >
-              <i class="fas fa-shopping-basket"></i>
-              <span>add</span>
+
+          <Link to={`/products/${product._id}`} class="product-image">
+            <img src={product.url} alt={product.name} />
+          </Link>
+        </div>
+        <div class="product-content">
+          <h6 class="product-name">
+            <Link to={`/products/${product._id}`}>{product.name}</Link>
+          </h6>
+          <h6 class="product-price">
+            <span>
+              <i className="fas fa-rupee-sign"></i>{" "}
+              {product.price + currentMargin}
+            </span>
+          </h6>
+          <button
+            class="product-add"
+            title="Add to Cart"
+            onClick={() => addItemToCart(product, 1)}
+          >
+            <i class="fas fa-shopping-basket"></i>
+            <span>add</span>
+          </button>
+          <div class="product-action">
+            <button class="action-minus" title="Quantity Minus">
+              <i class="icofont-minus"></i>
             </button>
-            <div class="product-action">
-              <button class="action-minus" title="Quantity Minus">
-                <i class="icofont-minus"></i>
-              </button>
-              <input
-                class="action-input"
-                title="Quantity Number"
-                type="text"
-                name="quantity"
-                value="1"
-              />
-              <button class="action-plus" title="Quantity Plus">
-                <i class="icofont-plus"></i>
-              </button>
-            </div>
+            <input
+              class="action-input"
+              title="Quantity Number"
+              type="text"
+              name="quantity"
+              value="1"
+            />
+            <button class="action-plus" title="Quantity Plus">
+              <i class="icofont-plus"></i>
+            </button>
           </div>
         </div>
+      </div>
     </div>
 
     //<div className="col-lg-4 col-md-6 col-sm-6 col-12">
