@@ -35,6 +35,7 @@ const CreatorLogin = () => {
       if (data.error) {
         setValues({ ...values, error: data.error, loading: false });
       } else {
+        console.log(data);
         authenticate(data, () => {
           setValues({
             ...values,

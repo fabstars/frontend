@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Menu from "../../../core/Menu";
 import { Link, Redirect } from "react-router-dom";
-import { signup, authenticate, isAuthenticated, googleAuthSignUp } from "../../../auth";
+import {
+  signup,
+  authenticate,
+  isAuthenticated,
+  googleAuthSignUp,
+} from "../../../auth";
 import { GoogleLogin } from "react-google-login";
 import { useAlert } from "react-alert";
 

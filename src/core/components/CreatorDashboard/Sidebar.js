@@ -45,17 +45,23 @@ const Sidebar = ({ toggle, setToggle, setCurrentTab, currentTab }) => {
             <div className="userpic">
               {" "}
               <img
-                src={userImage}
+                src={
+                  isAuthenticated() &&
+                  isAuthenticated().user &&
+                  isAuthenticated().user.url &&
+                  isAuthenticated().user.url !== ""
+                    ? isAuthenticated().user.url
+                    : userImage
+                }
                 alt=""
                 className="userpicimg"
-                style={{ marginTop: "0.7rem" }}
               />{" "}
-              <input
+              {/* <input
                 type="file"
                 className="btn btn-primary settingbtn"
                 name="file"
                 style={{ fontSize: "0px", paddingLeft: "1.7rem" }}
-              />
+              /> */}
             </div>
             <h3 className="username">{isAuthenticated().user.name}</h3>
           </div>
