@@ -11,8 +11,11 @@ const launchingSteps = () => {
             <div className="col-lg-4 col-md-6">
               <div className="single-box">
                 <i className="fas fa-browser"></i>
-                <h3>Select your website name</h3>
-                <p>Name your site, customize the url and leave rest on us</p>
+                <h3>Get Your .co domain for free</h3>
+                <p>
+                  Choose your website name and don’t worry we will give .co
+                  domain for absolutely free.{" "}
+                </p>
               </div>
             </div>
 
