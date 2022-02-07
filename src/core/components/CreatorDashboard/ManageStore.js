@@ -25,13 +25,11 @@ const ManageStore = () => {
     });
   };
 
-
   useEffect(() => {}, [products]);
 
   useEffect(() => {
     init(_id, token);
   }, []);
-
 
   return (
     <>
@@ -74,17 +72,23 @@ const ManageStore = () => {
             <thead>
               <tr>
                 <th>Product </th>
-                <th className="text-center">Price per Item</th>
+                <th className="text-center">Price per Item (MRP)</th>
                 <th className="text-center">margin per Item</th>
-                <th className="text-center">Update margin</th>
                 <th className="text-center">remove from site</th>
               </tr>
             </thead>
-              <tbody >
-            {products &&
-              products[0] &&
-              products[0].map((product, i) => <ShowRow product={product} i={i} products={products} _id={_id}/>)}
-              </tbody>
+            <tbody>
+              {products &&
+                products[0] &&
+                products[0].map((product, i) => (
+                  <ShowRow
+                    product={product}
+                    i={i}
+                    products={products}
+                    _id={_id}
+                  />
+                ))}
+            </tbody>
           </table>
         </div>
       </div>

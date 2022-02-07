@@ -273,15 +273,7 @@ const SingleShopProduct = ({
           {shouldRedirect(redirect)}
 
           <Link to={`/products/${product._id}`} className="product-image">
-            <img
-              src={product.url}
-              alt={product.name}
-              style={{
-                height: "180px",
-                margin: "0 auto",
-                display: "block",
-              }}
-            />
+            <img src={product.url} alt={product.name} />
           </Link>
         </div>
         <div className="product-content">
