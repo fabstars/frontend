@@ -31,6 +31,14 @@ const SingleProduct = ({ product, userId }) => {
             <label class="label-text sale">
               {product && product.category && product.category.name}
             </label>
+            <label className="details-label new">
+              -
+              {(
+                (Number(product.mrp - product.price) * 100) /
+                Number(product.mrp)
+              ).toFixed(1)}
+              %
+            </label>
           </div>
 
           <Link to={`/products/${product._id}`} class="product-image">
@@ -42,6 +50,9 @@ const SingleProduct = ({ product, userId }) => {
             <Link to={`/products/${product._id}`}>{product.name}</Link>
           </h6>
           <h6 class="product-price">
+            <del>
+              <i className="fas fa-rupee-sign"></i> {product.mrp}
+            </del>
             <span>
               <i className="fas fa-rupee-sign"></i>{" "}
               {product.price + currentMargin}

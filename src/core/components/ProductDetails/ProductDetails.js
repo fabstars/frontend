@@ -71,15 +71,21 @@ const ProductDetails = (props) => {
                 <div className="col-lg-6">
                   <div className="details-gallery">
                     <div className="details-label-group">
-                      <label className="details-label new">new</label>
-                      <label className="details-label off">-10%</label>
+                      <label className="details-label sale">
+                        {product.category && product.category.name}
+                      </label>
+                      <label className="details-label new">
+                        -
+                        {(
+                          (Number(product.mrp - product.price) * 100) /
+                          Number(product.mrp)
+                        ).toFixed(1)}
+                        %
+                      </label>
                     </div>
                     <ul className="details-preview">
                       <li>
-                        <img
-                          src={product.url}
-                          alt={product.name}
-                        />
+                        <img src={product.url} alt={product.name} />
                       </li>
                     </ul>
                     {/* <ul className="details-thumb">
@@ -95,23 +101,10 @@ const ProductDetails = (props) => {
                 <div className="col-lg-6">
                   <div className="details-content">
                     <h3 className="details-name">{product.name}</h3>
-                    <div className="details-meta">
-                      <p>
-                        BRAND:<Link to="#">Brand</Link>
-                      </p>
-                    </div>
-                    <div className="details-rating">
-                      <i className="fas fa-star"></i>
-                      <i className="fas fa-star"></i>
-                      <i className="fas fa-star"></i>
-                      <i className="fas fa-star"></i>
-                      <i className="far fa-star"></i>
-                      {/* <Link to="#">(3 reviews)</Link> */}
-                    </div>
+
                     <h3 className="details-price">
                       <del>
-                        <i className="fas fa-rupee-sign"></i>{" "}
-                        {(Number(product.price) * 1.2).toFixed(0)}
+                        <i className="fas fa-rupee-sign"></i> {product.mrp}
                       </del>
                       <span>
                         <i className="fas fa-rupee-sign"></i> {product.price}
@@ -133,26 +126,7 @@ const ProductDetails = (props) => {
                     </li>
                   </ul>
                 </div> */}
-                    <div className="details-list-group">
-                      <label className="details-list-title">Share:</label>
-                      <ul className="details-share-list">
-                        <li>
-                          <Link to="#">
-                            <i className="fab fa-facebook-f" />
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="#">
-                            <i className="fab fa-instagram" />
-                          </Link>
-                        </li>
-                        <li>
-                          <Link to="#">
-                            <i className="fab fa-twitter" />
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
+
                     <div className="details-add-group">
                       <button
                         className="product-add"
@@ -166,11 +140,12 @@ const ProductDetails = (props) => {
                     <div className="details-action-group">
                       <Link
                         className="details-wish wish"
-                        to="#"
+                        to="/checkout"
                         title="Add Your Wishlist List"
+                        style={{ textDecoration: "None" }}
                       >
-                        <i className="fas fa-heart"></i>
-                        <span>add to wish</span>
+                        <i className="far fa-credit-card"></i>
+                        <span>buy now</span>
                       </Link>
                     </div>
                   </div>

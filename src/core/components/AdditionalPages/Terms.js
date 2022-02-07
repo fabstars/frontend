@@ -8,7 +8,10 @@ const Terms = () => {
   return (
     <>
       <div className="banner">
-        <header className="header-style hcontainer" style={{ position: "sticky", top: "0px" }}>
+        <header
+          className="header-style hcontainer"
+          style={{ position: "sticky", top: "0px" }}
+        >
           <Link to="/" className="sitename">
             <h1 className="qlogo">Fabstores</h1>
           </Link>
@@ -90,7 +93,7 @@ const Terms = () => {
               your account. You’re responsible for all the activity on your
               account, and for keeping your password confidential. If you find
               out that someone has used your account without your permission,
-              you should report it to support.fs@gmail.com. To sign up for an
+              you should report it to info@fabstores.co. To sign up for an
               account, you need to be at least 18 years old, or old enough to
               form a binding contract where you live. If necessary, we may ask
               you for proof of age.
@@ -223,9 +226,9 @@ const Terms = () => {
             <h3>Account deletion</h3>
             <p className="beautify">
               You may stop using our Service, by contacting Fab Store at
-              support.fs@gmail.com, and requesting account deletion. We may
-              retain certain information as required by law or as necessary for
-              our legitimate business purposes. All provisions of this agreement
+              info@fabstores.co, and requesting account deletion. We may retain
+              certain information as required by law or as necessary for our
+              legitimate business purposes. All provisions of this agreement
               survive termination of an account, including our rights regarding
               any content you’ve already submitted to the Site. (For instance,
               if you’ve launched a page, deleting your account will not

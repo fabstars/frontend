@@ -160,6 +160,11 @@ const ProfileDetails = () => {
           <h1 className="page-header">Dashboard</h1>
         </div>
       </div>
+      <p style={{ margin: "1rem" }}>
+        Add all your social Media Links here to become popular everywhere:)
+        Also, You can add any link in Highlight links. Now, Go to shop to curate
+        products and earn money🤑
+      </p>
       <div className="row">
         <div className="col-lg-12">
           <div className="panel panel-default">

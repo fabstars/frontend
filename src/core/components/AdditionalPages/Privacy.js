@@ -8,7 +8,10 @@ const PrivacyPolicy = ({ history }) => {
   return (
     <>
       <div className="banner">
-        <header className="header-style hcontainer" style={{ position: "sticky", top: "0px" }}>
+        <header
+          className="header-style hcontainer"
+          style={{ position: "sticky", top: "0px" }}
+        >
           <Link to="/" className="sitename">
             <h1 className="qlogo">Fabstores</h1>
           </Link>
@@ -341,9 +344,9 @@ const PrivacyPolicy = ({ history }) => {
             <h3>ACCOUNT DELETION</h3>
             <p className="beautify">
               You may stop using our Service, by contacting Fab Store at
-              support.fs@gmail.com and requesting account deletion. We may
-              retain certain information as required by law or as necessary for
-              our legitimate business purposes. All provisions of this agreement
+              info@fabstores.co and requesting account deletion. We may retain
+              certain information as required by law or as necessary for our
+              legitimate business purposes. All provisions of this agreement
               survive termination of an account, including our rights regarding
               any content you’ve already submitted to the Site. (For instance,
               if you’ve launched a page, deleting your account will not
@@ -395,7 +398,7 @@ const PrivacyPolicy = ({ history }) => {
               from children under 13 years of age, and no part of our Services
               are directed to children. If you learn that a child has provided
               us with personal information in violation of this Privacy Policy,
-              then you may alert us at support.fs@gmail.com.
+              then you may alert us at info@fabstores.co.
             </p>
             <h3>INTERNATIONAL VISITORS</h3>
             <p className="beautify">
@@ -425,7 +428,7 @@ const PrivacyPolicy = ({ history }) => {
             <h3>CONTACT INFORMATION</h3>
             <p className="beautify">
               If you have any questions, comments, or concerns about our
-              processing activities, please email us at support.fs@gmail.com
+              processing activities, please email us at info@fabstores.co
             </p>
             <h3>Contact Us:-</h3>
             <p className="beautify">

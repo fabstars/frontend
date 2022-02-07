@@ -266,6 +266,14 @@ const SingleShopProduct = ({
             <label className="label-text sale">
               {product.category && product.category.name}
             </label>
+            <label className="details-label new">
+              -
+              {(
+                (Number(product.mrp - product.price) * 100) /
+                Number(product.mrp)
+              ).toFixed(1)}
+              %
+            </label>
           </div>
           {/* <button className="product-wish wish">
             <i className="fas fa-heart"></i>

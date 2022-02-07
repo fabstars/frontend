@@ -38,6 +38,12 @@ const ManageStore = () => {
           <h1 className="page-header">PRODUCTS</h1>
         </div>
       </div>
+      <p style={{ margin: "1rem" }}>
+        You can click on the (Rs. Sign)0 and update it according to your wish.
+        Click on the Update button after adding your margin. Total Price should
+        not be more than MRP which is in the bracket. Now, Just share your
+        Website link and start Earning.
+      </p>
       {/* <StoreSummary /> */}
       <div className="row">
         <div className="col-md-12">

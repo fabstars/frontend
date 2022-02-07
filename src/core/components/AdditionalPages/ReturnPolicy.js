@@ -8,7 +8,10 @@ const ReturnPolicy = () => {
   return (
     <>
       <div className="banner">
-        <header className="header-style hcontainer" style={{ position: "sticky", top: "0px" }}>
+        <header
+          className="header-style hcontainer"
+          style={{ position: "sticky", top: "0px" }}
+        >
           <Link to="/" className="sitename">
             <h1 className="qlogo">Fabstores</h1>
           </Link>
@@ -89,7 +92,7 @@ const ReturnPolicy = () => {
               placing the order. Once the order is processed after 4 hours, no
               cancellation request will be entertained. However, return is
               possible for all orders/products or you can contact us directly at
-              contactfs247@gmail.com.<br></br>
+              info@fabstores.co.<br></br>
               <span>OR</span>
               <br></br>Customers can CANCEL order only before the Order has been
               shipped/Dispatched. After the Product/s have been shipped, The

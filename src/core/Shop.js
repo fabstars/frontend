@@ -124,6 +124,17 @@ const Shop = () => {
   return (
     <Layout className="container-fluid" jumbotron={false}>
       <section className="inner-section shop-part mt-3">
+        <p
+          style={{
+            textAlign: "center",
+            color: "var(--orange)",
+            marginBottom: "1rem",
+          }}
+        >
+          Click on “Add to Site” button of your relevant product and it will be
+          automatically added to your website. You can update Margin in Manage
+          Products section of Dashboard.
+        </p>
         <div className="row content-reverse">
           <div className="col-lg-3 col-sm-12">
             <div className="shop-widget">
