@@ -7,6 +7,7 @@ import IconButton from "@material-ui/core/IconButton";
 import RemoveIcon from "@material-ui/icons/Remove";
 import AddIcon from "@material-ui/icons/Add";
 import { Card } from "react-bootstrap";
+import Resizer from "react-image-file-resizer";
 
 const ProfileDetails = () => {
   // const {
@@ -37,6 +38,8 @@ const ProfileDetails = () => {
     instagram: "",
     role: "",
     store_name: "",
+    url: "",
+    formData: "",
   });
   const { token } = isAuthenticated();
   const {
@@ -51,11 +54,15 @@ const ProfileDetails = () => {
     youtube,
     instagram,
     role,
+    url,
+    formData,
     store_name,
   } = values;
 
   const handleChange = (name) => (e) => {
-    setValues({ ...values, error: false, [name]: e.target.value });
+    const value = name === "url" ? e.target.files[0] : e.target.value;
+    formData.set(name, value);
+    setValues({ ...values, error: false, [name]: value });
   };
 
   const init = (userId) => {
@@ -64,6 +71,7 @@ const ProfileDetails = () => {
       if (data.error) {
         setValues({ ...values, error: true });
       } else {
+        console.log(data);
         setHighlightLinks(data.highlightLinks);
         setValues({
           ...values,
@@ -76,6 +84,7 @@ const ProfileDetails = () => {
           instagram: !data.social ? "" : data.social.instagram,
           role: data.role,
           store_name: !data.store_name ? "My Store" : data.store_name,
+          formData: new FormData(),
         });
       }
     });
@@ -83,18 +92,23 @@ const ProfileDetails = () => {
 
   const clickSubmit = (e) => {
     e.preventDefault();
-    update(isAuthenticated().user._id, token, {
-      name,
-      email,
-      password,
-      twitter,
-      facebook,
-      linkedin,
-      youtube,
-      instagram,
-      store_name,
-      highlightLinks,
-    }).then((data) => {
+    formData.set("name", name);
+    formData.set("email", email);
+    if (twitter && twitter.length) formData.set("twitter", twitter);
+    if (facebook && facebook.length) formData.set("facebook", facebook);
+    if (linkedin && linkedin.length) formData.set("linkedin", linkedin);
+    if (youtube && youtube.length) formData.set("youtube", youtube);
+    if (instagram && instagram.length) formData.set("instagram", instagram);
+    formData.set("role", role);
+    formData.set("password", password);
+    formData.set("store_name", store_name);
+    formData.set("highlightLinks", JSON.stringify(highlightLinks));
+    if (values.url) {
+      Resizer.imageFileResizer(values.url, 300, 300, "JPEG", 100, 0, (uri) => {
+        setValues({ ...values, url: uri });
+      });
+    }
+    update(isAuthenticated().user._id, token, formData).then((data) => {
       if (data.error) {
         alert.show(data.error);
       } else {
@@ -156,6 +170,32 @@ const ProfileDetails = () => {
               <div className="row">
                 <div className="col-sm-12">
                   <form>
+                    <div className="form-group row">
+                      <div className="col-lg-3" style={{ paddingTop: "5px" }}>
+                        Profile Image
+                      </div>
+                      <div className="col-lg-9">
+                        <input
+                          onChange={handleChange("url")}
+                          type="file"
+                          name="url"
+                          accept="image/*"
+                        />
+                      </div>
+                    </div>
+                    <div className="form-group row">
+                      <div className="col-lg-3" style={{ paddingTop: "5px" }}>
+                        Name<span className="text-danger">*</span>
+                      </div>
+                      <div className="col-lg-9">
+                        <input
+                          style={{ background: "white" }}
+                          className="form-control"
+                          value={name}
+                          onChange={handleChange("name")}
+                        />
+                      </div>
+                    </div>
                     <div className="form-group row">
                       <div className="col-lg-3" style={{ paddingTop: "5px" }}>
                         Email<span className="text-danger">*</span>
