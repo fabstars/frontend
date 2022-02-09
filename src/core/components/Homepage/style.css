@@ -417,7 +417,7 @@ a.button {
   display: -ms-flexbox;
   display: flex;
   /* font: var(--cta-input-name-font, 500 1.8rem/1.25 Google Sans, sans-serif); */
-  min-width: 320px;
+  min-width: 300px;
   padding: var(--cta-input-name-padding, 12px 0 12px 16px);
 }
 .cta-input__qaya-name:focus-within {

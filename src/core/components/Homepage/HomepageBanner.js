@@ -25,13 +25,13 @@ const HomepageBanner = ({ history }) => {
                     <section className="cta-input">
                       <form className="cta-input__container">
                         <div className="cta-input__qaya-name mb-2">
-                          <span aria-hidden="true">fabstores.co/</span>
                           <input
-                            aria-label="Your requested name to be used for a fab store with the URL like https://fabstores.co/your-name"
+                            aria-label="Your requested name to be used for a fab store with the URL like https://your-name.co"
                             className="cta-input__input"
                             placeholder="your-name"
                             type="text"
                           />
+                          <span aria-hidden="true">.co</span>
                         </div>
                         {!isAuthenticated() && (
                           <Link className="button-72" to="/signup">
