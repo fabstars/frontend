@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { isAuthenticated } from "../../../auth";
-import { listRelated, read } from "../../apiCore";
+import { addInfluenerItemToSite, listRelated, read } from "../../apiCore";
 import Layout from "../../Layout";
 import { API } from "../../../config";
 
@@ -10,6 +10,7 @@ import Loader from "react-loader-spinner";
 import ProductSpecification from "./ProductSpecification";
 import RelatedProducts from "./RelatedProducts";
 import { addItemToCart } from "../../cartHelpers";
+import { useAlert } from "react-alert";
 
 const ProductDetails = (props) => {
   const [product, setProduct] = useState(null);
@@ -18,7 +19,7 @@ const ProductDetails = (props) => {
   const [influencer, setInfluencer] = useState(false);
 
   const {
-    user: { role },
+    user: { role, _id },
   } = isAuthenticated();
 
   const loadSingleProduct = (productId) => {
@@ -47,7 +48,16 @@ const ProductDetails = (props) => {
 
   const [activeTab, setActiveTab] = useState("Description");
   const [cartActive, setCartActive] = useState(false);
+  const alert = useAlert();
 
+  const addToSite = (product) => {
+    const products = [product._id];
+    addInfluenerItemToSite(_id, isAuthenticated().token, products).then(
+      (data) => {
+        alert.show(`${data.message}`);
+      }
+    );
+  };
   return (
     <Layout
       title={product && product.name}
@@ -75,12 +85,11 @@ const ProductDetails = (props) => {
                         {product.category && product.category.name}
                       </label>
                       <label className="details-label new">
-                        -
                         {(
                           (Number(product.mrp - product.price) * 100) /
                           Number(product.mrp)
-                        ).toFixed(1)}
-                        %
+                        ).toFixed(0)}
+                        % Off
                       </label>
                     </div>
                     <ul className="details-preview">
@@ -127,22 +136,37 @@ const ProductDetails = (props) => {
                   </ul>
                 </div> */}
 
-                    <div className="details-add-group">
-                      <button
-                        className="product-add"
-                        title="Add to Cart"
-                        onClick={() => addItemToCart(product, 1)}
-                      >
-                        <i className="fas fa-shopping-basket"></i>
-                        <span>add to cart</span>
-                      </button>
-                    </div>
+                    {role === "1" && (
+                      <div className="details-add-group">
+                        <button
+                          className="product-add"
+                          title="Add to Site"
+                          onClick={() => addToSite(product)}
+                        >
+                          <i className="fas fa-shopping-basket"></i>
+                          <span>add to site</span>
+                        </button>
+                      </div>
+                    )}
+                    {role !== "1" && (
+                      <div className="details-add-group">
+                        <button
+                          className="product-add"
+                          title="Add to Cart"
+                          onClick={() => addItemToCart(product, 1)}
+                        >
+                          <i className="fas fa-shopping-basket"></i>
+                          <span>add to cart</span>
+                        </button>
+                      </div>
+                    )}
                     <div className="details-action-group">
                       <Link
                         className="details-wish wish"
                         to="/checkout"
-                        title="Add Your Wishlist List"
+                        title="Buy Now"
                         style={{ textDecoration: "None" }}
+                        onClick={() => addItemToCart(product, 1)}
                       >
                         <i className="far fa-credit-card"></i>
                         <span>buy now</span>
@@ -153,11 +177,11 @@ const ProductDetails = (props) => {
               </div>
             </div>
           </section>
-          <ProductSpecification
+          {/* <ProductSpecification
             product={product}
             activeTab={activeTab}
             setActiveTab={setActiveTab}
-          />
+          /> */}
           <RelatedProducts products={relatedProduct} />
         </>
       )}

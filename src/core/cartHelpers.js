@@ -116,6 +116,7 @@ export const addItemToCart = (product, count) => {
         _id: product._id,
         name: product.name,
         price: product.price,
+        url: product.url,
         count: count,
       };
       return true;
@@ -130,7 +131,6 @@ export const addItemToCart = (product, count) => {
     });
 
   localStorage.setItem("cart", JSON.stringify(cartItems));
-  setCartStatusActive();
 };
 
 export const removeItemFromCart = (product) => {

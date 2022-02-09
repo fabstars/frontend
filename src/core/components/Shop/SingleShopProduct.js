@@ -267,12 +267,11 @@ const SingleShopProduct = ({
               {product.category && product.category.name}
             </label>
             <label className="details-label new">
-              -
               {(
                 (Number(product.mrp - product.price) * 100) /
                 Number(product.mrp)
-              ).toFixed(1)}
-              %
+              ).toFixed(0)}
+              % Off
             </label>
           </div>
           {/* <button className="product-wish wish">
