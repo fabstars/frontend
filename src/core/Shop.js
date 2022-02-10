@@ -8,6 +8,7 @@ import { prices } from "./fixedPrices";
 import Search from "../core/Search";
 import { isAuthenticated } from "../auth";
 import SingleShopProduct from "./components/Shop/SingleShopProduct";
+import Menu from "./Menu";
 
 const Shop = () => {
   const [myFilters, setMyFilters] = useState({
@@ -122,7 +123,8 @@ const Shop = () => {
     }
   };
   return (
-    <Layout className="container-fluid" jumbotron={false}>
+    <>
+      <Menu defaultNav={false} />
       <section className="inner-section shop-part mt-3">
         <p
           style={{
@@ -215,7 +217,7 @@ const Shop = () => {
           </div>
         </div>
       </section>
-    </Layout>
+    </>
   );
 };
 

@@ -11,6 +11,7 @@ import ProductSpecification from "./ProductSpecification";
 import RelatedProducts from "./RelatedProducts";
 import { addItemToCart } from "../../cartHelpers";
 import { useAlert } from "react-alert";
+import Menu from "../../Menu";
 
 const ProductDetails = (props) => {
   const [product, setProduct] = useState(null);
@@ -76,16 +77,8 @@ const ProductDetails = (props) => {
       setStoreTitle(location.state.storeTitle);
   }, []);
   return (
-    <Layout
-      title={product && product.name}
-      description={
-        product && product.description && product.description.substring(0, 100)
-      }
-      className="container-fluid"
-      jumbotron={false}
-      cartActive={cartActive}
-      setCartActive={setCartActive}
-    >
+    <>
+      <Menu defaultNav={false} />
       {!product ? (
         <div style={{ textAlign: "center" }}>
           <Loader type="Puff" color="#00BFFF" height={100} width={100} />
@@ -209,7 +202,7 @@ const ProductDetails = (props) => {
           />
         </>
       )}
-    </Layout>
+    </>
   );
 };
 

@@ -3,6 +3,7 @@ import Layout from "./Layout";
 import { read, listRelated } from "./apiCore";
 import Card from "./Card";
 import { isAuthenticated } from "../auth";
+import Menu from "./Menu";
 
 const Product = (props) => {
   const [product, setProduct] = useState({});
@@ -39,13 +40,8 @@ const Product = (props) => {
   }, [props, role]);
 
   return (
-    <Layout
-      title={product && product.name}
-      description={
-        product && product.description && product.description.substring(0, 100)
-      }
-      className="container-fluid"
-    >
+    <>
+      <Menu defaultNav={true} />
       <div className="row">
         <div className="col-8">
           {product && product.description && (
@@ -70,7 +66,7 @@ const Product = (props) => {
           ))}
         </div>
       </div>
-    </Layout>
+    </>
   );
 };
 

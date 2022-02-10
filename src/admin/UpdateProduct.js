@@ -3,6 +3,7 @@ import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
 import { Link, Redirect } from "react-router-dom";
 import { getProduct, getCategories, updateProduct } from "./apiAdmin";
+import Menu from "../core/Menu";
 
 const UpdateProduct = ({ match }) => {
   const [values, setValues] = useState({
@@ -196,10 +197,8 @@ const UpdateProduct = ({ match }) => {
   };
 
   return (
-    <Layout
-      title="Add a new product"
-      description={`G'day ${user.name}, ready to add a new product?`}
-    >
+    <>
+      <Menu defaultNav={true} />
       <div className="row">
         <div className="col-md-8 offset-md-2">
           {showLoading()}
@@ -209,7 +208,7 @@ const UpdateProduct = ({ match }) => {
           {redirectUser()}
         </div>
       </div>
-    </Layout>
+    </>
   );
 };
 

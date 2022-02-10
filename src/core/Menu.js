@@ -1,5 +1,5 @@
-import React, { Fragment } from "react";
-import { Link, withRouter } from "react-router-dom";
+import React, { Fragment, useEffect } from "react";
+import { Link, useHistory, withRouter } from "react-router-dom";
 import { isAuthenticated } from "../auth";
 import UserNavbar from "./UserNavbar";
 
@@ -11,8 +11,15 @@ const isActive = (history, path) => {
   }
 };
 
-const Menu = ({ history }) => {
-  if (!isAuthenticated() || isAuthenticated().user.role !== "1")
+const Menu = ({ defaultNav }) => {
+  const history = useHistory();
+  useEffect(() => {
+    console.log(defaultNav);
+  }, []);
+  if (
+    !defaultNav &&
+    (!isAuthenticated() || isAuthenticated().user.role !== "1")
+  )
     return <UserNavbar />;
   return (
     <>

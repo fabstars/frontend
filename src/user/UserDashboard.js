@@ -8,6 +8,7 @@ import moment from "moment";
 import SingleProduct from "../core/components/CreatorStore/SingleProduct";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Modal, Button, Form } from "react-bootstrap";
+import Menu from "../core/Menu";
 
 function MyVerticallyCenteredModal(props) {
   return (
@@ -186,11 +187,8 @@ const Dashboard = () => {
   };
 
   return (
-    <Layout
-      title="Dashboard"
-      description={`G'day ${name}!`}
-      className="container-fluid"
-    >
+    <>
+      <Menu defaultNav={true} />
       <div className="row">
         <div className="col-3">
           {role === "1" ? influencerLinks() : customerLinks()}
@@ -200,7 +198,7 @@ const Dashboard = () => {
           {/* {role === "1" ? influencerProducts() : purchaseHistory(history)} */}
         </div>
       </div>
-    </Layout>
+    </>
   );
 };
 

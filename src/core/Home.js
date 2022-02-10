@@ -3,6 +3,7 @@ import Layout from "./Layout";
 import { getProducts } from "./apiCore";
 import Card from "./Card";
 import Search from "./Search";
+import Menu from "./Menu";
 
 const Home = () => {
   const [productsBySell, setProductsBySell] = useState([]);
@@ -40,11 +41,8 @@ const Home = () => {
   }, []);
 
   return (
-    <Layout
-      title="FullStack React Node MongoDB Ecommerce App"
-      description="Node React E-commerce App"
-      className="container-fluid"
-    >
+    <>
+      <Menu defaultNav={true} />
       <Search />
       <h2 className="mb-4">New Arrivals</h2>
       <div className="row">
@@ -63,7 +61,7 @@ const Home = () => {
           </div>
         ))}
       </div>
-    </Layout>
+    </>
   );
 };
 

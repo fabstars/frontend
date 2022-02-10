@@ -3,6 +3,7 @@ import Layout from "../core/Layout";
 import { isAuthenticated } from "../auth";
 import { Link, Redirect } from "react-router-dom";
 import { read, update, updateUser } from "./apiUser";
+import Menu from "../core/Menu";
 
 const Profile = ({ match }) => {
   const [values, setValues] = useState({
@@ -211,15 +212,12 @@ const Profile = ({ match }) => {
   );
 
   return (
-    <Layout
-      title="Profile"
-      description="Update your profile"
-      className="container-fluid"
-    >
+    <>
+      <Menu defaultNav={true} />
       <h2 className="mb-4">Profile update</h2>
       {profileUpdate(name, email, password)}
       {redirectUser(success)}
-    </Layout>
+    </>
   );
 };
 

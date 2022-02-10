@@ -214,7 +214,8 @@ const CreatorSignup = () => {
 
   return (
     <>
-      <Menu />
+      <Menu defaultNav={true} />
+
       {showLoading()}
       {showError()}
       {signUpForm()}
