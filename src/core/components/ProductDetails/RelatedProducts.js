@@ -1,7 +1,7 @@
 import React from "react";
-import SingleProduct from "../CreatorStore/SingleProduct";
+import SingleShopProduct from "../Shop/SingleShopProduct";
 
-const RelatedProducts = ({ products }) => {
+const RelatedProducts = ({ products, role }) => {
   return (
     <section className="inner-section">
       <div className="container">
@@ -16,7 +16,12 @@ const RelatedProducts = ({ products }) => {
         )}
         <div className="row row-cols-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-5">
           {products.map((product) => {
-            return <SingleProduct product={product} />;
+            return (
+              <SingleShopProduct
+                showAddToSiteButton={role === "1" ? true : false}
+                product={product}
+              />
+            );
           })}
         </div>
       </div>

@@ -11,7 +11,7 @@ import {
   setCartStatusInActive,
 } from "./cartHelpers";
 
-const Cart = ({ cartActive, setCartActive }) => {
+const Cart = ({ cartActive, setCartActive, creatorStore, storeTitle }) => {
   const [cartItems, setCartItems] = useState(getCartItems());
   useEffect(() => {
     if (cartActive === true) setCartItems(getCartItems());
@@ -116,7 +116,10 @@ const Cart = ({ cartActive, setCartActive }) => {
   </form> */}
         <Link
           className="cart-checkout-btn"
-          to="/checkout"
+          to={{
+            pathname: `/checkout`,
+            state: { storeTitle, creatorStore },
+          }}
           onClick={() => setCartStatusInActive()}
         >
           <span className="checkout-label">Proceed to Checkout</span>

@@ -10,9 +10,14 @@ const Layout = ({
   jumbotron = true,
   cartActive,
   setCartActive,
+  creatorStore,
 }) => (
   <div>
-    <Menu cartActive={cartActive} setCartActive={setCartActive} />
+    <Menu
+      cartActive={cartActive}
+      setCartActive={setCartActive}
+      creatorStore={creatorStore}
+    />
     {jumbotron && (
       <div className="jumbotron">
         <h2>{title}</h2>

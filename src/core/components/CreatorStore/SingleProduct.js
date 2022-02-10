@@ -5,7 +5,7 @@ import "./style1.css";
 import { Link } from "react-router-dom";
 import { addItemToCart } from "../../cartHelpers";
 
-const SingleProduct = ({ product, userId }) => {
+const SingleProduct = ({ product, userId, user }) => {
   const [currentMargin, setCurrentMargin] = useState(0);
 
   const getMargin = () => {
@@ -40,13 +40,32 @@ const SingleProduct = ({ product, userId }) => {
             </label>
           </div>
 
-          <Link to={`/products/${product._id}`} class="product-image">
+          <Link
+            to={{
+              pathname: `/products/${product._id}`,
+              state: {
+                storeTitle: user && user.store_name,
+                creatorStore: user && `/creatorstore/${user._id}`,
+              },
+            }}
+            class="product-image"
+          >
             <img src={product.url} alt={product.name} />
           </Link>
         </div>
         <div class="product-content">
           <h6 class="product-name">
-            <Link to={`/products/${product._id}`}>{product.name}</Link>
+            <Link
+              to={{
+                pathname: `/products/${product._id}`,
+                state: {
+                  storeTitle: user && user.store_name,
+                  creatorStore: user && `/creatorstore/${user._id}`,
+                },
+              }}
+            >
+              {product.name}
+            </Link>
           </h6>
           <h6 class="product-price">
             <del>

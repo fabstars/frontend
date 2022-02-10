@@ -5,7 +5,7 @@ import { getInfluencerProducts } from "../../apiCore";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Loader from "react-loader-spinner";
 
-const ProductList = ({ userId }) => {
+const ProductList = ({ userId, user }) => {
   const { token } = isAuthenticated();
 
   const [products, setProducts] = useState([]);
@@ -24,7 +24,7 @@ const ProductList = ({ userId }) => {
 
   const showProducts = () => {
     return products[0].map((product, i) => (
-      <SingleProduct key={i} product={product} userId={userId}/>
+      <SingleProduct key={i} product={product} userId={userId} user={user} />
     ));
   };
 
@@ -32,7 +32,9 @@ const ProductList = ({ userId }) => {
     <div style={{ marginTop: "3em" }}>
       {products.length ? (
         <div className="container">
-          <div className="row row-cols-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-5">{products.length ? showProducts() : ""}</div>
+          <div className="row row-cols-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-5">
+            {products.length ? showProducts() : ""}
+          </div>
         </div>
       ) : (
         <div style={{ textAlign: "center" }}>

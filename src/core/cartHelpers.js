@@ -127,6 +127,7 @@ export const addItemToCart = (product, count) => {
       _id: product._id,
       name: product.name,
       price: product.price,
+      url: product.url,
       count: count,
     });
 
