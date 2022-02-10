@@ -47,17 +47,7 @@ export const cartTotal = () => {
 
   return total;
 };
-export const getCartStatus = () => {
-  if (localStorage.getItem("cartStatus")) return true;
 
-  return false;
-};
-export const setCartStatusActive = () => {
-  localStorage.setItem("cartStatus", "true");
-};
-export const setCartStatusInActive = () => {
-  localStorage.removeItem("cartStatus");
-};
 export const getCartItems = () => {
   const cartItems = localStorage.getItem("cart");
   if (!cartItems) return [];

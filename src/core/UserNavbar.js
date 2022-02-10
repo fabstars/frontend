@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import Cart from "./Cart";
-import { getCartStatus } from "./cartHelpers";
 
 const UserNavbar = () => {
-  const [cartActive, setCartActive] = useState(getCartStatus());
+  const [cartActive, setCartActive] = useState(false);
   const location = useLocation();
   const [creatorStore, setCreatorStore] = useState("#");
   const [storeTitle, setStoreTitle] = useState("");

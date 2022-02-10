@@ -1,18 +1,6 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment } from "react";
 import { Link, withRouter } from "react-router-dom";
-import { signout, isAuthenticated } from "../auth";
-import { API } from "../config";
-import Cart from "./Cart";
-import {
-  itemTotal,
-  cartTotal,
-  getCartItems,
-  addItemToCart,
-  removeItemFromCart,
-  setCartStatusActive,
-  getCartStatus,
-  setCartStatusInActive,
-} from "./cartHelpers";
+import { isAuthenticated } from "../auth";
 import UserNavbar from "./UserNavbar";
 
 const isActive = (history, path) => {
@@ -24,7 +12,6 @@ const isActive = (history, path) => {
 };
 
 const Menu = ({ history }) => {
-  const [cartActive, setCartActive] = useState(getCartStatus());
   if (!isAuthenticated() || isAuthenticated().user.role !== "1")
     return <UserNavbar />;
   return (
@@ -38,12 +25,6 @@ const Menu = ({ history }) => {
         </Link>
         <nav>
           <ul>
-            {/* <li>
-            <Link className="button-72" style={isActive(history, "/")} to="/">
-              Home
-            </Link>
-          </li> */}
-
             {isAuthenticated() && isAuthenticated().user.role !== "2" && (
               <li>
                 <Link
@@ -56,23 +37,12 @@ const Menu = ({ history }) => {
               </li>
             )}
 
-            {/* {isAuthenticated() && isAuthenticated().user.role === "1" && (
-            <li>
-              <Link className="button-72" style={isActive(history, "/user/my-products")} to="/user/my-products">
-                My Products
-              </Link>
-            </li>
-          )} */}
-
             {isAuthenticated() && isAuthenticated().user.role === "2" && (
               <li>
                 <Link
                   className="button-72"
                   style={isActive(history, "/cart")}
-                  onClick={() => {
-                    setCartStatusActive();
-                    setCartActive(getCartStatus());
-                  }}
+                  to="#"
                 >
                   Cart{" "}
                 </Link>
@@ -128,26 +98,9 @@ const Menu = ({ history }) => {
                 </li>
               </Fragment>
             )}
-
-            {/* {isAuthenticated() && (
-            <li>
-              <span
-                className="button-72"
-                style={{ cursor: "pointer", color: "#ffffff" }}
-                onClick={() =>
-                  signout(() => {
-                    history.push("/");
-                  })
-                }
-              >
-                Signout
-              </span>
-            </li>
-          )} */}
           </ul>
         </nav>
       </header>
-      <Cart cartActive={cartActive} setCartActive={setCartActive} />
     </>
   );
 };
