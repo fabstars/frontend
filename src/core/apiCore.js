@@ -107,6 +107,7 @@ export const processPayment = (userId, token, paymentData) => {
 };
 
 export const createOrder = (userId, token, createOrderData) => {
+  console.log(createOrderData);
   return fetch(`${API}/order/create/${userId}`, {
     method: "POST",
     headers: {
@@ -166,7 +167,6 @@ export const removInfluencerProducts = (userId, token, products) => {
     })
     .catch((err) => console.log(err));
 };
-
 
 export const updateMargin = (token, userId, productId, margin) => {
   return fetch(`${API}/product/${productId}/influencer/${userId}`, {

@@ -37,10 +37,7 @@ const OrderList = () => {
                         <h6>{index + 1}</h6>
                       </td>
                       <td className="table-image">
-                        <img
-                          src={item.url}
-                          alt="product"
-                        />
+                        <img src={item.url} alt="product" />
                       </td>
                       <td className="table-name">
                         <h6>{item.name}</h6>

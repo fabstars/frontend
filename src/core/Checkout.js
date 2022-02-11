@@ -15,16 +15,24 @@ const Checkout = () => {
     city: "",
     state: "",
     pincode: "",
+    bank_account_number: "1518121112",
+    bank_ifsc: "CITI0000001",
+    bank_code: 3333,
+    order_note: "Test order",
   });
+
   const placeOrder = async () => {
     const {
       token,
-      user: { _id },
+      user: { _id, email },
     } = isAuthenticated();
+
+    const cust_details = { ...deliveryDetails, email };
 
     const orderPlaced = await createOrder(_id, token, {
       products: getCartItems(),
       amount: cartTotal(),
+      cust_details,
     });
     if (!orderPlaced.error) {
       emptyCart(() => {

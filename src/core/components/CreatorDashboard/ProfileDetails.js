@@ -9,7 +9,7 @@ import AddIcon from "@material-ui/icons/Add";
 import { Card } from "react-bootstrap";
 import Resizer from "react-image-file-resizer";
 
-const ProfileDetails = () => {
+const ProfileDetails = ({ location, history }) => {
   // const {
   //   user: { _id, name, email, role },
   // } = isAuthenticated();
@@ -39,6 +39,7 @@ const ProfileDetails = () => {
     role: "",
     store_name: "",
     url: "",
+    slug: "",
     formData: "",
   });
   const { token } = isAuthenticated();
@@ -54,6 +55,7 @@ const ProfileDetails = () => {
     youtube,
     instagram,
     role,
+    slug,
     url,
     formData,
     store_name,
@@ -71,7 +73,6 @@ const ProfileDetails = () => {
       if (data.error) {
         setValues({ ...values, error: true });
       } else {
-        console.log(data);
         setHighlightLinks(data.highlightLinks);
         setValues({
           ...values,
@@ -85,6 +86,7 @@ const ProfileDetails = () => {
           role: data.role,
           store_name: !data.store_name ? "My Store" : data.store_name,
           formData: new FormData(),
+          slug: data.slug !== undefined ? data.slug : "",
         });
       }
     });
@@ -94,6 +96,7 @@ const ProfileDetails = () => {
     e.preventDefault();
     formData.set("name", name);
     formData.set("email", email);
+    formData.set("slug", slug);
     if (twitter && twitter.length) formData.set("twitter", twitter);
     if (facebook && facebook.length) formData.set("facebook", facebook);
     if (linkedin && linkedin.length) formData.set("linkedin", linkedin);
@@ -110,7 +113,7 @@ const ProfileDetails = () => {
     }
     update(isAuthenticated().user._id, token, formData).then((data) => {
       if (data.error) {
-        alert.show(data.error);
+        alert.show(data.error, { type: "error" });
       } else {
         updateUser(data, () => {
           setValues({
@@ -224,6 +227,18 @@ const ProfileDetails = () => {
                           className="form-control"
                           value={store_name}
                           onChange={handleChange("store_name")}
+                        />
+                      </div>
+                    </div>
+                    <div className="form-group row">
+                      <div className="col-lg-3" style={{ paddingTop: "5px" }}>
+                        Slug
+                      </div>
+                      <div className="col-lg-9">
+                        <input
+                          className="form-control"
+                          value={slug}
+                          onChange={handleChange("slug")}
                         />
                       </div>
                     </div>

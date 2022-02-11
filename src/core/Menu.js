@@ -22,7 +22,7 @@ const isActive = (history, path) => {
   }
 };
 
-const Menu = ({ history }) => {
+const Menu = ({ history, showNothing = false }) => {
   const [cartActive, setCartActive] = useState(getCartStatus());
 
   return (

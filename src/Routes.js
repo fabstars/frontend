@@ -29,6 +29,7 @@ import Terms from "./core/components/AdditionalPages/Terms";
 import CreatorLogin from "./user/components/CreatorLogin";
 import CreatorSignup from "./user/components/CreatorSignup";
 import Checkout from "./core/Checkout";
+import CompleteProfile from "./core/components/CompleteProfile";
 
 const Routes = () => {
   return (
@@ -38,7 +39,11 @@ const Routes = () => {
         <Route path="/shop" exact component={Shop} />
         <Route path="/signin" exact component={CreatorLogin} />
         <Route path="/signup" exact component={CreatorSignup} />
-
+        <Route
+          path="/complete-your-profile"
+          exact
+          component={CompleteProfile}
+        />
         <Route path="/ReturnPolicy" exact component={ReturnPolicy} />
         <Route path="/PrivacyPolicy" exact component={PrivacyPolicy} />
         <Route path="/Terms" exact component={Terms} />

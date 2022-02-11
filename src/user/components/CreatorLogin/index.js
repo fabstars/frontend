@@ -122,7 +122,7 @@ const CreatorLogin = () => {
                   className="user-form-group"
                   style={{ display: "flex", flexDirection: "column" }}
                 >
-                  <GoogleLogin
+                  {/* <GoogleLogin
                     onSuccess={googleSuccess}
                     onFailure={googleFailure}
                     cookiePolicy="single_host_origin"
@@ -140,7 +140,7 @@ const CreatorLogin = () => {
                   />
                   <div className="user-form-divider">
                     <p>or</p>
-                  </div>
+                  </div> */}
                   <form className="user-form">
                     <div className="form-group">
                       <input

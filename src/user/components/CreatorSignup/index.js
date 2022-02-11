@@ -13,6 +13,8 @@ import { useAlert } from "react-alert";
 const CreatorSignup = () => {
   const alert = useAlert();
 
+  const [valuesToSend, setValuesToSend] = useState({});
+
   const [values, setValues] = useState({
     name: "",
     email: "",
@@ -22,6 +24,7 @@ const CreatorSignup = () => {
     role: 1,
     loading: false,
     redirectToReferrer: false,
+    slug: "",
   });
   const {
     name,
@@ -32,6 +35,7 @@ const CreatorSignup = () => {
     role,
     loading,
     redirectToReferrer,
+    slug,
   } = values;
 
   const handleChange = (name) => (event) => {
@@ -64,6 +68,7 @@ const CreatorSignup = () => {
         } else if (data.error) {
           setValues({ ...values, error: data.error, success: false });
         } else {
+          setValuesToSend(data);
           authenticate(data, () => {
             setValues({
               ...values,
@@ -89,13 +94,14 @@ const CreatorSignup = () => {
   const clickSubmit = (event) => {
     event.preventDefault();
     setValues({ ...values, error: false });
-    signup({ name, email, password, role }).then((data) => {
+    signup({ name, email, password, role, slug }).then((data) => {
       console.log("Signup: ", data);
       if (!data) {
         console.log("Something wrong");
       } else if (data.error) {
         setValues({ ...values, error: data.error, success: false });
       } else {
+        setValuesToSend(data);
         authenticate(data, () => {
           setValues({
             ...values,
@@ -125,7 +131,9 @@ const CreatorSignup = () => {
       if (role === 0) {
         return <Redirect to="/admin/dashboard" />;
       } else {
-        return <Redirect to="/user/dashboard" />;
+        return (
+          <Redirect to={{ pathname: "/user/dashboard", state: valuesToSend }} />
+        );
       }
     }
     if (isAuthenticated()) {
@@ -146,7 +154,7 @@ const CreatorSignup = () => {
                 class="user-form-group"
                 style={{ display: "flex", flexDirection: "column" }}
               >
-                <GoogleLogin
+                {/* <GoogleLogin
                   onSuccess={googleSuccess}
                   onFailure={googleFailure}
                   cookiePolicy="single_host_origin"
@@ -161,10 +169,10 @@ const CreatorSignup = () => {
                       <i className="fab fa-google"></i> Join with Google
                     </button>
                   )}
-                />
-                <div class="user-form-divider">
+                /> */}
+                {/* <div class="user-form-divider">
                   <p>or</p>
-                </div>
+                </div> */}
                 <form class="user-form">
                   <div class="form-group">
                     <input
@@ -173,6 +181,15 @@ const CreatorSignup = () => {
                       class="form-control"
                       placeholder="Name"
                       value={name}
+                    />
+                  </div>
+                  <div class="form-group">
+                    <input
+                      onChange={handleChange("slug")}
+                      type="text"
+                      class="form-control"
+                      placeholder="Username"
+                      value={slug}
                     />
                   </div>
                   <div class="form-group">
