@@ -4,6 +4,7 @@ import "./style.css";
 import { isAuthenticated, signout } from "../../../auth";
 import Footer from "../Homepage/Footer";
 import { useAlert } from "react-alert";
+import { toast } from "react-toastify";
 
 const ContactUs = () => {
   const [query, setQuery] = useState({
@@ -33,7 +34,7 @@ const ContactUs = () => {
       body: formData,
     }).then(() => {
       setQuery({ name: "", email: "", message: "", mobile: "" });
-      alert.show("Message sent!!");
+      toast.success("Message sent!!");
     });
   };
   alert = useAlert();
@@ -78,7 +79,9 @@ const ContactUs = () => {
           </nav>
         </header>
         <div style={{ marginTop: "20px" }} className="container">
-          <h1 style={{ textAlign: "center", paddingTop: "20px" }}>Contact us</h1>
+          <h1 style={{ textAlign: "center", paddingTop: "20px" }}>
+            Contact us
+          </h1>
           <form onSubmit={formSubmit}>
             <div class="form-group">
               <input
@@ -135,7 +138,7 @@ const ContactUs = () => {
             </div>
 
             <br />
-            <div style={{ textAlign: "center"}}>
+            <div style={{ textAlign: "center" }}>
               <button type="submit" class="btn btn-dark">
                 Send
               </button>
@@ -149,7 +152,7 @@ const ContactUs = () => {
                     <i class="fas fa-map-marked-alt"></i>
                     <h3>Head Office</h3>
                     <p style={{ fontSize: "17.5px" }}>
-                    M-2, TDI City, Sector-59, Patla, Haryana, 131023
+                      M-2, TDI City, Sector-59, Patla, Haryana, 131023
                     </p>
                   </div>
                 </div>
@@ -158,9 +161,7 @@ const ContactUs = () => {
                   <div className="single-box">
                     <i class="fas fa-phone"></i>
                     <h3>Phone Number</h3>
-                    <p>
-                    +91-8445814825
-                    </p>
+                    <p>+91-8445814825</p>
                   </div>
                 </div>
 

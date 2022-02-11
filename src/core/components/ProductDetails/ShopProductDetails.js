@@ -12,6 +12,7 @@ import RelatedProducts from "./RelatedProducts";
 import { addItemToCart } from "../../cartHelpers";
 import { useAlert } from "react-alert";
 import Menu from "../../Menu";
+import { toast } from "react-toastify";
 
 const ShopProductDetails = (props) => {
   const [product, setProduct] = useState(null);
@@ -63,7 +64,7 @@ const ShopProductDetails = (props) => {
     const products = [product._id];
     addInfluenerItemToSite(_id, isAuthenticated().token, products).then(
       (data) => {
-        alert.show(`${data.message}`);
+        toast.success(`${data.message}`);
       }
     );
   };

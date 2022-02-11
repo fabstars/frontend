@@ -12,6 +12,7 @@ import { isAuthenticated } from "../auth";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Modal, Button, Form } from "react-bootstrap";
 import { useAlert } from "react-alert";
+import { toast } from "react-toastify";
 
 function MyVerticallyCenteredModal(props) {
   const alert = useAlert();
@@ -24,7 +25,7 @@ function MyVerticallyCenteredModal(props) {
       props.product._id,
       margin
     ).then((data) => {
-      alert.show("Margin updated");
+      toast.success("Margin updated");
     });
   };
   const handleChange = (e) => {
@@ -151,7 +152,7 @@ const Card = ({
     const products = [product._id];
     addInfluenerItemToSite(user._id, isAuthenticated().token, products).then(
       (data) => {
-        alert.show(`${data.message}`);
+        toast.success(`${data.message}`);
       }
     );
   };
@@ -194,7 +195,7 @@ const Card = ({
     const products = [product._id];
     removInfluencerProducts(user._id, isAuthenticated().token, products).then(
       (data) => {
-        alert.show(`${data.message}`);
+        toast.success(`${data.message}`);
         window.location.reload(false);
       }
     );

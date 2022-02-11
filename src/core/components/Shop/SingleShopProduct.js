@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useAlert } from "react-alert";
 import { Button, Modal } from "react-bootstrap";
 import { Link, Redirect } from "react-router-dom";
+import { toast } from "react-toastify";
 import { isAuthenticated } from "../../../auth";
 import { API } from "../../../config";
 import {
@@ -21,7 +22,7 @@ function MyVerticallyCenteredModal(props) {
       props.product._id,
       margin
     ).then((data) => {
-      alert.show("Margin updated");
+      toast.success("Margin updated");
     });
   };
   const handleChange = (e) => {
@@ -146,7 +147,7 @@ const SingleShopProduct = ({
     const products = [product._id];
     addInfluenerItemToSite(user._id, isAuthenticated().token, products).then(
       (data) => {
-        alert.show(`${data.message}`);
+        toast.success(`${data.message}`);
       }
     );
   };
@@ -187,7 +188,7 @@ const SingleShopProduct = ({
     const products = [product._id];
     removInfluencerProducts(user._id, isAuthenticated().token, products).then(
       (data) => {
-        alert.show(`${data.message}`);
+        toast.success(`${data.message}`);
         window.location.reload(false);
       }
     );

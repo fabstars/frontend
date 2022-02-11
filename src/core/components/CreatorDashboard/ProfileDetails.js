@@ -8,6 +8,7 @@ import RemoveIcon from "@material-ui/icons/Remove";
 import AddIcon from "@material-ui/icons/Add";
 import { Card } from "react-bootstrap";
 import Resizer from "react-image-file-resizer";
+import { toast } from "react-toastify";
 
 const ProfileDetails = ({ location, history }) => {
   // const {
@@ -113,7 +114,7 @@ const ProfileDetails = ({ location, history }) => {
     }
     update(isAuthenticated().user._id, token, formData).then((data) => {
       if (data.error) {
-        alert.show(data.error, { type: "error" });
+        toast.error(data.error);
       } else {
         updateUser(data, () => {
           setValues({
@@ -123,9 +124,7 @@ const ProfileDetails = ({ location, history }) => {
             success: true,
           });
         });
-        alert.show("User details updated", {
-          type: "success",
-        });
+        toast.success("User details updated");
         const myData = {
           token,
           user: { name, email, role, url, slug, _id: data._id },
