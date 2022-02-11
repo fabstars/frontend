@@ -32,7 +32,7 @@ const CreatorStore = ({ match }) => {
           "box-shadow": "0 8px 8px 2.5px rgba(0,0,0,0)",
         }}
       >
-        <Link to="/" className="sitename">
+        <Link to={user && `/creatorstore/${user.slug}`} className="sitename">
           <img
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI1W6NYr7J2h-pxZVnhMGZ_0aIyHlSUn_Q7g&usqp=CAU"
             alt="Avatar"
