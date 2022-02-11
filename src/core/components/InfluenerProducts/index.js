@@ -3,7 +3,8 @@ import Layout from "../../Layout";
 import { isAuthenticated } from "../../../auth";
 import { getInfluencerProducts } from "../../apiCore";
 import Card from "../../Card";
-  
+import Menu from "../../Menu";
+
 const MyProducts = () => {
   const {
     token,
@@ -25,23 +26,26 @@ const MyProducts = () => {
   }, []);
 
   return (
-    <Layout
-      title="My Products"
-      description="Influencer Products"
-      className="container-fluid"
-    >
+    <>
+      <Menu defaultNav={true} />
       <div className="container">
         <div className="row">
           {products &&
             products[0] &&
             products[0].map((product, i) => (
               <div key={i} className="col-6 mb-5">
-                <Card product={product} showAddMarginBtn={true} removeFromSiteBtn={true} showMargin={true} userId={_id}/>
+                <Card
+                  product={product}
+                  showAddMarginBtn={true}
+                  removeFromSiteBtn={true}
+                  showMargin={true}
+                  userId={_id}
+                />
               </div>
             ))}
         </div>
       </div>
-    </Layout>
+    </>
   );
 };
 

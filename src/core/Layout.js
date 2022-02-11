@@ -2,23 +2,10 @@ import React from "react";
 import Menu from "./Menu";
 import "../styles.css";
 
-const Layout = ({
-  title = "Title",
-  description = "Description",
-  className,
-  children,
-  jumbotron = true,
-  cartActive,
-  setCartActive,
-}) => (
+const Layout = ({ title, className, children, defaultNav }) => (
   <div>
-    <Menu cartActive={cartActive} setCartActive={setCartActive} />
-    {jumbotron && (
-      <div className="jumbotron">
-        <h2>{title}</h2>
-        <p className="lead">{description}</p>
-      </div>
-    )}
+    <Menu defaultNav={defaultNav} a={"a"} />
+    <h1>{title}</h1>
     <div className={className}>{children}</div>
   </div>
 );

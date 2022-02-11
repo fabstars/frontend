@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import OrderList from "./components/Checkout/OrderList";
 import cashOnDelivery from "./components/Checkout/cashOnDelivery.jpg";
-import razorpay from "./components/Checkout/razorpay.png";
+import cashfree from "./components/Checkout/Cashfree.jpg";
 import Layout from "./Layout";
 import { createOrder } from "./apiCore";
 import { cartTotal, emptyCart, getCartItems } from "./cartHelpers";
 import { isAuthenticated } from "../auth";
+import UserNavbar from "./UserNavbar";
 
 const Checkout = () => {
   const [mode, setMode] = useState("COD");
@@ -41,7 +42,8 @@ const Checkout = () => {
     }
   };
   return (
-    <Layout className="container-fluid" jumbotron={false}>
+    <>
+      <UserNavbar />
       <section className="inner-section checkout-part">
         <div className="container">
           <div className="row">
@@ -166,8 +168,8 @@ const Checkout = () => {
                           mode === "Card" ? "active" : ""
                         }`}
                       >
-                        <img src={razorpay} alt="payment" />
-                        <h4>Pay using card</h4>
+                        <img src={cashfree} alt="payment" />
+                        <h4>Pay Online</h4>
                       </div>
                     </div>
                   </div>
@@ -181,7 +183,7 @@ const Checkout = () => {
           </div>
         </div>
       </section>
-    </Layout>
+    </>
   );
 };
 

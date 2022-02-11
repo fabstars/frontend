@@ -5,22 +5,30 @@ import Layout from "../../Layout";
 import { API } from "../../../config";
 
 import "./style.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Loader from "react-loader-spinner";
 import ProductSpecification from "./ProductSpecification";
 import RelatedProducts from "./RelatedProducts";
 import { addItemToCart } from "../../cartHelpers";
 import { useAlert } from "react-alert";
+import Menu from "../../Menu";
 
 const ProductDetails = (props) => {
   const [product, setProduct] = useState(null);
   const [relatedProduct, setRelatedProduct] = useState([]);
   const [error, setError] = useState(false);
   const [influencer, setInfluencer] = useState(false);
-
-  const {
-    user: { role, _id },
-  } = isAuthenticated();
+  const [_id, setUserId] = useState("");
+  const [role, setRole] = useState("");
+  useEffect(() => {
+    const { user } = isAuthenticated();
+    if (user && user._id) {
+      setUserId(user._id);
+    }
+    if (user && user.role) {
+      setRole(user.role);
+    }
+  }, []);
 
   const loadSingleProduct = (productId) => {
     read(productId).then((data) => {
@@ -41,9 +49,10 @@ const ProductDetails = (props) => {
   };
 
   useEffect(() => {
+    console.log("Props", props);
     const productId = props.match.params.productId;
     loadSingleProduct(productId);
-    if (role === "1") setInfluencer(true);
+    if (isAuthenticated() && role === "1") setInfluencer(true);
   }, [props]);
 
   const [activeTab, setActiveTab] = useState("Description");
@@ -58,17 +67,18 @@ const ProductDetails = (props) => {
       }
     );
   };
+  const location = useLocation();
+  const [creatorStore, setCreatorStore] = useState("#");
+  const [storeTitle, setStoreTitle] = useState("");
+  useEffect(() => {
+    if (location && location.state && location.state.creatorStore)
+      setCreatorStore(location.state.creatorStore);
+    if (location && location.state && location.state.storeTitle)
+      setStoreTitle(location.state.storeTitle);
+  }, []);
   return (
-    <Layout
-      title={product && product.name}
-      description={
-        product && product.description && product.description.substring(0, 100)
-      }
-      className="container-fluid"
-      jumbotron={false}
-      cartActive={cartActive}
-      setCartActive={setCartActive}
-    >
+    <>
+      <Menu defaultNav={false} />
       {!product ? (
         <div style={{ textAlign: "center" }}>
           <Loader type="Puff" color="#00BFFF" height={100} width={100} />
@@ -136,7 +146,7 @@ const ProductDetails = (props) => {
                   </ul>
                 </div> */}
 
-                    {role === "1" && (
+                    {isAuthenticated() && role === "1" ? (
                       <div className="details-add-group">
                         <button
                           className="product-add"
@@ -147,31 +157,35 @@ const ProductDetails = (props) => {
                           <span>add to site</span>
                         </button>
                       </div>
+                    ) : (
+                      <>
+                        <div className="details-add-group">
+                          <button
+                            className="product-add"
+                            title="Add to Cart"
+                            onClick={() => addItemToCart(product, 1)}
+                          >
+                            <i className="fas fa-shopping-basket"></i>
+                            <span>add to cart</span>
+                          </button>
+                        </div>
+                        <div className="details-action-group">
+                          <Link
+                            className="details-wish wish"
+                            to={{
+                              pathname: `/checkout`,
+                              state: { storeTitle, creatorStore },
+                            }}
+                            title="Buy Now"
+                            style={{ textDecoration: "None" }}
+                            onClick={() => addItemToCart(product, 1)}
+                          >
+                            <i className="far fa-credit-card"></i>
+                            <span>buy now</span>
+                          </Link>
+                        </div>
+                      </>
                     )}
-                    {role !== "1" && (
-                      <div className="details-add-group">
-                        <button
-                          className="product-add"
-                          title="Add to Cart"
-                          onClick={() => addItemToCart(product, 1)}
-                        >
-                          <i className="fas fa-shopping-basket"></i>
-                          <span>add to cart</span>
-                        </button>
-                      </div>
-                    )}
-                    <div className="details-action-group">
-                      <Link
-                        className="details-wish wish"
-                        to="/checkout"
-                        title="Buy Now"
-                        style={{ textDecoration: "None" }}
-                        onClick={() => addItemToCart(product, 1)}
-                      >
-                        <i className="far fa-credit-card"></i>
-                        <span>buy now</span>
-                      </Link>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -182,10 +196,13 @@ const ProductDetails = (props) => {
             activeTab={activeTab}
             setActiveTab={setActiveTab}
           /> */}
-          <RelatedProducts products={relatedProduct} />
+          <RelatedProducts
+            products={relatedProduct}
+            role={isAuthenticated() ? role : "0"}
+          />
         </>
       )}
-    </Layout>
+    </>
   );
 };
 

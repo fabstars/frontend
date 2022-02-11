@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import Layout from "../core/Layout";
 import { signin, authenticate, isAuthenticated } from "../auth";
+import Menu from "../core/Menu";
 
 const Signin = () => {
   const [values, setValues] = useState({
@@ -63,9 +64,6 @@ const Signin = () => {
     </form>
   );
 
-
-
-  
   const showError = () => (
     <div
       className="alert alert-danger"
@@ -96,16 +94,13 @@ const Signin = () => {
   };
 
   return (
-    <Layout
-      title="Signin"
-      description="Signin to Node React E-commerce App"
-      className="container col-md-8 offset-md-2"
-    >
+    <>
+      <Menu defaultNav={true} />
       {showLoading()}
       {showError()}
       {signUpForm()}
       {redirectUser()}
-    </Layout>
+    </>
   );
 };
 

@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { API } from "../config";
 import {
   addItemToCart,
   cartTotal,
   getCartItems,
-  getCartStatus,
   itemTotal,
   removeItemFromCart,
-  setCartStatusInActive,
 } from "./cartHelpers";
 
-const Cart = ({ cartActive, setCartActive }) => {
+const Cart = ({ cartActive, setCartActive, creatorStore, storeTitle }) => {
   const [cartItems, setCartItems] = useState(getCartItems());
   useEffect(() => {
     if (cartActive === true) setCartItems(getCartItems());
@@ -26,8 +23,7 @@ const Cart = ({ cartActive, setCartActive }) => {
         <button
           className="cart-close"
           onClick={() => {
-            setCartStatusInActive();
-            setCartActive(getCartStatus());
+            setCartActive(false);
           }}
         >
           <i className="fas fa-times"></i>
@@ -116,8 +112,10 @@ const Cart = ({ cartActive, setCartActive }) => {
   </form> */}
         <Link
           className="cart-checkout-btn"
-          to="/checkout"
-          onClick={() => setCartStatusInActive()}
+          to={{
+            pathname: `/checkout`,
+            state: { storeTitle, creatorStore },
+          }}
         >
           <span className="checkout-label">Proceed to Checkout</span>
           <span className="checkout-price">₹{cartTotal()}</span>

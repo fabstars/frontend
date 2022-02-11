@@ -41,7 +41,16 @@ const CreatorStore = ({ match }) => {
         <nav>
           <ul>
             <li>
-              <Link className="bttn" to="/checkout">
+              <Link
+                className="bttn"
+                to={{
+                  pathname: `/checkout`,
+                  state: {
+                    storeTitle: user && user.store_name,
+                    creatorStore: user && `/creatorstore/${user._id}`,
+                  },
+                }}
+              >
                 <i class="fas fa-shopping-bag"></i>
               </Link>
             </li>
@@ -112,7 +121,7 @@ const CreatorStore = ({ match }) => {
             <HighlightedLinks links={user.highlightLinks} />
           </div>
           <hr className="divider2" />
-          <ProductList userId={match.params.influencerId} />
+          <ProductList userId={match.params.influencerId} user={user} />
         </div>
       )}
     </div>
