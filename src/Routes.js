@@ -47,11 +47,7 @@ const Routes = () => {
         <Route path="/ReturnPolicy" exact component={ReturnPolicy} />
         <Route path="/PrivacyPolicy" exact component={PrivacyPolicy} />
         <Route path="/Terms" exact component={Terms} />
-        <Route
-          path="/creatorstore/:influencerId"
-          exact
-          component={CreatorStore}
-        />
+        <Route path="/creatorstore/:slug" exact component={CreatorStore} />
 
         <Route path="/about" exact component={About} />
         <Route path="/contact" exact component={Contact} />

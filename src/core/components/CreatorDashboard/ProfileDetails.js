@@ -1,5 +1,5 @@
 import React, { useState, Fragment, useEffect } from "react";
-import { isAuthenticated } from "../../../auth";
+import { isAuthenticated, authenticate } from "../../../auth";
 import { read, update, updateUser } from "../../../user/apiUser";
 import { useAlert } from "react-alert";
 import Button from "@material-ui/core/Button";
@@ -126,6 +126,14 @@ const ProfileDetails = ({ location, history }) => {
         alert.show("User details updated", {
           type: "success",
         });
+        const myData = {
+          token,
+          user: { name, email, role, url, slug, _id: data._id },
+        };
+        authenticate(myData, () => {
+          console.log("Updated");
+        });
+        window.location.reload();
       }
     });
   };
@@ -232,7 +240,7 @@ const ProfileDetails = ({ location, history }) => {
                     </div>
                     <div className="form-group row">
                       <div className="col-lg-3" style={{ paddingTop: "5px" }}>
-                        Slug
+                        Username
                       </div>
                       <div className="col-lg-9">
                         <input

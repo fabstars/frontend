@@ -17,7 +17,7 @@ const MainContent = ({ toggle, currentTab }) => {
           <ul className="nav navbar-top-links navbar-right">
             <li>
               <Link
-                to={`/creatorstore/${isAuthenticated().user._id}`}
+                to={`/creatorstore/${isAuthenticated().user.slug}`}
                 className="btn btn-success  "
                 target="_blank"
               >

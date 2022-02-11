@@ -2,24 +2,25 @@ import React, { useEffect, useState } from "react";
 import HighlightedLinks from "./components/CreatorStore/HighlightedLinks";
 import ProductList from "./components/CreatorStore/ProductList";
 import "./components/CreatorStore/style.css";
-import { getById } from "../user/apiUser";
+import { getById, getByUsername } from "../user/apiUser";
 import { Link } from "react-router-dom";
 
 const CreatorStore = ({ match }) => {
   const [user, setUser] = useState(null);
-  const init = (id) => {
-    getById(id).then((data) => {
+  const init = (slug) => {
+    getByUsername(slug).then((data) => {
       setUser(data);
     });
   };
 
   useEffect(() => {
+    console.log(match.params.slug);
     console.log(user);
   }, [user]);
 
   useEffect(() => {
-    init(match.params.influencerId);
-  }, [match.params.influencerId]);
+    init(match.params.slug);
+  }, [match.params.slug]);
 
   return (
     <div>
@@ -47,7 +48,7 @@ const CreatorStore = ({ match }) => {
                   pathname: `/checkout`,
                   state: {
                     storeTitle: user && user.store_name,
-                    creatorStore: user && `/creatorstore/${user._id}`,
+                    creatorStore: user && `/creatorstore/${user.slug}`,
                   },
                 }}
               >
@@ -121,7 +122,7 @@ const CreatorStore = ({ match }) => {
             <HighlightedLinks links={user.highlightLinks} />
           </div>
           <hr className="divider2" />
-          <ProductList userId={match.params.influencerId} user={user} />
+          <ProductList userId={user._id} user={user} />
         </div>
       )}
     </div>
