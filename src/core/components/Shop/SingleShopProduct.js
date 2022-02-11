@@ -105,7 +105,14 @@ const SingleShopProduct = ({
   const showViewButton = (showViewProductButton) => {
     return (
       showViewProductButton && (
-        <Link to={`/product/${product._id}`} className="mr-2">
+        <Link
+          to={
+            showAddToSiteButton
+              ? `/product/${product._id}`
+              : `/products/${product._id}`
+          }
+          className="mr-2"
+        >
           <button className="btn btn-outline-primary mt-2 mb-2 card-btn-1">
             View Product
           </button>
@@ -279,7 +286,14 @@ const SingleShopProduct = ({
           </button> */}
           {shouldRedirect(redirect)}
 
-          <Link to={`/products/${product._id}`} className="product-image">
+          <Link
+            to={
+              showAddToSiteButton
+                ? `/product/${product._id}`
+                : `/products/${product._id}`
+            }
+            className="product-image"
+          >
             <img src={product.url} alt={product.name} />
           </Link>
         </div>
@@ -293,7 +307,15 @@ const SingleShopProduct = ({
             <a href="product-video.html">(4)</a>
           </div> */}
           <h6 className="product-name">
-            <Link to={`/products/${product._id}`}>{product.name}</Link>
+            <Link
+              to={
+                showAddToSiteButton
+                  ? `/product/${product._id}`
+                  : `/products/${product._id}`
+              }
+            >
+              {product.name}
+            </Link>
           </h6>
           <h6 className="product-price">
             <del>

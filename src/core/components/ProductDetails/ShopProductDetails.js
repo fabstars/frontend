@@ -13,13 +13,22 @@ import { addItemToCart } from "../../cartHelpers";
 import { useAlert } from "react-alert";
 import Menu from "../../Menu";
 
-const ProductDetails = (props) => {
+const ShopProductDetails = (props) => {
   const [product, setProduct] = useState(null);
   const [relatedProduct, setRelatedProduct] = useState([]);
   const [error, setError] = useState(false);
   const [influencer, setInfluencer] = useState(false);
   const [_id, setUserId] = useState("");
   const [role, setRole] = useState("");
+  useEffect(() => {
+    const { user } = isAuthenticated();
+    if (user && user._id) {
+      setUserId(user._id);
+    }
+    if (user && user.role) {
+      setRole(user.role);
+    }
+  }, []);
 
   const loadSingleProduct = (productId) => {
     read(productId).then((data) => {
@@ -38,16 +47,26 @@ const ProductDetails = (props) => {
       }
     });
   };
+
   useEffect(() => {
     console.log("Props", props);
     const productId = props.match.params.productId;
     loadSingleProduct(productId);
+    if (isAuthenticated() && role === "1") setInfluencer(true);
   }, [props]);
 
   const [activeTab, setActiveTab] = useState("Description");
   const [cartActive, setCartActive] = useState(false);
   const alert = useAlert();
 
+  const addToSite = (product) => {
+    const products = [product._id];
+    addInfluenerItemToSite(_id, isAuthenticated().token, products).then(
+      (data) => {
+        alert.show(`${data.message}`);
+      }
+    );
+  };
   const location = useLocation();
   const [creatorStore, setCreatorStore] = useState("#");
   const [storeTitle, setStoreTitle] = useState("");
@@ -59,7 +78,7 @@ const ProductDetails = (props) => {
   }, []);
   return (
     <>
-      <Menu defaultNav={false} />
+      <Menu defaultNav={true} />
       {!product ? (
         <div style={{ textAlign: "center" }}>
           <Loader type="Puff" color="#00BFFF" height={100} width={100} />
@@ -127,33 +146,46 @@ const ProductDetails = (props) => {
                   </ul>
                 </div> */}
 
-                    <>
+                    {isAuthenticated() && role === "1" ? (
                       <div className="details-add-group">
                         <button
                           className="product-add"
-                          title="Add to Cart"
-                          onClick={() => addItemToCart(product, 1)}
+                          title="Add to Site"
+                          onClick={() => addToSite(product)}
                         >
                           <i className="fas fa-shopping-basket"></i>
-                          <span>add to cart</span>
+                          <span>add to site</span>
                         </button>
                       </div>
-                      <div className="details-action-group">
-                        <Link
-                          className="details-wish wish"
-                          to={{
-                            pathname: `/checkout`,
-                            state: { storeTitle, creatorStore },
-                          }}
-                          title="Buy Now"
-                          style={{ textDecoration: "None" }}
-                          onClick={() => addItemToCart(product, 1)}
-                        >
-                          <i className="far fa-credit-card"></i>
-                          <span>buy now</span>
-                        </Link>
-                      </div>
-                    </>
+                    ) : (
+                      <>
+                        <div className="details-add-group">
+                          <button
+                            className="product-add"
+                            title="Add to Cart"
+                            onClick={() => addItemToCart(product, 1)}
+                          >
+                            <i className="fas fa-shopping-basket"></i>
+                            <span>add to cart</span>
+                          </button>
+                        </div>
+                        <div className="details-action-group">
+                          <Link
+                            className="details-wish wish"
+                            to={{
+                              pathname: `/checkout`,
+                              state: { storeTitle, creatorStore },
+                            }}
+                            title="Buy Now"
+                            style={{ textDecoration: "None" }}
+                            onClick={() => addItemToCart(product, 1)}
+                          >
+                            <i className="far fa-credit-card"></i>
+                            <span>buy now</span>
+                          </Link>
+                        </div>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
@@ -174,4 +206,4 @@ const ProductDetails = (props) => {
   );
 };
 
-export default ProductDetails;
+export default ShopProductDetails;

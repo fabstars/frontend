@@ -30,13 +30,14 @@ import CreatorLogin from "./user/components/CreatorLogin";
 import CreatorSignup from "./user/components/CreatorSignup";
 import Checkout from "./core/Checkout";
 import CompleteProfile from "./core/components/CompleteProfile";
+import ShopProductDetails from "./core/components/ProductDetails/ShopProductDetails";
 
 const Routes = () => {
   return (
     <BrowserRouter>
       <Switch>
         <Route path="/" exact component={LandingPage} />
-        <Route path="/shop" exact component={Shop} />
+        <PrivateRoute path="/shop" exact component={Shop} />
         <Route path="/signin" exact component={CreatorLogin} />
         <Route path="/signup" exact component={CreatorSignup} />
         <Route
@@ -63,7 +64,11 @@ const Routes = () => {
         <AdminRoute path="/admin/dashboard" exact component={AdminDashboard} />
         <AdminRoute path="/create/category" exact component={AddCategory} />
         <AdminRoute path="/create/product" exact component={AddProduct} />
-        <Route path="/product/:productId" exact component={Product} />
+        <Route
+          path="/product/:productId"
+          exact
+          component={ShopProductDetails}
+        />
         <Route path="/products/:productId" exact component={ProductDetails} />
         <Route path="/cart" exact component={Cart} />
         <AdminRoute path="/admin/orders" exact component={Orders} />

@@ -124,7 +124,7 @@ const Shop = () => {
   };
   return (
     <>
-      <Menu defaultNav={false} />
+      <Menu defaultNav={true} />
       <section className="inner-section shop-part mt-3">
         <p
           style={{
