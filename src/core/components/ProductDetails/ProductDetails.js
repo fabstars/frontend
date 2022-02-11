@@ -12,6 +12,7 @@ import RelatedProducts from "./RelatedProducts";
 import { addItemToCart } from "../../cartHelpers";
 import { useAlert } from "react-alert";
 import Menu from "../../Menu";
+import { toast } from "react-toastify";
 
 const ProductDetails = (props) => {
   const [product, setProduct] = useState(null);
@@ -132,7 +133,10 @@ const ProductDetails = (props) => {
                         <button
                           className="product-add"
                           title="Add to Cart"
-                          onClick={() => addItemToCart(product, 1)}
+                          onClick={() => {
+                            addItemToCart(product, 1);
+                            toast.success("Product added to cart");
+                          }}
                         >
                           <i className="fas fa-shopping-basket"></i>
                           <span>add to cart</span>
