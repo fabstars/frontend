@@ -23,6 +23,7 @@ const Cart = ({ cartActive, setCartActive, creatorStore, storeTitle }) => {
         <button
           className="cart-close"
           onClick={() => {
+            console.log("Closing Cart");
             setCartActive(false);
           }}
         >
@@ -64,7 +65,11 @@ const Cart = ({ cartActive, setCartActive, creatorStore, storeTitle }) => {
                       title="Quantity Minus"
                       onClick={() => {
                         if (Number(item.count) > 1)
-                          addItemToCart(item, Number(item.count) - 1);
+                          addItemToCart(
+                            item,
+                            Number(item.count) - 1,
+                            item.price
+                          );
                         setCartItems(getCartItems());
                       }}
                     >
@@ -77,7 +82,7 @@ const Cart = ({ cartActive, setCartActive, creatorStore, storeTitle }) => {
                       name="quantity"
                       value={item.count}
                       onChange={(e) => {
-                        addItemToCart(item, Number(e.target.value));
+                        addItemToCart(item, Number(e.target.value), item.price);
                         setCartItems(getCartItems());
                       }}
                     />
@@ -85,7 +90,7 @@ const Cart = ({ cartActive, setCartActive, creatorStore, storeTitle }) => {
                       className="action-plus"
                       title="Quantity Plus"
                       onClick={() => {
-                        addItemToCart(item, Number(item.count) + 1);
+                        addItemToCart(item, Number(item.count) + 1, item.price);
                         setCartItems(getCartItems());
                       }}
                     >

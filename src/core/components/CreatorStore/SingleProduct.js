@@ -25,7 +25,7 @@ const SingleProduct = ({ product, userId, user }) => {
     getMargin();
   }, [getMargin]);
   const addToCart = (product) => {
-    addItemToCart(product, 1);
+    addItemToCart(product, 1, product.price + currentMargin);
     toast.success("Product added to cart");
   };
   return (
@@ -38,7 +38,7 @@ const SingleProduct = ({ product, userId, user }) => {
             </label>
             <label className="details-label new">
               {(
-                (Number(product.mrp - product.price) * 100) /
+                (Number(product.mrp - currentMargin - product.price) * 100) /
                 Number(product.mrp)
               ).toFixed(0)}
               % Off
@@ -51,6 +51,7 @@ const SingleProduct = ({ product, userId, user }) => {
               state: {
                 storeTitle: user && user.store_name,
                 creatorStore: user && `/creatorstore/${user.slug}`,
+                userId: user && userId,
               },
             }}
             class="product-image"
@@ -66,6 +67,7 @@ const SingleProduct = ({ product, userId, user }) => {
                 state: {
                   storeTitle: user && user.store_name,
                   creatorStore: user && `/creatorstore/${user.slug}`,
+                  userId: user && userId,
                 },
               }}
             >

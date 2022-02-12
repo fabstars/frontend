@@ -53,7 +53,11 @@ const OrderList = () => {
                             title="Quantity Minus"
                             onClick={() => {
                               if (Number(item.count) > 1)
-                                addItemToCart(item, Number(item.count) - 1);
+                                addItemToCart(
+                                  item,
+                                  Number(item.count) - 1,
+                                  item.price
+                                );
                               setCartItems(getCartItems());
                             }}
                           >
@@ -67,7 +71,11 @@ const OrderList = () => {
                             name="quantity"
                             value={item.count}
                             onChange={(e) => {
-                              addItemToCart(item, Number(e.target.value));
+                              addItemToCart(
+                                item,
+                                Number(e.target.value),
+                                item.price
+                              );
                               setCartItems(getCartItems());
                             }}
                           />
@@ -75,7 +83,11 @@ const OrderList = () => {
                             className="action-plus"
                             title="Quantity Plus"
                             onClick={() => {
-                              addItemToCart(item, Number(item.count) + 1);
+                              addItemToCart(
+                                item,
+                                Number(item.count) + 1,
+                                item.price
+                              );
                               setCartItems(getCartItems());
                             }}
                           >

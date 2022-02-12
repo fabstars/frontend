@@ -19,7 +19,6 @@ const ProductDetails = (props) => {
   const [relatedProduct, setRelatedProduct] = useState([]);
   const [error, setError] = useState(false);
   const [influencer, setInfluencer] = useState(false);
-  const [_id, setUserId] = useState("");
   const [role, setRole] = useState("");
 
   const loadSingleProduct = (productId) => {
@@ -52,12 +51,29 @@ const ProductDetails = (props) => {
   const location = useLocation();
   const [creatorStore, setCreatorStore] = useState("#");
   const [storeTitle, setStoreTitle] = useState("");
+  const [userId, setUserId] = useState("");
   useEffect(() => {
     if (location && location.state && location.state.creatorStore)
       setCreatorStore(location.state.creatorStore);
     if (location && location.state && location.state.storeTitle)
       setStoreTitle(location.state.storeTitle);
+    if (location && location.state && location.state.userId)
+      setUserId(location.state.userId);
   }, []);
+  const [currentMargin, setCurrentMargin] = useState(0);
+
+  const getMargin = () => {
+    if (product)
+      product.influencer_list.map((influencer, idx) => {
+        if (influencer.user_id === userId) {
+          setCurrentMargin(influencer.margin);
+        }
+      });
+  };
+  useEffect(() => {
+    getMargin();
+  }, [product]);
+
   return (
     <>
       <Menu defaultNav={false} />
@@ -78,7 +94,8 @@ const ProductDetails = (props) => {
                       </label>
                       <label className="details-label new">
                         {(
-                          (Number(product.mrp - product.price) * 100) /
+                          (Number(product.mrp - currentMargin - product.price) *
+                            100) /
                           Number(product.mrp)
                         ).toFixed(0)}
                         % Off
@@ -108,7 +125,8 @@ const ProductDetails = (props) => {
                         <i className="fas fa-rupee-sign"></i> {product.mrp}
                       </del>
                       <span>
-                        <i className="fas fa-rupee-sign"></i> {product.price}
+                        <i className="fas fa-rupee-sign"></i>{" "}
+                        {product.price + currentMargin}
                         <small></small>
                       </span>
                     </h3>
@@ -134,7 +152,11 @@ const ProductDetails = (props) => {
                           className="product-add"
                           title="Add to Cart"
                           onClick={() => {
-                            addItemToCart(product, 1);
+                            addItemToCart(
+                              product,
+                              1,
+                              product.price + currentMargin
+                            );
                             toast.success("Product added to cart");
                           }}
                         >
@@ -151,7 +173,13 @@ const ProductDetails = (props) => {
                           }}
                           title="Buy Now"
                           style={{ textDecoration: "None" }}
-                          onClick={() => addItemToCart(product, 1)}
+                          onClick={() =>
+                            addItemToCart(
+                              product,
+                              1,
+                              product.price + currentMargin
+                            )
+                          }
                         >
                           <i className="far fa-credit-card"></i>
                           <span>buy now</span>

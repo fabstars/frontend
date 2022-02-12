@@ -164,7 +164,9 @@ const ShopProductDetails = (props) => {
                           <button
                             className="product-add"
                             title="Add to Cart"
-                            onClick={() => addItemToCart(product, 1)}
+                            onClick={() =>
+                              addItemToCart(product, 1, product.price)
+                            }
                           >
                             <i className="fas fa-shopping-basket"></i>
                             <span>add to cart</span>
@@ -179,7 +181,9 @@ const ShopProductDetails = (props) => {
                             }}
                             title="Buy Now"
                             style={{ textDecoration: "None" }}
-                            onClick={() => addItemToCart(product, 1)}
+                            onClick={() =>
+                              addItemToCart(product, 1, product.price)
+                            }
                           >
                             <i className="far fa-credit-card"></i>
                             <span>buy now</span>
