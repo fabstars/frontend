@@ -5,10 +5,12 @@ import { Link } from "react-router-dom";
 import { createCategory } from "./apiAdmin";
 import Menu from "../core/Menu";
 
+
 const AddCategory = () => {
   const [name, setName] = useState("");
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [msg, setMsg] = useState("");
 
   // destructure user and token from localstorage
   const { user, token } = isAuthenticated();
@@ -26,6 +28,7 @@ const AddCategory = () => {
     createCategory(user._id, token, { name }).then((data) => {
       if (data.error) {
         setError(data.error);
+        setMsg(data.error);
       } else {
         setError("");
         setSuccess(true);
@@ -58,7 +61,7 @@ const AddCategory = () => {
 
   const showError = () => {
     if (error) {
-      return <h3 className="text-danger">Category should be unique</h3>;
+      return <h3 className="text-danger">{msg}</h3>;
     }
   };
 
