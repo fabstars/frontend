@@ -14,12 +14,22 @@ import { useAlert } from "react-alert";
 import Menu from "../../Menu";
 import { toast } from "react-toastify";
 
-const ProductDetails = (props) => {
+const ShopProductDetails = (props) => {
   const [product, setProduct] = useState(null);
   const [relatedProduct, setRelatedProduct] = useState([]);
   const [error, setError] = useState(false);
   const [influencer, setInfluencer] = useState(false);
+  const [_id, setUserId] = useState("");
   const [role, setRole] = useState("");
+  useEffect(() => {
+    const { user } = isAuthenticated();
+    if (user && user._id) {
+      setUserId(user._id);
+    }
+    if (user && user.role) {
+      setRole(user.role);
+    }
+  }, []);
 
   const loadSingleProduct = (productId) => {
     read(productId).then((data) => {
@@ -38,45 +48,38 @@ const ProductDetails = (props) => {
       }
     });
   };
+
   useEffect(() => {
     console.log("Props", props);
     const productId = props.match.params.productId;
     loadSingleProduct(productId);
+    if (isAuthenticated() && role === "1") setInfluencer(true);
   }, [props]);
 
   const [activeTab, setActiveTab] = useState("Description");
   const [cartActive, setCartActive] = useState(false);
   const alert = useAlert();
 
+  const addToSite = (product) => {
+    const products = [product._id];
+    addInfluenerItemToSite(_id, isAuthenticated().token, products).then(
+      (data) => {
+        toast.success(`${data.message}`);
+      }
+    );
+  };
   const location = useLocation();
   const [creatorStore, setCreatorStore] = useState("#");
   const [storeTitle, setStoreTitle] = useState("");
-  const [userId, setUserId] = useState("");
   useEffect(() => {
     if (location && location.state && location.state.creatorStore)
       setCreatorStore(location.state.creatorStore);
     if (location && location.state && location.state.storeTitle)
       setStoreTitle(location.state.storeTitle);
-    if (location && location.state && location.state.userId)
-      setUserId(location.state.userId);
   }, []);
-  const [currentMargin, setCurrentMargin] = useState(0);
-
-  const getMargin = () => {
-    if (product)
-      product.influencer_list.map((influencer, idx) => {
-        if (influencer.user_id === userId) {
-          setCurrentMargin(influencer.margin);
-        }
-      });
-  };
-  useEffect(() => {
-    getMargin();
-  }, [product]);
-
   return (
     <>
-      <Menu defaultNav={false} />
+      <Menu defaultNav={true} />
       {!product ? (
         <div style={{ textAlign: "center" }}>
           <Loader type="Puff" color="#00BFFF" height={100} width={100} />
@@ -94,8 +97,7 @@ const ProductDetails = (props) => {
                       </label>
                       <label className="details-label new">
                         {(
-                          (Number(product.mrp - currentMargin - product.price) *
-                            100) /
+                          (Number(product.mrp - product.price) * 100) /
                           Number(product.mrp)
                         ).toFixed(0)}
                         % Off
@@ -125,8 +127,7 @@ const ProductDetails = (props) => {
                         <i className="fas fa-rupee-sign"></i> {product.mrp}
                       </del>
                       <span>
-                        <i className="fas fa-rupee-sign"></i>{" "}
-                        {product.price + currentMargin}
+                        <i className="fas fa-rupee-sign"></i> {product.price}
                         <small></small>
                       </span>
                     </h3>
@@ -146,46 +147,50 @@ const ProductDetails = (props) => {
                   </ul>
                 </div> */}
 
-                    <>
+                    {isAuthenticated() && role === "1" ? (
                       <div className="details-add-group">
                         <button
                           className="product-add"
-                          title="Add to Cart"
-                          onClick={() => {
-                            addItemToCart(
-                              product,
-                              1,
-                              product.price + currentMargin
-                            );
-                            toast.success("Product added to cart");
-                          }}
+                          title="Add to Site"
+                          onClick={() => addToSite(product)}
                         >
                           <i className="fas fa-shopping-basket"></i>
-                          <span>add to cart</span>
+                          <span>add to site</span>
                         </button>
                       </div>
-                      <div className="details-action-group">
-                        <Link
-                          className="details-wish wish"
-                          to={{
-                            pathname: `/checkout`,
-                            state: { storeTitle, creatorStore },
-                          }}
-                          title="Buy Now"
-                          style={{ textDecoration: "None" }}
-                          onClick={() =>
-                            addItemToCart(
-                              product,
-                              1,
-                              product.price + currentMargin
-                            )
-                          }
-                        >
-                          <i className="far fa-credit-card"></i>
-                          <span>buy now</span>
-                        </Link>
-                      </div>
-                    </>
+                    ) : (
+                      <>
+                        <div className="details-add-group">
+                          <button
+                            className="product-add"
+                            title="Add to Cart"
+                            onClick={() =>
+                              addItemToCart(product, 1, product.price)
+                            }
+                          >
+                            <i className="fas fa-shopping-basket"></i>
+                            <span>add to cart</span>
+                          </button>
+                        </div>
+                        <div className="details-action-group">
+                          <Link
+                            className="details-wish wish"
+                            to={{
+                              pathname: `/checkout`,
+                              state: { storeTitle, creatorStore },
+                            }}
+                            title="Buy Now"
+                            style={{ textDecoration: "None" }}
+                            onClick={() =>
+                              addItemToCart(product, 1, product.price)
+                            }
+                          >
+                            <i className="far fa-credit-card"></i>
+                            <span>buy now</span>
+                          </Link>
+                        </div>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
@@ -206,4 +211,4 @@ const ProductDetails = (props) => {
   );
 };
 
-export default ProductDetails;
+export default ShopProductDetails;

@@ -96,7 +96,7 @@ export const emptyCart = (next) => {
   }
 };
 
-export const addItemToCart = (product, count) => {
+export const addItemToCart = (product, count, price) => {
   let cartItems = localStorage.getItem("cart");
   if (!cartItems) cartItems = [];
   else cartItems = JSON.parse(cartItems);
@@ -105,7 +105,7 @@ export const addItemToCart = (product, count) => {
       cartItems[index] = {
         _id: product._id,
         name: product.name,
-        price: product.price,
+        price: price,
         url: product.url,
         count: count,
       };
@@ -116,7 +116,7 @@ export const addItemToCart = (product, count) => {
     cartItems.push({
       _id: product._id,
       name: product.name,
-      price: product.price,
+      price: price,
       url: product.url,
       count: count,
     });

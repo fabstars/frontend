@@ -30,57 +30,88 @@ import CreatorLogin from "./user/components/CreatorLogin";
 import CreatorSignup from "./user/components/CreatorSignup";
 import Checkout from "./core/Checkout";
 import CompleteProfile from "./core/components/CompleteProfile";
-
+import ShopProductDetails from "./core/components/ProductDetails/ShopProductDetails";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Routes = () => {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route path="/" exact component={LandingPage} />
-        <Route path="/shop" exact component={Shop} />
-        <Route path="/signin" exact component={CreatorLogin} />
-        <Route path="/signup" exact component={CreatorSignup} />
-        <Route
-          path="/complete-your-profile"
-          exact
-          component={CompleteProfile}
-        />
-        <Route path="/ReturnPolicy" exact component={ReturnPolicy} />
-        <Route path="/PrivacyPolicy" exact component={PrivacyPolicy} />
-        <Route path="/Terms" exact component={Terms} />
-        <Route path="/creatorstore/:slug" exact component={CreatorStore} />
+    <>
+      <BrowserRouter>
+        <Switch>
+          <Route path="/" exact component={LandingPage} />
+          <PrivateRoute path="/shop" exact component={Shop} />
+          <Route path="/signin" exact component={CreatorLogin} />
+          <Route path="/signup" exact component={CreatorSignup} />
+          <Route
+            path="/complete-your-profile"
+            exact
+            component={CompleteProfile}
+          />
+          <Route path="/ReturnPolicy" exact component={ReturnPolicy} />
+          <Route path="/PrivacyPolicy" exact component={PrivacyPolicy} />
+          <Route path="/Terms" exact component={Terms} />
+          <Route path="/creatorstore/:slug" exact component={CreatorStore} />
 
-        <Route path="/about" exact component={About} />
-        <Route path="/contact" exact component={Contact} />
-        <Route path="/checkout" exact component={Checkout} />
+          <Route path="/about" exact component={About} />
+          <Route path="/contact" exact component={Contact} />
+          <Route path="/checkout" exact component={Checkout} />
 
-        <PrivateRoute path="/creator/dashboard" exact component={Dashboard} />
-        <Route path="/user/my-products" exact component={InfluencerProducts} />
-        <PrivateRoute
-          path="/user/dashboard"
-          exact
-          component={CreatorDashboard}
-        />
-        <AdminRoute path="/admin/dashboard" exact component={AdminDashboard} />
-        <AdminRoute path="/create/category" exact component={AddCategory} />
-        <AdminRoute path="/create/product" exact component={AddProduct} />
-        <Route path="/product/:productId" exact component={Product} />
-        <Route path="/products/:productId" exact component={ProductDetails} />
-        <Route path="/cart" exact component={Cart} />
-        <AdminRoute path="/admin/orders" exact component={Orders} />
-        <PrivateRoute path="/profile/:userId" exact component={Profile} />
-        <PrivateRoute path="/admin/products" exact component={ManageProducts} />
-        <AdminRoute
-          path="/admin/product/update/:productId"
-          exact
-          component={UpdateProduct}
-        />
-        <AdminRoute
-          path="/admin/category/update/:categoryId"
-          exact
-          component={UpdateCategory}
-        />
-      </Switch>
-    </BrowserRouter>
+          <PrivateRoute path="/creator/dashboard" exact component={Dashboard} />
+          <Route
+            path="/user/my-products"
+            exact
+            component={InfluencerProducts}
+          />
+          <PrivateRoute
+            path="/user/dashboard"
+            exact
+            component={CreatorDashboard}
+          />
+          <AdminRoute
+            path="/admin/dashboard"
+            exact
+            component={AdminDashboard}
+          />
+          <AdminRoute path="/create/category" exact component={AddCategory} />
+          <AdminRoute path="/create/product" exact component={AddProduct} />
+          <Route
+            path="/product/:productId"
+            exact
+            component={ShopProductDetails}
+          />
+          <Route path="/products/:productId" exact component={ProductDetails} />
+          <Route path="/cart" exact component={Cart} />
+          <AdminRoute path="/admin/orders" exact component={Orders} />
+          <PrivateRoute path="/profile/:userId" exact component={Profile} />
+          <PrivateRoute
+            path="/admin/products"
+            exact
+            component={ManageProducts}
+          />
+          <AdminRoute
+            path="/admin/product/update/:productId"
+            exact
+            component={UpdateProduct}
+          />
+          <AdminRoute
+            path="/admin/category/update/:categoryId"
+            exact
+            component={UpdateCategory}
+          />
+        </Switch>
+      </BrowserRouter>
+      <ToastContainer
+        position="bottom-left"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+    </>
   );
 };
 

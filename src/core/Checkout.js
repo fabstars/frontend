@@ -11,6 +11,7 @@ import UserNavbar from "./UserNavbar";
 const Checkout = () => {
   const [mode, setMode] = useState("COD");
   const [deliveryDetails, setDeliveryDetails] = useState({
+    fullName: "",
     mobileNumber: "",
     address: "",
     city: "",
@@ -56,6 +57,21 @@ const Checkout = () => {
                 <div className="account-content">
                   <div className="row">
                     <div className="col-md-12 col-lg-10 alert fade show">
+                      <div className="form-group">
+                        <label className="form-label">Full Name</label>
+                        <input
+                          className="form-control"
+                          type="text"
+                          placeholder="Enter your full name"
+                          value={deliveryDetails.fullName}
+                          onChange={(e) =>
+                            setDeliveryDetails({
+                              ...deliveryDetails,
+                              fullName: e.target.value,
+                            })
+                          }
+                        />
+                      </div>
                       <div className="form-group">
                         <label className="form-label">Mobile Number</label>
                         <input

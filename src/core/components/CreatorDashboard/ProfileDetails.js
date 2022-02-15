@@ -8,6 +8,7 @@ import RemoveIcon from "@material-ui/icons/Remove";
 import AddIcon from "@material-ui/icons/Add";
 import { Card } from "react-bootstrap";
 import Resizer from "react-image-file-resizer";
+import { toast } from "react-toastify";
 
 const ProfileDetails = ({ location, history }) => {
   // const {
@@ -94,6 +95,9 @@ const ProfileDetails = ({ location, history }) => {
 
   const clickSubmit = (e) => {
     e.preventDefault();
+    let filteredLinks = highlightLinks.filter(
+      (link) => link.url !== "" && link.text !== ""
+    );
     formData.set("name", name);
     formData.set("email", email);
     formData.set("slug", slug);
@@ -105,7 +109,7 @@ const ProfileDetails = ({ location, history }) => {
     formData.set("role", role);
     formData.set("password", password);
     formData.set("store_name", store_name);
-    formData.set("highlightLinks", JSON.stringify(highlightLinks));
+    formData.set("highlightLinks", JSON.stringify(filteredLinks));
     if (values.url) {
       Resizer.imageFileResizer(values.url, 300, 300, "JPEG", 100, 0, (uri) => {
         setValues({ ...values, url: uri });
@@ -113,7 +117,7 @@ const ProfileDetails = ({ location, history }) => {
     }
     update(isAuthenticated().user._id, token, formData).then((data) => {
       if (data.error) {
-        alert.show(data.error, { type: "error" });
+        toast.error(data.error);
       } else {
         updateUser(data, () => {
           setValues({
@@ -123,9 +127,7 @@ const ProfileDetails = ({ location, history }) => {
             success: true,
           });
         });
-        alert.show("User details updated", {
-          type: "success",
-        });
+        toast.success("User details updated");
         const myData = {
           token,
           user: { name, email, role, url, slug, _id: data._id },
@@ -155,6 +157,8 @@ const ProfileDetails = ({ location, history }) => {
   }, []);
 
   const handleAddFields = () => {
+    if (!displayHightlightLinks) toggleDisplayHightlightLinks(true);
+
     setHighlightLinks([
       ...highlightLinks,
       {
@@ -254,12 +258,11 @@ const ProfileDetails = ({ location, history }) => {
                       <button
                         onClick={() => toggleSocialInputs(!displaySocialInputs)}
                         type="button"
-                        className="btn btn-light"
+                        className="btn btn-success "
                         style={{ border: "1px solid black" }}
                       >
                         Add Social Network Links
                       </button>
-                      <span>Optional</span>
                     </div>
                     {displaySocialInputs && (
                       <Fragment>
@@ -331,7 +334,7 @@ const ProfileDetails = ({ location, history }) => {
                           toggleDisplayHightlightLinks(!displayHightlightLinks)
                         }
                         type="button"
-                        className="btn btn-light"
+                        className="btn btn-success"
                         style={{ border: "1px solid black" }}
                       >
                         Highlight Links
@@ -339,8 +342,6 @@ const ProfileDetails = ({ location, history }) => {
                       <IconButton onClick={() => handleAddFields()}>
                         <AddIcon />
                       </IconButton>
-
-                      <span>Optional</span>
                     </div>
 
                     {displayHightlightLinks && (

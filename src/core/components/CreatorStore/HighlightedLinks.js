@@ -7,8 +7,7 @@ const HighlightedLinks = ({ links }) => {
   }, []);
   return (
     <>
-      {links &&
-        links.length &&
+      {links.length > 0 &&
         links.map((link, idx) => (
           <div className="">
             <div className="text-center mt-3">

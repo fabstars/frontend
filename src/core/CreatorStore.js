@@ -4,6 +4,7 @@ import ProductList from "./components/CreatorStore/ProductList";
 import "./components/CreatorStore/style.css";
 import { getById, getByUsername } from "../user/apiUser";
 import { Link } from "react-router-dom";
+import Cart from "./Cart";
 
 const CreatorStore = ({ match }) => {
   const [user, setUser] = useState(null);
@@ -21,47 +22,37 @@ const CreatorStore = ({ match }) => {
   useEffect(() => {
     init(match.params.slug);
   }, [match.params.slug]);
+  const [cartActive, setCartActive] = useState(false);
 
   return (
     <div>
-      <header
-        className="header-style hcontainer"
-        style={{
-          position: "sticky",
-          "background-color": "transparent",
-          "box-shadow": "0 8px 8px 2.5px rgba(0,0,0,0)",
+      <Link to={user && `/creatorstore/${user.slug}`} className="sitename">
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI1W6NYr7J2h-pxZVnhMGZ_0aIyHlSUn_Q7g&usqp=CAU"
+          alt="Avatar"
+          class="avatar"
+        />
+      </Link>
+      <Link
+        className="bttn"
+        // to={{
+        //   pathname: `/checkout`,
+        //   state: {
+        //     storeTitle: user && user.store_name,
+        //     creatorStore: user && `/creatorstore/${user.slug}`,
+        //   },
+        // }}
+        style={{ float: "right" }}
+        onClick={() => {
+          setCartActive(true);
         }}
       >
-        <Link to="/" className="sitename">
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI1W6NYr7J2h-pxZVnhMGZ_0aIyHlSUn_Q7g&usqp=CAU"
-            alt="Avatar"
-            class="avatar"
-          />
-        </Link>
-        <nav>
-          <ul>
-            <li>
-              <Link
-                className="bttn"
-                to={{
-                  pathname: `/checkout`,
-                  state: {
-                    storeTitle: user && user.store_name,
-                    creatorStore: user && `/creatorstore/${user.slug}`,
-                  },
-                }}
-              >
-                <i class="fas fa-shopping-bag"></i>
-              </Link>
-            </li>
-          </ul>
-        </nav>
-      </header>
+        <i class="fas fa-shopping-bag"></i>
+      </Link>
       {user && (
         <div className="bgcolor">
           <hr className="divider1" />
-          <div className="main-banner-creator">
+          <div className=" ">
             <div className="store-heading">
               <h1>{user.store_name}</h1>
             </div>
@@ -125,6 +116,12 @@ const CreatorStore = ({ match }) => {
           <ProductList userId={user._id} user={user} />
         </div>
       )}
+      <Cart
+        cartActive={cartActive}
+        setCartActive={setCartActive}
+        creatorStore={user && `/creatorstore/${user.slug}`}
+        storeTitle={user && user.store_name}
+      />
     </div>
   );
 };

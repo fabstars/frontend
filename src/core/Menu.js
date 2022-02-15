@@ -16,11 +16,7 @@ const Menu = ({ defaultNav }) => {
   useEffect(() => {
     console.log(defaultNav);
   }, []);
-  if (
-    !defaultNav &&
-    (!isAuthenticated() || isAuthenticated().user.role !== "1")
-  )
-    return <UserNavbar />;
+  if (!defaultNav) return <UserNavbar />;
   return (
     <>
       <header

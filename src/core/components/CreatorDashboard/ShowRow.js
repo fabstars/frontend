@@ -7,6 +7,7 @@ import {
 import { isAuthenticated } from "../../../auth";
 import { Modal, Button, Form } from "react-bootstrap";
 import { useAlert } from "react-alert";
+import { toast } from "react-toastify";
 
 function MyVerticallyCenteredModal(props) {
   const alert = useAlert();
@@ -19,7 +20,7 @@ function MyVerticallyCenteredModal(props) {
       props.product._id,
       margin
     ).then((data) => {
-      alert.show("Margin updated");
+      toast.success("Margin updated");
     });
   };
   const handleChange = (e) => {
@@ -76,7 +77,7 @@ const ShowRow = ({ product, i, products }) => {
       product._id,
       margin
     ).then((data) => {
-      alert.show("Margin updated");
+      toast.success("Margin updated");
     });
   };
   const handleChange = (e) => {
@@ -90,7 +91,7 @@ const ShowRow = ({ product, i, products }) => {
         isAuthenticated().token,
         products_to_send
       ).then((data) => {
-        alert.show("Product removed from site");
+        toast.success("Product removed from site");
       });
     }
   };
@@ -119,7 +120,7 @@ const ShowRow = ({ product, i, products }) => {
           onChange={(e) => {
             if (Number(e.target.value) + product.price < product.mrp)
               handleChange(e);
-            else alert.error("Product price cannot exceed MRP");
+            else toast.error("Product price cannot exceed MRP");
           }}
         />
         <button

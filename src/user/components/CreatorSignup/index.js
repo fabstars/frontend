@@ -9,6 +9,7 @@ import {
 } from "../../../auth";
 import { GoogleLogin } from "react-google-login";
 import { useAlert } from "react-alert";
+import { toast } from "react-toastify";
 
 const CreatorSignup = () => {
   const alert = useAlert();
@@ -78,7 +79,7 @@ const CreatorSignup = () => {
         }
       });
     } catch (error) {
-      alert.show("Google auth was unsuccessful. Try again later", {
+      toast.error("Google auth was unsuccessful. Try again later", {
         type: "error",
       });
     }
@@ -86,9 +87,7 @@ const CreatorSignup = () => {
 
   const googleFailure = () => {
     console.log("Failed");
-    alert.show("Google auth was unsuccessful. Try again later", {
-      type: "error",
-    });
+    toast.error("Google auth was unsuccessful. Try again later");
   };
 
   const clickSubmit = (event) => {

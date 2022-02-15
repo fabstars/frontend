@@ -10,6 +10,7 @@ import {
 import Menu from "../../../core/Menu";
 import { GoogleLogin } from "react-google-login";
 import { useAlert } from "react-alert";
+import { toast } from "react-toastify";
 
 const CreatorLogin = () => {
   const alert = useAlert();
@@ -93,17 +94,13 @@ const CreatorLogin = () => {
         }
       });
     } catch (error) {
-      alert.show("Google auth was unsuccessful. Try again later", {
-        type: "error",
-      });
+      toast.success("Google auth was unsuccessful. Try again later");
     }
   };
 
   const googleFailure = () => {
     console.log("Failed");
-    alert.show("Google auth was unsuccessful. Try again later", {
-      type: "error",
-    });
+    toast.error("Google auth was unsuccessful. Try again later");
   };
 
   const signUpForm = () => (
