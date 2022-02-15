@@ -26,7 +26,7 @@ const CreatorStore = ({ match }) => {
 
   return (
     <div>
-      <Link to={user && `/creatorstore/${user.slug}`} className="sitename">
+      <Link to={user && `/${user.slug}`} className="sitename">
         <img
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI1W6NYr7J2h-pxZVnhMGZ_0aIyHlSUn_Q7g&usqp=CAU"
           alt="Avatar"
@@ -39,7 +39,7 @@ const CreatorStore = ({ match }) => {
         //   pathname: `/checkout`,
         //   state: {
         //     storeTitle: user && user.store_name,
-        //     creatorStore: user && `/creatorstore/${user.slug}`,
+        //     creatorStore: user && `/${user.slug}`,
         //   },
         // }}
         style={{ float: "right" }}
@@ -51,7 +51,6 @@ const CreatorStore = ({ match }) => {
       </Link>
       {user && (
         <div className="bgcolor">
-          <hr className="divider1" />
           <div className=" ">
             <div className="store-heading">
               <h1>{user.store_name}</h1>
@@ -112,14 +111,13 @@ const CreatorStore = ({ match }) => {
             </div>
             <HighlightedLinks links={user.highlightLinks} />
           </div>
-          <hr className="divider2" />
           <ProductList userId={user._id} user={user} />
         </div>
       )}
       <Cart
         cartActive={cartActive}
         setCartActive={setCartActive}
-        creatorStore={user && `/creatorstore/${user.slug}`}
+        creatorStore={user && `/${user.slug}`}
         storeTitle={user && user.store_name}
       />
     </div>

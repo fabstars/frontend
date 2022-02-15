@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import OrderList from "./components/Checkout/OrderList";
 import cashOnDelivery from "./components/Checkout/cashOnDelivery.jpg";
 import cashfree from "./components/Checkout/Cashfree.jpg";
@@ -7,6 +7,7 @@ import { createOrder } from "./apiCore";
 import { cartTotal, emptyCart, getCartItems } from "./cartHelpers";
 import { isAuthenticated } from "../auth";
 import UserNavbar from "./UserNavbar";
+import { useLocation } from "react-router-dom";
 
 const Checkout = () => {
   const [mode, setMode] = useState("COD");
@@ -22,16 +23,22 @@ const Checkout = () => {
     bank_code: 3333,
     order_note: "Test order",
   });
-
+  const location = useLocation();
+  const [_id, setId] = useState("");
+  useEffect(() => {
+    if (location && location.state && location.state.creatorStore)
+      setId(location.state.creatorStore.replace("/", ""));
+  }, []);
   const placeOrder = async () => {
-    const {
-      token,
-      user: { _id, email },
-    } = isAuthenticated();
+    // const {
+    //   token,
+    //   user: { _id, email },
+    // } = isAuthenticated();
 
-    const cust_details = { ...deliveryDetails, email };
+    const cust_details = { ...deliveryDetails };
 
-    const orderPlaced = await createOrder(_id, token, {
+    const orderPlaced = await createOrder(_id, null, {
+      creator: _id,
       products: getCartItems(),
       amount: cartTotal(),
       cust_details,

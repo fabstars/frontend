@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../core/Layout";
+import ReactQuill from "react-quill";
 import { isAuthenticated } from "../auth";
 import { Link } from "react-router-dom";
 import { createProduct, getCategories } from "./apiAdmin";
 import Resizer from "react-image-file-resizer";
 import Menu from "../core/Menu";
+import "react-quill/dist/quill.snow.css";
 
 const AddProduct = () => {
   const [values, setValues] = useState({
@@ -64,6 +66,11 @@ const AddProduct = () => {
     const value = name === "photo" ? event.target.files[0] : event.target.value;
     formData.set(name, value);
     setValues({ ...values, [name]: value });
+  };
+
+  const handleEditorChange = (value) => {
+    formData.set("description", value);
+    setValues({ ...values, description: value });
   };
 
   const clickSubmit = (event) => {
@@ -127,11 +134,8 @@ const AddProduct = () => {
 
       <div className="form-group">
         <label className="text-muted">Description</label>
-        <textarea
-          onChange={handleChange("description")}
-          className="form-control"
-          value={description}
-        />
+
+        <ReactQuill value={description} onChange={handleEditorChange} />
       </div>
 
       <div className="form-group">

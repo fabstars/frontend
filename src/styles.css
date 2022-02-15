@@ -8,6 +8,9 @@
   border-radius: 0px;
 }
 
+.ql-editor {
+  min-height: 200px;
+}
 /* cart badge */
 
 .cart-badge,

@@ -61,7 +61,7 @@ const ManageStore = () => {
                 </label>
               </div> */}
             </div>
-            <div className="col-sm-12 col-md-6">
+            {/* <div className="col-sm-12 col-md-6">
               <div className="dataTables_filter">
                 <label>
                   Search:
@@ -72,7 +72,7 @@ const ManageStore = () => {
                   />
                 </label>
               </div>
-            </div>
+            </div> */}
           </div>
           <table className="table " id="dataTables-userlist">
             <thead>

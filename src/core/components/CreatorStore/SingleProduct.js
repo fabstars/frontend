@@ -50,7 +50,7 @@ const SingleProduct = ({ product, userId, user }) => {
               pathname: `/products/${product._id}`,
               state: {
                 storeTitle: user && user.store_name,
-                creatorStore: user && `/creatorstore/${user.slug}`,
+                creatorStore: user && `/${user.slug}`,
                 userId: user && userId,
               },
             }}
@@ -66,7 +66,7 @@ const SingleProduct = ({ product, userId, user }) => {
                 pathname: `/products/${product._id}`,
                 state: {
                   storeTitle: user && user.store_name,
-                  creatorStore: user && `/creatorstore/${user.slug}`,
+                  creatorStore: user && `/${user.slug}`,
                   userId: user && userId,
                 },
               }}

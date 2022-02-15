@@ -130,7 +130,7 @@ const OrderList = () => {
               </li>
               <li>
                 <span>
-                  Total<small>(Incl. VAT)</small>
+                  Total<small></small>
                 </span>
                 <span>₹ {cartTotal()}</span>
               </li>

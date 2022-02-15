@@ -131,7 +131,10 @@ const ShopProductDetails = (props) => {
                         <small></small>
                       </span>
                     </h3>
-                    <p className="details-desc">{product.description}</p>
+                    <div
+                      className="details-desc"
+                      dangerouslySetInnerHTML={{ __html: product.description }}
+                    ></div>
                     {/* <div className="details-list-group">
                   <label className="details-list-title">tags:</label>
                   <ul className="details-tag-list">
