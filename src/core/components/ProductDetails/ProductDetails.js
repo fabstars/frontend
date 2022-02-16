@@ -13,6 +13,7 @@ import { addItemToCart } from "../../cartHelpers";
 import { useAlert } from "react-alert";
 import Menu from "../../Menu";
 import { toast } from "react-toastify";
+import StoreFooter from "../CreatorStore/StoreFooter";
 
 const ProductDetails = (props) => {
   const [product, setProduct] = useState(null);
@@ -151,7 +152,7 @@ const ProductDetails = (props) => {
                 </div> */}
 
                     <>
-                      <div className="details-add-group">
+                      <div className="details-action-group">
                         <button
                           className="product-add"
                           title="Add to Cart"
@@ -168,9 +169,9 @@ const ProductDetails = (props) => {
                           <span>add to cart</span>
                         </button>
                       </div>
-                      <div className="details-action-group">
+                      <div className="details-add-group">
                         <Link
-                          className="details-wish wish"
+                          className="product-add "
                           to={{
                             pathname: `/checkout`,
                             state: { storeTitle, creatorStore },
@@ -206,6 +207,7 @@ const ProductDetails = (props) => {
           />
         </>
       )}
+      <StoreFooter />
     </>
   );
 };

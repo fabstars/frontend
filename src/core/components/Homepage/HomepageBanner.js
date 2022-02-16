@@ -18,7 +18,7 @@ const HomepageBanner = ({ history }) => {
                   <div className="hero-content">
                     <h1>Build Your Creator Business</h1>
                     <p>
-                      Launch your personalized website <br />
+                      Launch your own .co domain website <br />
                       Share it with your Auidence <br />
                       Earn more Money
                     </p>

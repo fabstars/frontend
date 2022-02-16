@@ -8,6 +8,7 @@ import { cartTotal, emptyCart, getCartItems } from "./cartHelpers";
 import { isAuthenticated } from "../auth";
 import UserNavbar from "./UserNavbar";
 import { useLocation } from "react-router-dom";
+import StoreFooter from "./components/CreatorStore/StoreFooter";
 
 const Checkout = () => {
   const [mode, setMode] = useState("COD");
@@ -182,7 +183,7 @@ const Checkout = () => {
                         <h4>cash on Delivery</h4>
                       </div>
                     </div>
-                    <div
+                    {/* <div
                       className="col-md-6 col-lg-4 alert fade show"
                       onClick={() => setMode("Card")}
                     >
@@ -194,7 +195,7 @@ const Checkout = () => {
                         <img src={cashfree} alt="payment" />
                         <h4>Pay Online</h4>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
 
@@ -206,6 +207,7 @@ const Checkout = () => {
           </div>
         </div>
       </section>
+      <StoreFooter />
     </>
   );
 };

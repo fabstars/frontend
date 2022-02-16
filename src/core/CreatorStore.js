@@ -5,6 +5,7 @@ import "./components/CreatorStore/style.css";
 import { getById, getByUsername } from "../user/apiUser";
 import { Link } from "react-router-dom";
 import Cart from "./Cart";
+import StoreFooter from "./components/CreatorStore/StoreFooter";
 
 const CreatorStore = ({ match }) => {
   const [user, setUser] = useState(null);
@@ -112,6 +113,7 @@ const CreatorStore = ({ match }) => {
             <HighlightedLinks links={user.highlightLinks} />
           </div>
           <ProductList userId={user._id} user={user} />
+          <StoreFooter />
         </div>
       )}
       <Cart
