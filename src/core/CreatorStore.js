@@ -18,7 +18,7 @@ const CreatorStore = ({ match }) => {
   useEffect(() => {
     console.log(match.params.slug);
     console.log(user);
-  }, [user]);
+  }, [match.params.slug, user]);
 
   useEffect(() => {
     init(match.params.slug);
@@ -27,12 +27,7 @@ const CreatorStore = ({ match }) => {
 
   return (
     <div>
-      <Link to={user && `/${user.slug}`} className="sitename">
-        <img
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSI1W6NYr7J2h-pxZVnhMGZ_0aIyHlSUn_Q7g&usqp=CAU"
-          alt="Avatar"
-          class="avatar"
-        />
+      <Link className="bttn" style={{"cursor": "initial"}}>
       </Link>
       <Link
         className="bttn"
@@ -48,7 +43,7 @@ const CreatorStore = ({ match }) => {
           setCartActive(true);
         }}
       >
-        <i class="fas fa-shopping-bag"></i>
+        <i class="fas fa-solid fa-bags-shopping"></i>
       </Link>
       {user && (
         <div className="bgcolor">

@@ -29,7 +29,7 @@ const ProductList = ({ userId, user }) => {
   };
 
   return (
-    <div style={{ marginTop: "3em" }}>
+    <div style={{ margin: "3em 0em 3em 0em" }}>
       {products.length ? (
         <div className="container">
           <div className="row row-cols-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-5">

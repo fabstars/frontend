@@ -3,7 +3,7 @@
 
 /*whole bg color */
 .bgcolor{
-  background-color: rgb(223, 223, 223);
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2_aUPxe46EZmRvdXZfR6kF7Gy8sZ4Ym4I6Beu2BrdcwOBrEIOVoZwgEADsj9WLgUq5vw&usqp=CAU");
   margin-top: -130px;
 }
 .main-banner-creator {
@@ -48,9 +48,7 @@ hr.divider2 {
 
 
 .bttn {
-  background: #8d8989;
-  border: 1px solid #555251;
-  border-radius: 50%;
+  background: rgb(126, 124, 124,0);
   margin: 45px 15px 5px 5px;
   color: #e9e3e3;
   cursor: pointer;
@@ -66,9 +64,9 @@ hr.divider2 {
 
 .bttn:hover,
 .bttn:active {
-  background-color: rgb(180, 166, 166);
+  background-color: rgb(126, 124, 124,0);
   background-position: 0 0;
-  color: #11b76b;
+  color: #ffff;
 }
 
 .bttn:active {
@@ -128,17 +126,17 @@ hr.divider2 {
 
 /* CSS */
 .button-24 {
-  background: #FF4742;
-  border: 1px solid #FF4742;
-  /* border-radius: 6px; */
+  background: rgba(0, 0, 0, 0);
+  border: 3px solid #ffff;
+  border-radius: 6px;
   box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
   margin-top: 0px;
   margin-bottom: 10px;
   box-sizing: border-box;
-  color: #e9e3e3;
+  color: #ffff;
   cursor: pointer;
   display: inline-block;
-  font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+  font-family: cursive;
   font-size: 16px;
   width: 100%;
   max-width: 600px;
@@ -159,9 +157,9 @@ hr.divider2 {
 
 .button-24:hover,
 .button-24:active {
-  background-color: rgb(180, 166, 166);
+  background-color: #e9e3e3;
   background-position: 0 0;
-  color: #FF4742;
+  color: rgba(0, 0, 0);
 }
 
 .button-24:active {
@@ -181,25 +179,25 @@ hr.divider2 {
   position: relative;
   width: fit-content;
   max-width: 600px;
-  margin: 0 auto;
   margin-bottom: 10px;
-  /* margin-top: 2rem; */
+  margin: auto;
   height: fit-content;
   padding-left: 10px;
   padding-right: 10px;
 }
 .store-heading h1 {
-  font-family: "Pacifico";
+  font-family: cursive;
   font-size: 50px;
+  cursor: default;
   font-weight: 800;
-  letter-spacing: 4.5px;
+  letter-spacing: 3.5px;
   text-shadow: 0.5px 0.8px 1px rgb(150, 146, 146);
   /* text-transform: uppercase; */
   text-align: center;
-  margin: auto;
   width: fit-content;
-  color: #11b76b;
+  color: #ffff;
   padding-bottom: -10px;
+  /* padding-top: 100px; */
   margin-bottom: 5px;
   height: fit-content;
 }
@@ -210,7 +208,7 @@ hr.divider2 {
   text-align: center;
   height: 6px;
   width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 40px;
   /* margin-left: -30px; */
 }
 .store-heading h1:after {
@@ -228,13 +226,14 @@ hr.divider2 {
 .creator-social-profiles {
   width: 100%;
   margin: 0 auto;
-  margin-top: 2rem;
+  margin-top: 4rem;
   text-align: center;
 }
 .creator-social-profiles i {
   font-size: 40px;
   margin: 1rem;
-  text-shadow: 1px 2px 3px rgb(141, 138, 138);
+  text-shadow: 1px 2px 3px rgb(5, 3, 24);
+  /* border: 3px solid #ffff; */
 }
 
 .btn-highlights {
@@ -463,6 +462,10 @@ hr.divider2 {
   }
   .store-heading, .store-heading h1{
     max-width: 230px;
+    font-size: 40px;
+  }
+
+  .creator-social-profiles i{
     font-size: 30px;
   }
 }
@@ -480,14 +483,17 @@ hr.divider2 {
 
   .store-heading, .store-heading h1{
     max-width: 270px;
-    font-size: 35px;
+    font-size: 45px;
+  }
+  .creator-social-profiles i{
+    font-size: 30px;
   }
 }
 
 @media (min-width: 481px) and (max-width: 600px){
   .store-heading, .store-heading h1{
     max-width: 400px;
-    font-size: 40px;
+    font-size: 50px;
   }
 }
 
