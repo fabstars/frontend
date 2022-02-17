@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import OrderList from "./components/Checkout/OrderList";
 import cashOnDelivery from "./components/Checkout/cashOnDelivery.jpg";
 import cashfree from "./components/Checkout/Cashfree.jpg";
@@ -33,25 +34,44 @@ const Checkout = () => {
     if (location && location.state && location.state.creatorStore)
       setId(location.state.creatorStore.replace("/", ""));
   }, []);
+  const validInput = () => {
+    for (const key of Object.keys(deliveryDetails)) {
+      if (deliveryDetails[key] === "") {
+        toast.error(
+          `Please provide your ${
+            key === "fullName"
+              ? "Name"
+              : key === "mobileNumber"
+              ? "Mobile Number"
+              : key
+          }`
+        );
+
+        return false;
+      }
+    }
+    return true;
+  };
   const placeOrder = async () => {
     // const {
     //   token,
     //   user: { _id, email },
     // } = isAuthenticated();
+    if (validInput()) {
+      const cust_details = { ...deliveryDetails, mode };
 
-    const cust_details = { ...deliveryDetails, mode };
-
-    const orderPlaced = await createOrder(_id, null, {
-      creator: _id,
-      products: getCartItems(),
-      amount: cartTotal(),
-      cust_details,
-    });
-    if (!orderPlaced.error) {
-      setOrderResponse(orderPlaced.order);
-      emptyCart(() => {
-        setPlaced(true);
+      const orderPlaced = await createOrder(_id, null, {
+        creator: _id,
+        products: getCartItems(),
+        amount: cartTotal(),
+        cust_details,
       });
+      if (!orderPlaced.error) {
+        setOrderResponse(orderPlaced.order);
+        emptyCart(() => {
+          setPlaced(true);
+        });
+      }
     }
   };
   return (
@@ -76,7 +96,9 @@ const Checkout = () => {
                     <div className="row">
                       <div className="col-md-12 col-lg-10 alert fade show">
                         <div className="form-group">
-                          <label className="form-label">Full Name</label>
+                          <label className="form-label">
+                            Full Name <span className="text-danger">*</span>
+                          </label>
                           <input
                             className="form-control"
                             type="text"
@@ -91,7 +113,9 @@ const Checkout = () => {
                           />
                         </div>
                         <div className="form-group">
-                          <label className="form-label">Mobile Number</label>
+                          <label className="form-label">
+                            Mobile Number <span className="text-danger">*</span>
+                          </label>
                           <input
                             className="form-control"
                             type="text"
@@ -106,7 +130,9 @@ const Checkout = () => {
                           />
                         </div>
                         <div className="form-group">
-                          <label className="form-label">address</label>
+                          <label className="form-label">
+                            address <span className="text-danger">*</span>
+                          </label>
                           <input
                             className="form-control"
                             type="text"
@@ -122,7 +148,9 @@ const Checkout = () => {
                         </div>
                         <div className="form-group row">
                           <div className="col-sm-12 col-md-6 col-lg-4">
-                            <label className="form-label">City</label>
+                            <label className="form-label">
+                              City <span className="text-danger">*</span>
+                            </label>
                             <input
                               className="form-control"
                               type="text"
@@ -137,7 +165,9 @@ const Checkout = () => {
                             />
                           </div>
                           <div className="col-sm-12 col-md-6  col-lg-4">
-                            <label className="form-label">State</label>
+                            <label className="form-label">
+                              State <span className="text-danger">*</span>
+                            </label>
                             <input
                               className="form-control"
                               type="text"
@@ -152,7 +182,9 @@ const Checkout = () => {
                             />
                           </div>
                           <div className="col-sm-12 col-md-6  col-lg-4">
-                            <label className="form-label">Pincode</label>
+                            <label className="form-label">
+                              Pincode <span className="text-danger">*</span>
+                            </label>
                             <input
                               className="form-control"
                               type="text"
