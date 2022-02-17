@@ -6,7 +6,7 @@ const StoreFooter = () => {
     <section class="intro-part" style={{ paddingBottom: "10px" }}>
       <div class="container">
         <div class="row intro-content">
-          <div class="col-sm-6 mb-5 col-lg-4">
+          <div class="col-6 col-sm-4 mb-5 col-md-4 col-lg-3">
             <div class="intro-wrap">
               <div class="intro-icon">
                 <i class="fas fa-sync-alt"></i>
@@ -16,7 +16,7 @@ const StoreFooter = () => {
               </div>
             </div>
           </div>
-          <div class="col-sm-6 mb-5 col-lg-4">
+          <div class="col-6 col-sm-4 mb-5 col-md-4 col-lg-3">
             <div class="intro-wrap">
               <div class="intro-icon">
                 <i class="fad fa-wallet"></i>
@@ -26,7 +26,7 @@ const StoreFooter = () => {
               </div>
             </div>
           </div>
-          <div class="col-sm-6 mb-5 col-lg-4">
+          <div class="col-6 col-sm-4 mb-5 col-md-4 col-lg-3">
             <div class="intro-wrap">
               <div class="intro-icon">
                 <i class="fas fa-truck"></i>
@@ -36,7 +36,7 @@ const StoreFooter = () => {
               </div>
             </div>
           </div>
-          <div class="col-sm-6 mb-5 col-lg-4">
+          <div class="col-6 col-sm-4 mb-5 col-md-4 col-lg-3">
             <div class="intro-wrap">
               <div class="intro-icon">
                 <i class="fas fa-badge-check"></i>
@@ -46,7 +46,7 @@ const StoreFooter = () => {
               </div>
             </div>
           </div>
-          <div class="col-sm-6 mb-5 col-lg-4">
+          <div class="col-6 col-sm-4 mb-5 col-md-4 col-lg-3">
             <div class="intro-wrap">
               <div class="intro-icon">
                 <i class="fas fa-headset"></i>
@@ -56,7 +56,7 @@ const StoreFooter = () => {
               </div>
             </div>
           </div>
-          <div class="col-sm-6 mb-5 col-lg-4">
+          <div class="col-6 col-sm-4 mb-5 col-md-4 col-lg-3">
             <div class="intro-wrap">
               <div class="intro-icon">
                 <i class="fas fa-lock"></i>
@@ -73,7 +73,7 @@ const StoreFooter = () => {
           <Link
             className="footer__link"
             href=""
-            to="/PrivacyPolicy"
+            to="https://bit.ly/store-privacy"
             target="_top"
             style={{ fontSize: "20px",color:"var(--success)" }}
           >
@@ -82,7 +82,7 @@ const StoreFooter = () => {
           <Link
             className="footer__link"
             href=""
-            to="/ReturnPolicy"
+            to="https://bit.ly/store-return"
             target="_top"
             style={{ fontSize: "20px",color:"var(--success)" }}
           >
@@ -91,7 +91,7 @@ const StoreFooter = () => {
           <Link
             className="footer__link"
             href=""
-            to="/Terms"
+            to="https://bit.ly/store-terms"
             target="_top"
             style={{ fontSize: "20px",color:"var(--success)" }}
           >
@@ -103,7 +103,7 @@ const StoreFooter = () => {
             style={{ display: "flex", justifyContent: "left", width: "100%" }}
           >
             <p className="footer-logo" style={{ fontSize: "15px" }}>
-              Fabpreneurs Internet Pvt Ltd. All rights reserved, &copy; 2022
+              {/* Fabpreneurs Internet Pvt Ltd. All rights reserved, &copy; 2022 */}
             </p>
           </div>
 
