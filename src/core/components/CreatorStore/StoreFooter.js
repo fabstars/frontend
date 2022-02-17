@@ -72,28 +72,21 @@ const StoreFooter = () => {
         <div className="footer__links">
           <Link
             className="footer__link"
-            href=""
             onClick={() => window.open("https://bit.ly/store-privacy")} 
-            target="_top"
             style={{ fontSize: "20px",color:"var(--success)" }}
           >
             Privacy
           </Link>
           <Link
             className="footer__link"
-            href=""
-            to="/https://bit.ly/store-return"
             onClick={() => window.open("https://bit.ly/store-return")} 
-            target="_top"
             style={{ fontSize: "20px",color:"var(--success)" }}
           >
             Return Policy
           </Link>
           <Link
             className="footer__link"
-            href=""
-            onClick={() => window.open("https://bit.ly/store-terms")} 
-            target="_top"
+            onClick={() => window.open("https://bit.ly/store-terms")}
             style={{ fontSize: "20px",color:"var(--success)" }}
           >
             Terms of Service
