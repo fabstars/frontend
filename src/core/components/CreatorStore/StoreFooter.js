@@ -73,7 +73,7 @@ const StoreFooter = () => {
           <Link
             className="footer__link"
             href=""
-            to="/https://bit.ly/store-privacy"
+            onClick={() => window.open("https://bit.ly/store-privacy")} 
             target="_top"
             style={{ fontSize: "20px",color:"var(--success)" }}
           >
@@ -83,6 +83,7 @@ const StoreFooter = () => {
             className="footer__link"
             href=""
             to="/https://bit.ly/store-return"
+            onClick={() => window.open("https://bit.ly/store-return")} 
             target="_top"
             style={{ fontSize: "20px",color:"var(--success)" }}
           >
@@ -91,7 +92,7 @@ const StoreFooter = () => {
           <Link
             className="footer__link"
             href=""
-            to="/https://bit.ly/store-terms"
+            onClick={() => window.open("https://bit.ly/store-terms")} 
             target="_top"
             style={{ fontSize: "20px",color:"var(--success)" }}
           >
