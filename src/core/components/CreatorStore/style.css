@@ -1,5 +1,6 @@
 /*Pacifico font*/
 @import url('https://fonts.googleapis.com/css?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Comic+Neue:wght@700&display=swap');
 
 /*whole bg color */
 .bgcolor{
@@ -136,8 +137,8 @@ hr.divider2 {
   color: #ffff;
   cursor: pointer;
   display: inline-block;
-  font-family: cursive;
-  font-size: 16px;
+  font-family: 'Comic Neue';
+  font-size: 20px;
   width: 100%;
   max-width: 600px;
   font-weight: 200;
