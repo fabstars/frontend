@@ -12,9 +12,6 @@ const Error = () => {
           <img className="img-fluid" src={Err} alt="error" />
           <h3>ooopps! this page can't be found.</h3>
           <p>It looks like nothing was found at this location.</p>
-          <Link to="/" style={{ textDecoration: "none" }}>
-            Go to Home
-          </Link>
         </div>
       </section>
     </div>
