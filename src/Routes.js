@@ -33,6 +33,8 @@ import CompleteProfile from "./core/components/CompleteProfile";
 import ShopProductDetails from "./core/components/ProductDetails/ShopProductDetails";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import PageNotFound from "./core/components/ErrorPage";
+
 const Routes = () => {
   return (
     <>
@@ -98,6 +100,7 @@ const Routes = () => {
             component={UpdateCategory}
           />
           <Route path="/:slug" exact component={CreatorStore} />
+          <Route component={PageNotFound} />
         </Switch>
       </BrowserRouter>
       <ToastContainer

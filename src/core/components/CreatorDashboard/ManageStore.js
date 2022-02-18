@@ -39,10 +39,10 @@ const ManageStore = () => {
         </div>
       </div>
       <p style={{ margin: "1rem" }}>
-        You can click on the (Rs. Sign)0 and update it according to your wish.
-        Click on the Update button after adding your margin. Total Price should
-        not be more than MRP which is in the bracket. Now, Just share your
-        Website link and start Earning.
+        You can click on the <i className="fas fa-rupee-sign"></i> 0 and update
+        it according to your wish. Click on the update button after adding your
+        margin. Total price should not be more than MRP which is in the bracket.
+        Now, just share your website link and start earning.
       </p>
       {/* <StoreSummary /> */}
       <div className="row">
