@@ -108,7 +108,7 @@ export const processPayment = (userId, token, paymentData) => {
 
 export const createOrder = (userId, token, createOrderData) => {
   console.log(createOrderData);
-  return fetch(`${API}/order/create/${userId}`, {
+  return fetch(`${API}/order/cashfree/create/${userId}`, {
     method: "POST",
     headers: {
       Accept: "application/json",
