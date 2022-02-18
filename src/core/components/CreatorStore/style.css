@@ -181,6 +181,7 @@ hr.divider2 {
   width: fit-content;
   max-width: 600px;
   margin-bottom: 10px;
+  padding-top: 60px;
   margin: auto;
   height: fit-content;
   padding-left: 10px;
@@ -205,7 +206,7 @@ hr.divider2 {
 .store-heading h1:before {
   background-image: linear-gradient(to right, rgba(255,255,255,.01) ,#697972 , rgba(255,255,255,.01));
   content: "";
-  display: block;
+  display: none;
   text-align: center;
   height: 6px;
   width: 100%;
@@ -459,15 +460,24 @@ hr.divider2 {
     font-size: 25px;
   }
   .bgcolor{
-    margin-top: -110px;
+    margin-top: -120px;
   }
   .store-heading, .store-heading h1{
     max-width: 230px;
-    font-size: 40px;
+    font-size: 20px;
+    padding-top: 35px;
   }
 
   .creator-social-profiles i{
-    font-size: 30px;
+    font-size: 25px;
+  }
+
+  .store-heading h1:before{
+    margin-bottom: 60px;
+  }
+
+  .button-24{
+    font-size: 15px;
   }
 }
 
@@ -484,7 +494,7 @@ hr.divider2 {
 
   .store-heading, .store-heading h1{
     max-width: 270px;
-    font-size: 45px;
+    font-size: 25px;
   }
   .creator-social-profiles i{
     font-size: 30px;
@@ -494,7 +504,11 @@ hr.divider2 {
 @media (min-width: 481px) and (max-width: 600px){
   .store-heading, .store-heading h1{
     max-width: 400px;
-    font-size: 50px;
+    font-size: 40px;
+  }
+
+  .store-heading h1:before{
+    margin-bottom: 50px;
   }
 }
 

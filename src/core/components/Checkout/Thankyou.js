@@ -176,13 +176,18 @@ const Thankyou = ({ creatorStore, orderResponse }) => {
         </div>
         <div class="row">
           <div class="col-lg-12 text-center mt-5">
-            <button class="btn btn-success">
+            {/* <button class="btn btn-success">
               <i class="icofont-download"></i>
               <span>download invoice</span>
+            </button> */}
+            <button class="btn btn-success">
+              <Link
+                to={creatorStore}
+                style={{ textDecoration: "none", color: "#fff" }}
+              >
+                <span>Back to Store</span>
+              </Link>
             </button>
-            <div class="back-home">
-              <Link to={creatorStore}>Back to Store</Link>
-            </div>
           </div>
         </div>
       </div>
