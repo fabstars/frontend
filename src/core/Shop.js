@@ -133,9 +133,10 @@ const Shop = () => {
             marginBottom: "1rem",
           }}
         >
-          Click on “Add to Site” button of your relevant product and it will be
-          automatically added to your website. You can update Margin in Manage
-          Products section of Dashboard.
+          Click on “Add to Site” button of any product and it will be
+          automatically added to your website. We will update the price by
+          adding 10% margin which you can update in the Manage Products section
+          of Dashboard at your wish.
         </p>
         <div className="row content-reverse">
           <div className="col-lg-3 col-sm-12">
