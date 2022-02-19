@@ -65,7 +65,14 @@ const CreatorStore = ({ match }) => {
                         user.social.facebook &&
                         user.social.facebook.length && (
                           <Link
-                            onClick={() => window.open(user.social.facebook)}
+                            onClick={() => {
+                              const myUrl = user.social.facebook.includes(
+                                "http"
+                              )
+                                ? user.social.facebook
+                                : "http://" + user.social.facebook;
+                              window.open(myUrl);
+                            }}
                             style={{ color: "#3b5998" }}
                           >
                             <i className="fab fa-facebook"></i>
@@ -75,7 +82,14 @@ const CreatorStore = ({ match }) => {
                         user.social.instagram &&
                         user.social.instagram.length && (
                           <Link
-                            onClick={() => window.open(user.social.instagram)}
+                            onClick={() => {
+                              const myUrl = user.social.instagram.includes(
+                                "http"
+                              )
+                                ? user.social.instagram
+                                : "http://" + user.social.instagram;
+                              window.open(myUrl);
+                            }}
                             style={{ color: "#e95950" }}
                           >
                             <i className="fab fa-instagram"></i>
@@ -86,7 +100,12 @@ const CreatorStore = ({ match }) => {
                         user.social.twitter &&
                         user.social.twitter.length && (
                           <Link
-                            onClick={() => window.open(user.social.twitter)}
+                            onClick={() => {
+                              const myUrl = user.social.twitter.includes("http")
+                                ? user.social.twitter
+                                : "http://" + user.social.twitter;
+                              window.open(myUrl);
+                            }}
                             style={{ color: "#00acee" }}
                           >
                             <i className="fab fa-twitter"></i>
@@ -96,7 +115,14 @@ const CreatorStore = ({ match }) => {
                         user.social.linkedin &&
                         user.social.linkedin.length && (
                           <Link
-                            onClick={() => window.open(user.social.linkedin)}
+                            onClick={() => {
+                              const myUrl = user.social.linkedin.includes(
+                                "http"
+                              )
+                                ? user.social.linkedin
+                                : "http://" + user.social.linkedin;
+                              window.open(myUrl);
+                            }}
                             style={{ color: "#5663F7" }}
                           >
                             <i className="fab fa-linkedin"></i>
@@ -107,7 +133,12 @@ const CreatorStore = ({ match }) => {
                         user.social.youtube &&
                         user.social.youtube.length && (
                           <Link
-                            onClick={() => window.open(user.social.youtube)}
+                            onClick={() => {
+                              const myUrl = user.social.youtube.includes("http")
+                                ? user.social.youtube
+                                : "http://" + user.social.youtube;
+                              window.open(myUrl);
+                            }}
                             style={{ color: "#FF0000" }}
                           >
                             <i className="fab fa-youtube"></i>

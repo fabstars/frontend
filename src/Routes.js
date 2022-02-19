@@ -34,6 +34,7 @@ import ShopProductDetails from "./core/components/ProductDetails/ShopProductDeta
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import PageNotFound from "./core/components/ErrorPage";
+import Thankyou from "./core/components/Checkout/Thankyou";
 
 const Routes = () => {
   return (
@@ -56,6 +57,7 @@ const Routes = () => {
           <Route path="/about" exact component={About} />
           <Route path="/contact" exact component={Contact} />
           <Route path="/checkout" exact component={Checkout} />
+          <Route path="/thank-you" exact component={Thankyou} />
 
           <PrivateRoute path="/creator/dashboard" exact component={Dashboard} />
           <Route

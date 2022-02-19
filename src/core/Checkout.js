@@ -13,7 +13,7 @@ import StoreFooter from "./components/CreatorStore/StoreFooter";
 import Thankyou from "./components/Checkout/Thankyou";
 import { Redirect } from "react-router-dom";
 
-const Checkout = () => {
+const Checkout = ({ history }) => {
   const [placed, setPlaced] = useState(false);
   const [orderResponse, setOrderResponse] = useState({});
   const [mode, setMode] = useState("Card");
@@ -27,7 +27,7 @@ const Checkout = () => {
     bank_account_number: "1518121112",
     bank_ifsc: "CITI0000001",
     bank_code: 3333,
-    order_note: "Test order",
+    order_note: "",
     email: "",
   });
   const location = useLocation();
@@ -39,20 +39,14 @@ const Checkout = () => {
   const validInput = () => {
     for (const key of Object.keys(deliveryDetails)) {
       if (deliveryDetails[key] === "") {
-        if (mode == "Card") {
-          if (key === "address") continue;
-          if (key === "state") continue;
-          if (key === "city") continue;
-          if (key === "pincode") continue;
-        } else {
-          if (key === "email") continue;
-        }
         toast.error(
           `Please provide your ${
             key === "fullName"
               ? "Name"
               : key === "mobileNumber"
               ? "Mobile Number"
+              : key === "email"
+              ? "Email"
               : key
           }`
         );
@@ -78,11 +72,15 @@ const Checkout = () => {
       });
       console.log(orderPlaced);
       if (!orderPlaced.error) {
-        window.open(
-          orderPlaced.payment_link,
-          "_blank",
-          "location=yes,height=1000,width=1000,scrollbars=yes,status=yes"
-        );
+        window.location.href = orderPlaced.payment_link;
+        // setPlaced(true);
+
+        // history.push();
+        // window.open(
+        //   orderPlaced.payment_link,
+        //   "_blank",
+        //   "location=yes,height=1000,width=1000,scrollbars=yes,status=yes"
+        // );
         // setOrderResponse(orderPlaced.order);
         // emptyCart(() => {
         //   setPlaced(true);
@@ -93,7 +91,7 @@ const Checkout = () => {
     }
   };
 
-  const codDetails = () => (
+  const DeliveryDetails = () => (
     <div className="col-lg-12 mt-4">
       <div className="account-card">
         <div className="account-title">
@@ -132,6 +130,23 @@ const Checkout = () => {
                     setDeliveryDetails({
                       ...deliveryDetails,
                       mobileNumber: e.target.value,
+                    })
+                  }
+                />
+              </div>
+              <div className="form-group">
+                <label className="form-label">
+                  Email <span className="text-danger">*</span>
+                </label>
+                <input
+                  className="form-control"
+                  type="email"
+                  placeholder="Enter your email"
+                  value={deliveryDetails.email}
+                  onChange={(e) =>
+                    setDeliveryDetails({
+                      ...deliveryDetails,
+                      email: e.target.value,
                     })
                   }
                 />
@@ -206,69 +221,20 @@ const Checkout = () => {
                   />
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-
-  const cardDetails = () => (
-    <div className="col-lg-12 mt-4">
-      <div className="account-card">
-        <div className="account-title">
-          <h4>Delivery Details</h4>
-        </div>
-        <div className="account-content">
-          <div className="row">
-            <div className="col-md-12 col-lg-10 alert fade show">
               <div className="form-group">
                 <label className="form-label">
-                  Full Name <span className="text-danger">*</span>
+                  Order Note <span className="text-danger">*</span>
                 </label>
-                <input
+                <textarea
+                  rows="3"
                   className="form-control"
                   type="text"
-                  placeholder="Enter your full name"
-                  value={deliveryDetails.fullName}
+                  placeholder="Enter Your Note..."
+                  value={deliveryDetails.order_note}
                   onChange={(e) =>
                     setDeliveryDetails({
                       ...deliveryDetails,
-                      fullName: e.target.value,
-                    })
-                  }
-                />
-              </div>
-              <div className="form-group">
-                <label className="form-label">
-                  Mobile Number <span className="text-danger">*</span>
-                </label>
-                <input
-                  className="form-control"
-                  type="text"
-                  placeholder="Enter your number"
-                  value={deliveryDetails.mobileNumber}
-                  onChange={(e) =>
-                    setDeliveryDetails({
-                      ...deliveryDetails,
-                      mobileNumber: e.target.value,
-                    })
-                  }
-                />
-              </div>
-              <div className="form-group">
-                <label className="form-label">
-                  Email <span className="text-danger">*</span>
-                </label>
-                <input
-                  className="form-control"
-                  type="email"
-                  placeholder="Enter your email"
-                  value={deliveryDetails.email}
-                  onChange={(e) =>
-                    setDeliveryDetails({
-                      ...deliveryDetails,
-                      email: e.target.value,
+                      order_note: e.target.value,
                     })
                   }
                 />
@@ -279,6 +245,56 @@ const Checkout = () => {
       </div>
     </div>
   );
+
+  // const cardDetails = () => (
+  //   <div className="col-lg-12 mt-4">
+  //     <div className="account-card">
+  //       <div className="account-title">
+  //         <h4>Delivery Details</h4>
+  //       </div>
+  //       <div className="account-content">
+  //         <div className="row">
+  //           <div className="col-md-12 col-lg-10 alert fade show">
+  //             <div className="form-group">
+  //               <label className="form-label">
+  //                 Full Name <span className="text-danger">*</span>
+  //               </label>
+  //               <input
+  //                 className="form-control"
+  //                 type="text"
+  //                 placeholder="Enter your full name"
+  //                 value={deliveryDetails.fullName}
+  //                 onChange={(e) =>
+  //                   setDeliveryDetails({
+  //                     ...deliveryDetails,
+  //                     fullName: e.target.value,
+  //                   })
+  //                 }
+  //               />
+  //             </div>
+  //             <div className="form-group">
+  //               <label className="form-label">
+  //                 Mobile Number <span className="text-danger">*</span>
+  //               </label>
+  //               <input
+  //                 className="form-control"
+  //                 type="text"
+  //                 placeholder="Enter your number"
+  //                 value={deliveryDetails.mobileNumber}
+  //                 onChange={(e) =>
+  //                   setDeliveryDetails({
+  //                     ...deliveryDetails,
+  //                     mobileNumber: e.target.value,
+  //                   })
+  //                 }
+  //               />
+  //             </div>
+  //           </div>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   </div>
+  // );
 
   return (
     <>
@@ -331,7 +347,8 @@ const Checkout = () => {
                   </div>
                 </div>
               </div>
-              {mode === "Card" ? <>{cardDetails()}</> : <>{codDetails()}</>}
+              {DeliveryDetails()}
+              {/* {mode === "Card" ? <>{cardDetails()}</> : <>{codDetails()}</>} */}
 
               <div className="checkout-proced" onClick={placeOrder}>
                 <div className="btn btn-inline btn-success">place order</div>
