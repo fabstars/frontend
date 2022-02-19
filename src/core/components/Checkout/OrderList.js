@@ -10,6 +10,9 @@ import {
 import "./style.css";
 const OrderList = () => {
   const [cartItems, setCartItems] = useState(getCartItems());
+  const clothingOptions = ["S", "M", "L", "XL", "XXL"];
+  const shoeSizeOptions = ["6", "7", "8", "9", "10"];
+  const jeansOptions = ["28", "30", "32", "34", "36", "38", "40"];
   return (
     <div className="col-lg-12 mt-3">
       <div className="account-card">
@@ -23,7 +26,7 @@ const OrderList = () => {
                 <tr>
                   <th scope="col">Serial</th>
                   <th scope="col">Product</th>
-                  <th scope="col">Name</th>
+                  <th scope="col">Size</th>
                   <th scope="col">Price</th>
                   <th scope="col">quantity</th>
                   <th scope="col">action</th>
@@ -38,9 +41,81 @@ const OrderList = () => {
                       </td>
                       <td className="table-image">
                         <img src={item.url} alt="product" />
+                        <h6 style={{ marginTop: "1rem" }}>{item.name} </h6>
                       </td>
                       <td className="table-name">
-                        <h6>{item.name}</h6>
+                        {item.category && item.category === "Clothing" ? (
+                          <select
+                            onChange={(e) => {
+                              addItemToCart(
+                                item,
+                                item.count,
+                                item.price,
+                                e.target.value
+                              );
+                              setCartItems(getCartItems());
+                            }}
+                            className="form-select filter-select"
+                            style={{
+                              minWidth: "80px",
+                            }}
+                            value={item.size}
+                          >
+                            {clothingOptions.map((c, i) => (
+                              <option key={i} value={c}>
+                                {c}
+                              </option>
+                            ))}
+                          </select>
+                        ) : item.category === "Jeans" ? (
+                          <select
+                            onChange={(e) => {
+                              addItemToCart(
+                                item,
+                                item.count,
+                                item.price,
+                                e.target.value
+                              );
+                              setCartItems(getCartItems());
+                            }}
+                            className="form-select filter-select"
+                            style={{
+                              minWidth: "80px",
+                            }}
+                            value={item.size}
+                          >
+                            {jeansOptions.map((c, i) => (
+                              <option key={i} value={c}>
+                                {c}
+                              </option>
+                            ))}
+                          </select>
+                        ) : item.category === "Shoes" ? (
+                          <select
+                            onChange={(e) => {
+                              addItemToCart(
+                                item,
+                                item.count,
+                                item.price,
+                                e.target.value
+                              );
+                              setCartItems(getCartItems());
+                            }}
+                            className="form-select filter-select"
+                            style={{
+                              minWidth: "80px",
+                            }}
+                            value={item.size}
+                          >
+                            {shoeSizeOptions.map((c, i) => (
+                              <option key={i} value={c}>
+                                {c}
+                              </option>
+                            ))}
+                          </select>
+                        ) : (
+                          <h6>Not Applicable</h6>
+                        )}
                       </td>
                       <td className="table-price">
                         <h6>{item.price}</h6>
