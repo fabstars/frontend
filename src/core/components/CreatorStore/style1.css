@@ -1186,9 +1186,10 @@ button:focus {
 }
 
 .product-add i {
-  font-size: 14px;
-  margin-right: 5px;
+  font-size: 16px;
+  margin-right: 8px;
 }
+
 
 .product-action {
   display: -webkit-box;
@@ -2681,7 +2682,7 @@ tbody tr td:last-child {
   }
   .product-add,
   .standard-wish {
-    padding: 8px 0px;
+    padding: 6px 0px;
   }
   .product-add i,
   .standard-wish i {
@@ -2716,7 +2717,7 @@ tbody tr td:last-child {
   }
   .product-add,
   .standard-wish {
-    padding: 8px 0px;
+    padding: 6px 0px;
   }
   .product-add i,
   .standard-wish i {

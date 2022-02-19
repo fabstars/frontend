@@ -60,7 +60,7 @@ const ProductDetails = (props) => {
       setStoreTitle(location.state.storeTitle);
     if (location && location.state && location.state.userId)
       setUserId(location.state.userId);
-  }, []);
+  }, [location]);
   const [currentMargin, setCurrentMargin] = useState(0);
 
   const getMargin = () => {
@@ -73,7 +73,7 @@ const ProductDetails = (props) => {
   };
   useEffect(() => {
     getMargin();
-  }, [product]);
+  }, [getMargin, product]);
 
   return (
     <>
@@ -156,6 +156,7 @@ const ProductDetails = (props) => {
                         <button
                           className="product-add"
                           title="Add to Cart"
+                          style={{ padding: "7px 0px" }}
                           onClick={() => {
                             addItemToCart(
                               product,
@@ -166,7 +167,7 @@ const ProductDetails = (props) => {
                           }}
                         >
                           <i className="fas fa-shopping-basket"></i>
-                          <span>add to cart</span>
+                          <span>ADD TO CART</span>
                         </button>
                       </div>
                       <div className="details-add-group">
@@ -177,7 +178,7 @@ const ProductDetails = (props) => {
                             state: { storeTitle, creatorStore },
                           }}
                           title="Buy Now"
-                          style={{ textDecoration: "None" }}
+                          style={{ textDecoration: "None",  padding: "7px 0px" }}
                           onClick={() =>
                             addItemToCart(
                               product,
