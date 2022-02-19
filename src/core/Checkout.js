@@ -35,7 +35,7 @@ const Checkout = ({ history }) => {
   useEffect(() => {
     if (location && location.state && location.state.creatorStore)
       setId(location.state.creatorStore.replace("/", ""));
-  }, []);
+  }, [location]);
   const validInput = () => {
     for (const key of Object.keys(deliveryDetails)) {
       if (deliveryDetails[key] === "") {
@@ -303,6 +303,7 @@ const Checkout = ({ history }) => {
         <Thankyou
           creatorStore={location.state && location.state.creatorStore}
           orderResponse={orderResponse}
+          target = "_top"
         />
       ) : (
         <section className="inner-section checkout-part">
