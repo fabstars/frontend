@@ -10,6 +10,7 @@ const Thankyou = ({ creatorStore, orderResponse, location }) => {
   const [myOrder, setMyOrder] = useState(null);
   const [cust_details, setCustDetails] = useState(null);
   const [mode, setMode] = useState("");
+  const [influencer, setInfluencer] = useState(null);
   const [cust_order, setCustOrder] = useState(null);
   const init = async (order_id) => {
     const order = await axios.get(`${API}/order/cashfree/${order_id}`);
@@ -19,8 +20,15 @@ const Thankyou = ({ creatorStore, orderResponse, location }) => {
     setCustOrder(order.data.current_order);
   };
   useEffect(() => {
+    console.log(cust_order, cust_details, influencer);
+  }, [cust_order, cust_details, influencer]);
+
+  useEffect(() => {
     if (location && location.state && location.state.hasOwnProperty("mode")) {
       setMode("COD");
+      setCustOrder(location.state.orderResponse.order);
+      setCustDetails(location.state.orderResponse.current_customer);
+      setInfluencer(location.state.orderResponse.influencer);
     } else {
       setMode("Card");
       let params = queryString.parse(location.search);
@@ -210,7 +218,7 @@ const Thankyou = ({ creatorStore, orderResponse, location }) => {
           </div>
         </section>
       )}
-      {mode === "COD" && (
+      {mode === "COD" && cust_order && cust_details && (
         <section class="inner-section invoice-part">
           <div class="container">
             <div class="row">
@@ -228,17 +236,17 @@ const Thankyou = ({ creatorStore, orderResponse, location }) => {
                     <div class="invoice-recieved">
                       <h6>
                         order number
-                        {/* <span>{myOrder.order_id}</span> */}
+                        <span>{cust_order._id}</span>
                       </h6>
                       <h6>
                         order date{" "}
                         <span>
-                          {/* {moment(myOrder.created_at).format("MM/DD/YYYY")} */}
+                          {moment(cust_order.createdAt).format("MM/DD/YYYY")}
                         </span>
                       </h6>
                       <h6>
                         total amount
-                        {/* <span> ₹ {myOrder.order_amount}</span> */}
+                        <span> ₹ {cust_order.amount}</span>
                       </h6>
                       {/* <h6>
                         payment method{" "}
@@ -261,48 +269,24 @@ const Thankyou = ({ creatorStore, orderResponse, location }) => {
                     <ul class="invoice-details">
                       <li>
                         <h6>Total Item</h6>
-                        <p>
-                          {orderResponse &&
-                            orderResponse.products &&
-                            orderResponse.products.length}{" "}
-                          Items
-                        </p>
+                        <p>{cust_order && cust_order.products.length} Items</p>
                       </li>
 
                       <li>
                         <h6>Name</h6>
-                        <p>
-                          {orderResponse &&
-                            orderResponse.cust_details &&
-                            orderResponse.cust_details.fullName}
-                        </p>
+                        <p>{cust_details && cust_details.name}</p>
                       </li>
                       <li>
                         <h6>Mobile Number</h6>
-                        <p>
-                          {orderResponse &&
-                            orderResponse.cust_details &&
-                            orderResponse.cust_details.mobileNumber}
-                        </p>
+                        <p>{cust_details && cust_details.mobile}</p>
                       </li>
                       <li>
                         <h6>Delivery Location</h6>
                         <p>
-                          {orderResponse &&
-                            orderResponse.cust_details &&
-                            orderResponse.cust_details.address}
-                          ,
-                          {orderResponse &&
-                            orderResponse.cust_details &&
-                            orderResponse.cust_details.city}{" "}
-                          ,
-                          {orderResponse &&
-                            orderResponse.cust_details &&
-                            orderResponse.cust_details.state}{" "}
-                          -
-                          {orderResponse &&
-                            orderResponse.cust_details &&
-                            orderResponse.cust_details.pincode}
+                          {cust_details && cust_details.cust_address.address},
+                          {cust_details && cust_details.cust_address.city} ,
+                          {cust_details && cust_details.cust_address.state} -
+                          {cust_details && cust_details.cust_address.pincode}
                         </p>
                       </li>
                     </ul>
@@ -318,7 +302,7 @@ const Thankyou = ({ creatorStore, orderResponse, location }) => {
                     <ul class="invoice-details">
                       <li>
                         <h6>Sub Total</h6>
-                        <p>₹ {orderResponse && orderResponse.amount}</p>
+                        <p>₹ {cust_order.amount}</p>
                       </li>
                       <li>
                         <h6>discount</h6>
@@ -326,16 +310,11 @@ const Thankyou = ({ creatorStore, orderResponse, location }) => {
                       </li>
                       <li>
                         <h6>Payment Method</h6>
-                        <p>
-                          {orderResponse &&
-                            orderResponse.cust_details &&
-                            orderResponse.cust_details.mode === "COD" &&
-                            "Cash on delivery"}
-                        </p>
+                        <p>Cash On Delivery</p>
                       </li>
                       <li>
                         <h6>Total</h6>
-                        <p>₹ {orderResponse && orderResponse.amount}</p>
+                        <p>₹ {cust_order.amount}</p>
                       </li>
                     </ul>
                   </div>
@@ -354,9 +333,9 @@ const Thankyou = ({ creatorStore, orderResponse, location }) => {
                       </tr>
                     </thead>
                     <tbody>
-                      {orderResponse &&
-                        orderResponse.products &&
-                        orderResponse.products.map((product, index) => {
+                      {cust_order &&
+                        cust_order.products &&
+                        cust_order.products.map((product, index) => {
                           return (
                             <tr>
                               <td class="table-serial">
@@ -391,7 +370,7 @@ const Thankyou = ({ creatorStore, orderResponse, location }) => {
           </button> */}
                 <button class="btn btn-success">
                   <Link
-                    to={creatorStore}
+                    to={`/${influencer.name}`}
                     style={{ textDecoration: "none", color: "#fff" }}
                   >
                     <span>Back to Store</span>

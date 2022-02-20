@@ -4,7 +4,7 @@ import OrderList from "./components/Checkout/OrderList";
 import cashOnDelivery from "./components/Checkout/cashOnDelivery.jpg";
 import cashfree from "./components/Checkout/Cashfree.jpg";
 import Layout from "./Layout";
-import { createOrder } from "./apiCore";
+import { createOrder, createOrderCOD } from "./apiCore";
 import { cartTotal, emptyCart, getCartItems } from "./cartHelpers";
 import { isAuthenticated } from "../auth";
 import UserNavbar from "./UserNavbar";
@@ -15,7 +15,7 @@ import { Redirect } from "react-router-dom";
 
 const Checkout = ({ history }) => {
   const [placed, setPlaced] = useState(false);
-  const [orderResponse, setOrderResponse] = useState({});
+  const [orderResponse, setOrderResponse] = useState(null);
   const [mode, setMode] = useState("Card");
   const [deliveryDetails, setDeliveryDetails] = useState({
     fullName: "",
@@ -65,6 +65,17 @@ const Checkout = ({ history }) => {
       const cust_details = { ...deliveryDetails, mode };
 
       if (mode === "COD") {
+        const myOrder = await createOrderCOD(_id, null, {
+          creator: _id,
+          products: getCartItems(),
+          amount: cartTotal(),
+          cust_details,
+        });
+        setOrderResponse(myOrder);
+        console.log(orderResponse);
+        emptyCart(() => {
+          console.log("Cart emptied");
+        });
         setPlaced(true);
       } else {
         const orderPlaced = await createOrder(_id, null, {
@@ -251,7 +262,9 @@ const Checkout = ({ history }) => {
   );
 
   const renderThankYou = () => (
-    <Redirect to={{ pathname: "/thank-you", state: { mode: "COD" } }} />
+    <Redirect
+      to={{ pathname: "/thank-you", state: { mode: "COD", orderResponse } }}
+    />
   );
 
   return (
