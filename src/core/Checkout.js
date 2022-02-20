@@ -64,29 +64,33 @@ const Checkout = ({ history }) => {
     if (validInput()) {
       const cust_details = { ...deliveryDetails, mode };
 
-      const orderPlaced = await createOrder(_id, null, {
-        creator: _id,
-        products: getCartItems(),
-        amount: cartTotal(),
-        cust_details,
-      });
-      console.log(orderPlaced);
-      if (!orderPlaced.error) {
-        window.location.href = orderPlaced.payment_link;
-        // setPlaced(true);
-
-        // history.push();
-        // window.open(
-        //   orderPlaced.payment_link,
-        //   "_blank",
-        //   "location=yes,height=1000,width=1000,scrollbars=yes,status=yes"
-        // );
-        // setOrderResponse(orderPlaced.order);
-        // emptyCart(() => {
-        //   setPlaced(true);
-        // });
+      if (mode === "COD") {
+        setPlaced(true);
       } else {
-        toast.error(orderPlaced.message);
+        const orderPlaced = await createOrder(_id, null, {
+          creator: _id,
+          products: getCartItems(),
+          amount: cartTotal(),
+          cust_details,
+        });
+        console.log(orderPlaced);
+        if (!orderPlaced.error) {
+          window.location.href = orderPlaced.payment_link;
+          // setPlaced(true);
+
+          // history.push();
+          // window.open(
+          //   orderPlaced.payment_link,
+          //   "_blank",
+          //   "location=yes,height=1000,width=1000,scrollbars=yes,status=yes"
+          // );
+          // setOrderResponse(orderPlaced.order);
+          emptyCart(() => {
+            console.log("Cart emptied");
+          });
+        } else {
+          toast.error(orderPlaced.message);
+        }
       }
     }
   };
@@ -246,65 +250,15 @@ const Checkout = ({ history }) => {
     </div>
   );
 
-  // const cardDetails = () => (
-  //   <div className="col-lg-12 mt-4">
-  //     <div className="account-card">
-  //       <div className="account-title">
-  //         <h4>Delivery Details</h4>
-  //       </div>
-  //       <div className="account-content">
-  //         <div className="row">
-  //           <div className="col-md-12 col-lg-10 alert fade show">
-  //             <div className="form-group">
-  //               <label className="form-label">
-  //                 Full Name <span className="text-danger">*</span>
-  //               </label>
-  //               <input
-  //                 className="form-control"
-  //                 type="text"
-  //                 placeholder="Enter your full name"
-  //                 value={deliveryDetails.fullName}
-  //                 onChange={(e) =>
-  //                   setDeliveryDetails({
-  //                     ...deliveryDetails,
-  //                     fullName: e.target.value,
-  //                   })
-  //                 }
-  //               />
-  //             </div>
-  //             <div className="form-group">
-  //               <label className="form-label">
-  //                 Mobile Number <span className="text-danger">*</span>
-  //               </label>
-  //               <input
-  //                 className="form-control"
-  //                 type="text"
-  //                 placeholder="Enter your number"
-  //                 value={deliveryDetails.mobileNumber}
-  //                 onChange={(e) =>
-  //                   setDeliveryDetails({
-  //                     ...deliveryDetails,
-  //                     mobileNumber: e.target.value,
-  //                   })
-  //                 }
-  //               />
-  //             </div>
-  //           </div>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   </div>
-  // );
+  const renderThankYou = () => (
+    <Redirect to={{ pathname: "/thank-you", state: { mode: "COD" } }} />
+  );
 
   return (
     <>
       <UserNavbar />
       {placed ? (
-        <Thankyou
-          creatorStore={location.state && location.state.creatorStore}
-          orderResponse={orderResponse}
-          target = "_top"
-        />
+        renderThankYou()
       ) : (
         <section className="inner-section checkout-part">
           <div className="container">
