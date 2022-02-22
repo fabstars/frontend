@@ -97,7 +97,7 @@ const AboutUs = () => {
               >
                 message
               </a>{" "}
-              at +91-8445814825 (Govind Varshney) <br />
+              at +91-8445814825 (Satyavati) <br />
             </p>
           </div>
         </div>
