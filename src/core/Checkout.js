@@ -4,19 +4,26 @@ import OrderList from "./components/Checkout/OrderList";
 import cashOnDelivery from "./components/Checkout/cashOnDelivery.jpg";
 import cashfree from "./components/Checkout/Cashfree.jpg";
 import Layout from "./Layout";
-import { createOrder, createOrderCOD } from "./apiCore";
-import { cartTotal, emptyCart, getCartItems } from "./cartHelpers";
+import { createOrder, createOrderCOD, getCanceledProducts } from "./apiCore";
+import {
+  cartTotal,
+  emptyCart,
+  getCartItems,
+  emptyCartItems,
+} from "./cartHelpers";
 import { isAuthenticated } from "../auth";
 import UserNavbar from "./UserNavbar";
 import { useLocation } from "react-router-dom";
 import StoreFooter from "./components/CreatorStore/StoreFooter";
 import Thankyou from "./components/Checkout/Thankyou";
 import { Redirect } from "react-router-dom";
+import { addItemToCart } from "./cartHelpers";
 
 const Checkout = ({ history }) => {
   const [placed, setPlaced] = useState(false);
   const [orderResponse, setOrderResponse] = useState(null);
   const [mode, setMode] = useState("Card");
+  const [canceled, setCanceled] = useState(false);
   const [deliveryDetails, setDeliveryDetails] = useState({
     fullName: "",
     mobileNumber: "",
@@ -32,10 +39,32 @@ const Checkout = ({ history }) => {
   });
   const location = useLocation();
   const [_id, setId] = useState("");
+
+  const getProducts = async (cust, order) => {
+    const products = await getCanceledProducts(cust, order);
+    console.log(products);
+  };
+
   useEffect(() => {
-    if (location && location.state && location.state.creatorStore)
+    if (location && location.state && location.state.creatorStore) {
       setId(location.state.creatorStore.replace("/", ""));
+    }
+    if (location && location.state && location.state.isCanceled) {
+      console.log(location.state);
+      setCanceled(true);
+      getProducts(location.state.cust_details, location.state.cust_order);
+      const cartProducts = JSON.parse(localStorage.getItem("cartItems"));
+      if (cartProducts) {
+        for (var i = 0; i < cartProducts.length; i++) {
+          const prd = cartProducts[i].product;
+          const mag = cartProducts[i].margin;
+          addItemToCart(prd, 1, prd.price + mag);
+        }
+        setId(location.state.influencer);
+      }
+    }
   }, [location]);
+
   const validInput = () => {
     for (const key of Object.keys(deliveryDetails)) {
       if (deliveryDetails[key] === "") {
@@ -76,8 +105,15 @@ const Checkout = ({ history }) => {
         emptyCart(() => {
           console.log("Cart emptied");
         });
+        emptyCartItems();
         setPlaced(true);
       } else {
+        console.log({
+          creator: _id,
+          products: getCartItems(),
+          amount: cartTotal(),
+          cust_details,
+        });
         const orderPlaced = await createOrder(_id, null, {
           creator: _id,
           products: getCartItems(),
@@ -267,6 +303,11 @@ const Checkout = ({ history }) => {
     />
   );
 
+  const doReload = () => {
+    window.location.reload();
+    setCanceled(false);
+  };
+
   return (
     <>
       <UserNavbar />
@@ -274,9 +315,10 @@ const Checkout = ({ history }) => {
         renderThankYou()
       ) : (
         <section className="inner-section checkout-part">
+          {/* {canceled && doReload()} */}
           <div className="container">
             <div className="row">
-              <OrderList />
+              {JSON.parse(localStorage.getItem("cart")) && <OrderList />}
 
               <div className="col-lg-12">
                 <div className="account-card mb-0">

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import "./invoice.css";
 import queryString from "query-string";
 import axios from "axios";
 import { API } from "../../../config";
 import moment from "moment";
+import { emptyCartItems } from "../../cartHelpers";
 
 const Thankyou = ({ creatorStore, orderResponse, location }) => {
   const [myOrder, setMyOrder] = useState(null);
@@ -12,13 +13,21 @@ const Thankyou = ({ creatorStore, orderResponse, location }) => {
   const [mode, setMode] = useState("");
   const [influencer, setInfluencer] = useState(null);
   const [cust_order, setCustOrder] = useState(null);
+  const [canceled, setCanceled] = useState(false);
+
   const init = async (order_id) => {
     const order = await axios.get(`${API}/order/cashfree/${order_id}`);
     console.log(order.data);
     setMyOrder(order.data.cf_order_details);
     setCustDetails(order.data.current_cust);
     setCustOrder(order.data.current_order);
+    setInfluencer(order.data.cf_order_details.order_tags.influencerSlug);
+    setCanceled(order.data.cf_order_details.order_status === "ACTIVE");
+    if (order.data.cf_order_details.order_status !== "ACTIVE") {
+      emptyCartItems();
+    }
   };
+
   useEffect(() => {
     console.log(cust_order, cust_details, influencer);
   }, [cust_order, cust_details, influencer]);
@@ -37,12 +46,20 @@ const Thankyou = ({ creatorStore, orderResponse, location }) => {
     }
   }, []);
 
+  const redirectCheckOut = () => (
+    <Redirect
+      to={{
+        pathname: "/checkout",
+        state: { isCanceled: true, cust_details, cust_order, influencer },
+      }}
+    />
+  );
+
   return (
     <>
-      {mode === "Card" && myOrder && (
+      {canceled && redirectCheckOut()}
+      {!canceled && mode === "Card" && myOrder && (
         <section class="inner-section invoice-part">
-          {console.log(myOrder)}
-
           <div class="container">
             <div class="row">
               <div class="col-lg-12">
@@ -218,7 +235,7 @@ const Thankyou = ({ creatorStore, orderResponse, location }) => {
           </div>
         </section>
       )}
-      {mode === "COD" && cust_order && cust_details && (
+      {!canceled && mode === "COD" && cust_order && cust_details && (
         <section class="inner-section invoice-part">
           <div class="container">
             <div class="row">

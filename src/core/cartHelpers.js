@@ -96,6 +96,12 @@ export const emptyCart = (next) => {
   }
 };
 
+export const emptyCartItems = () => {
+  if (typeof window !== "undefined") {
+    localStorage.removeItem("cartItems");
+  }
+};
+
 export const addItemToCart = (product, count, price, size = "") => {
   console.log(product);
   let cartItems = localStorage.getItem("cart");
@@ -131,13 +137,26 @@ export const addItemToCart = (product, count, price, size = "") => {
 
 export const removeItemFromCart = (product) => {
   let cartItems = localStorage.getItem("cart");
+  let cartMarginItems = localStorage.getItem("cartItems");
+
   if (!cartItems) cartItems = [];
+  if (!cartMarginItems) cartMarginItems = [];
+
   cartItems = JSON.parse(cartItems);
+  cartMarginItems = JSON.parse(cartMarginItems);
+
+  cartMarginItems = cartMarginItems.filter((current_item) => {
+    if (current_item.product._id !== product._id) {
+      return true;
+    }
+  });
+
   cartItems = cartItems.filter((item) => {
     if (item._id !== product._id) {
       return true;
     }
   });
 
+  localStorage.setItem("cartItems", JSON.stringify(cartMarginItems));
   localStorage.setItem("cart", JSON.stringify(cartItems));
 };

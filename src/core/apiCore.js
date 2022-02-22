@@ -140,6 +140,21 @@ export const createOrderCOD = (userId, token, createOrderData) => {
     .catch((err) => console.log(err));
 };
 
+export const getCanceledProducts = (cust, order) => {
+  return fetch(`${API}/order/cancel`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ cust, order }),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+}
+
 export const getInfluencerProducts = (userId, token) => {
   return fetch(`${API}/user/influencer/${userId}/my-products`, {
     method: "GET",

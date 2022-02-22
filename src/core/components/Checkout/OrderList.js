@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { API } from "../../../config";
 import {
@@ -8,7 +8,7 @@ import {
   removeItemFromCart,
 } from "../../cartHelpers";
 import "./style.css";
-const OrderList = () => {
+const OrderList = ({  }) => {
   const [cartItems, setCartItems] = useState(getCartItems());
   const clothingOptions = ["S", "M", "L", "XL", "XXL"];
   const shoeSizeOptions = ["6", "7", "8", "9", "10"];
