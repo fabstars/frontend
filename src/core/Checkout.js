@@ -34,7 +34,7 @@ const Checkout = ({ history }) => {
     bank_account_number: "1518121112",
     bank_ifsc: "CITI0000001",
     bank_code: 3333,
-    order_note: "",
+    order_note: " ",
     email: "",
   });
   const location = useLocation();
@@ -273,9 +273,7 @@ const Checkout = ({ history }) => {
                 </div>
               </div>
               <div className="form-group">
-                <label className="form-label">
-                  Order Note <span className="text-danger">*</span>
-                </label>
+                <label className="form-label">Order Note</label>
                 <textarea
                   rows="3"
                   className="form-control"
