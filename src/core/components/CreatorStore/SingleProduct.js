@@ -26,6 +26,15 @@ const SingleProduct = ({ product, userId, user }) => {
   }, [getMargin]);
   const addToCart = (product) => {
     addItemToCart(product, 1, product.price + currentMargin);
+    if (localStorage.getItem("cartItems") === null) {
+      const cart = [{ product: product, margin: currentMargin }];
+      localStorage.setItem("cartItems", JSON.stringify(cart));
+    } else {
+      const cart = JSON.parse(localStorage.getItem("cartItems"));
+      localStorage.removeItem("cartItems");
+      cart.push({ product: product, margin: currentMargin });
+      localStorage.setItem("cartItems", JSON.stringify(cart));
+    }
     toast.success("Product added to cart");
   };
   return (
