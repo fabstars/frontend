@@ -4,8 +4,9 @@
 
 /*whole bg color */
 .bgcolor{
-  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2_aUPxe46EZmRvdXZfR6kF7Gy8sZ4Ym4I6Beu2BrdcwOBrEIOVoZwgEADsj9WLgUq5vw&usqp=CAU");
+  background: url(https://super-content.s3.ap-southeast-1.amazonaws.com/backgrounds/black-batik.webp) no-repeat center center fixed;
   margin-top: -130px;
+  background-size: cover;
 }
 .main-banner-creator {
   /* background-image: linear-gradient(to top, rgb(117, 113, 113) , rgb(231, 231, 224)); */
