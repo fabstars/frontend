@@ -21,7 +21,7 @@ const Sidebar = ({ toggle, setToggle, setCurrentTab, currentTab }) => {
     if (Number(width) > 1180) {
       setToggle(false);
     }
-  }, [width]);
+  }, [setToggle, width]);
   return (
     <div className={toggle ? "menusmall" : ""}>
       <div className="navbar-default sidebar">
@@ -88,6 +88,18 @@ const Sidebar = ({ toggle, setToggle, setCurrentTab, currentTab }) => {
               <Link to="/shop">
                 <i className="fas fa-cubes"></i>
                 <div className="desc">Shop</div>
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="#"
+                className={currentTab === "merchandise" && "active"}
+                onClick={() => {
+                  setCurrentTab("merchandise");
+                }}
+              >
+                <i class="fas fa-solid fa-badge-check"></i>
+                <div className="desc">Merchandise</div>
               </Link>
             </li>
             <li>
