@@ -387,7 +387,7 @@ const Thankyou = ({ creatorStore, orderResponse, location }) => {
           </button> */}
                 <button class="btn btn-success">
                   <Link
-                    to={`/${influencer.name}`}
+                    to={`/${influencer.slug}`}
                     style={{ textDecoration: "none", color: "#fff" }}
                   >
                     <span>Back to Store</span>
