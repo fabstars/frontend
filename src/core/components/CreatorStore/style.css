@@ -4,8 +4,9 @@
 
 /*whole bg color */
 .bgcolor{
-  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2_aUPxe46EZmRvdXZfR6kF7Gy8sZ4Ym4I6Beu2BrdcwOBrEIOVoZwgEADsj9WLgUq5vw&usqp=CAU");
+  background: url(https://super-content.s3.ap-southeast-1.amazonaws.com/backgrounds/black-batik.webp) no-repeat center center fixed;
   margin-top: -130px;
+  background-size: cover;
 }
 .main-banner-creator {
   /* background-image: linear-gradient(to top, rgb(117, 113, 113) , rgb(231, 231, 224)); */
@@ -464,7 +465,7 @@ hr.divider2 {
   }
   .store-heading, .store-heading h1{
     max-width: 230px;
-    font-size: 20px;
+    font-size: 26px;
     padding-top: 35px;
   }
 
@@ -494,7 +495,7 @@ hr.divider2 {
 
   .store-heading, .store-heading h1{
     max-width: 270px;
-    font-size: 25px;
+    font-size: 28px;
   }
   .creator-social-profiles i{
     font-size: 30px;
@@ -512,5 +513,10 @@ hr.divider2 {
   }
 }
 
-@media (min-width: 601px) and (max-width: 1000px){
+@media (min-width: 800px){
+  .bgcolor{
+    background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2_aUPxe46EZmRvdXZfR6kF7Gy8sZ4Ym4I6Beu2BrdcwOBrEIOVoZwgEADsj9WLgUq5vw&usqp=CAU") fixed;
+    margin-top: -130px;
+    /* background-size: cover; */
+  }
 }

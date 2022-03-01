@@ -42,9 +42,9 @@ const SingleProduct = ({ product, userId, user }) => {
       <div class="product-card">
         <div class="product-media">
           <div class="product-label">
-            <label class="label-text sale">
+            {/* <label class="label-text sale">
               {product && product.category && product.category.name}
-            </label>
+            </label> */}
             <label className="details-label new">
               {(
                 (Number(product.mrp - currentMargin - product.price) * 100) /
