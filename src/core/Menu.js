@@ -15,7 +15,7 @@ const Menu = ({ defaultNav }) => {
   const history = useHistory();
   useEffect(() => {
     console.log(defaultNav);
-  }, []);
+  }, [defaultNav]);
   if (!defaultNav) return <UserNavbar />;
   return (
     <>
@@ -28,7 +28,7 @@ const Menu = ({ defaultNav }) => {
         </Link>
         <nav>
           <ul>
-            {isAuthenticated() && isAuthenticated().user.role !== "2" && (
+            {/* {isAuthenticated() && isAuthenticated().user.role !== "2" && (
               <li>
                 <Link
                   className="button-72"
@@ -38,7 +38,7 @@ const Menu = ({ defaultNav }) => {
                   Shop
                 </Link>
               </li>
-            )}
+            )} */}
 
             {isAuthenticated() && isAuthenticated().user.role === "2" && (
               <li>

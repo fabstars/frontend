@@ -85,7 +85,7 @@ const Sidebar = ({ toggle, setToggle, setCurrentTab, currentTab }) => {
               </Link>{" "}
             </li>
             <li>
-              <Link to="/shop">
+              <Link to="/commingsoon">
                 <i className="fas fa-cubes"></i>
                 <div className="desc">Shop</div>
               </Link>
@@ -102,7 +102,7 @@ const Sidebar = ({ toggle, setToggle, setCurrentTab, currentTab }) => {
                 <div className="desc">Merchandise</div>
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link
                 to="#"
                 className={currentTab === "Store" && "active"}
@@ -113,7 +113,7 @@ const Sidebar = ({ toggle, setToggle, setCurrentTab, currentTab }) => {
                 <i className="fas fa-boxes"></i>
                 <div className="desc">Manage Products</div>
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link to="#" onClick={() => signout(() => {})}>
                 <i className="fas fa-sign-out"></i>
