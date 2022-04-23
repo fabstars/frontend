@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import AboutProducts from "./components/Homepage/AboutProducts";
 import AdditionalDetails from "./components/Homepage/AdditionalDetails";
 import CallToAction from "./components/Homepage/CallToAction";
@@ -9,68 +9,84 @@ import Testimonial from "./components/Homepage/Testimonial";
 import "./headerstyle.css";
 import { Link } from "react-router-dom";
 import { isAuthenticated, signout } from "../auth";
+import CreatorStore from "./CreatorStore";
 
 const LandingPage = ({ history }) => {
-  return (
-    <>
-      <header className="header-style hcontainer" style={{ position: "sticky", top: "0px" }}>
-        <Link to="/" className="sitename">
-          <h1 className="qlogo">Fabstores</h1>
-        </Link>
-        <nav>
-          <ul>
-            {!isAuthenticated() && (
-              <li>
-                <Link className="button-72" to="/signin">
-                  Log in
-                </Link>
-              </li>
-            )}
-
-            {!isAuthenticated() && (
-              <li>
-                <Link className="button-72" to="/signup">
-                  Start For Free
-                </Link>
-              </li>
-            )}
-
-            {isAuthenticated() &&
-              (isAuthenticated().user.role === "1" ||
-                isAuthenticated().user.role === "2") && (
+  const [subDomain, setSubDomain] = useState(null);
+  useEffect(() => {
+    const host = window.location.host;
+    const arr = host.split(".").slice(0, host.includes("localhost") ? -1 : -2);
+    if (arr.length > 0) setSubDomain(arr[0]);
+  }, []);
+  useEffect(() => {
+    console.log("Subdomain: ", subDomain);
+  }, [subDomain]);
+  if (subDomain)
+    return <CreatorStore match={{ params: { slug: subDomain } }} />;
+  else
+    return (
+      <>
+        <header
+          className="header-style hcontainer"
+          style={{ position: "sticky", top: "0px" }}
+        >
+          <Link to="/" className="sitename">
+            <h1 className="qlogo">Fabstores</h1>
+          </Link>
+          <nav>
+            <ul>
+              {!isAuthenticated() && (
                 <li>
-                  <Link className="button-72" to="/user/dashboard">
+                  <Link className="button-72" to="/signin">
+                    Log in
+                  </Link>
+                </li>
+              )}
+
+              {!isAuthenticated() && (
+                <li>
+                  <Link className="button-72" to="/signup">
+                    Start For Free
+                  </Link>
+                </li>
+              )}
+
+              {isAuthenticated() &&
+                (isAuthenticated().user.role === "1" ||
+                  isAuthenticated().user.role === "2") && (
+                  <li>
+                    <Link className="button-72" to="/user/dashboard">
+                      Dashboard
+                    </Link>
+                  </li>
+                )}
+
+              {isAuthenticated() && isAuthenticated().user.role === "0" && (
+                <li>
+                  <Link className="button-72" to="/admin/dashboard">
                     Dashboard
                   </Link>
                 </li>
               )}
 
-            {isAuthenticated() && isAuthenticated().user.role === "0" && (
-              <li>
-                <Link className="button-72" to="/admin/dashboard">
-                  Dashboard
-                </Link>
-              </li>
-            )}
-
-            {isAuthenticated() && (
-              <li>
-                <Link
-                  className="button-72"
-                  onClick={() =>
-                    signout(() => {
-                      history.push("/");
-                    })
-                  }
-                >
-                  Signout
-                </Link>
-              </li>
-            )}
-          </ul>
-        </nav>
-      </header>
-      {/* <header class="header-part" style={{ position: "sticky", top: "0px" }}>
+              {isAuthenticated() && (
+                <li>
+                  <Link
+                    className="button-72"
+                    onClick={() =>
+                      signout(() => {
+                        history.push("/");
+                      })
+                    }
+                  >
+                    Signout
+                  </Link>
+                </li>
+              )}
+            </ul>
+          </nav>
+        </header>
+        {/* <header class="header-part" style={{ position: "sticky", top: "0px" }}>
         <div class="container">
           <div class="header-mobile">
             <a href="#">Fabstores</a>
@@ -91,7 +107,7 @@ const LandingPage = ({ history }) => {
           </div>
         </div>
       </header> */}
-      {/* <header class="header-part">
+        {/* <header class="header-part">
         <div class="container">
           <div class="header-content">
             <div class="header-media-group">
@@ -131,15 +147,15 @@ const LandingPage = ({ history }) => {
             </div>
           </div>
       </header> */}
-      <HomepageBanner />
-      <LaunchingSteps />
-      <Testimonial />
-      <AboutProducts />
-      <AdditionalDetails />
-      <CallToAction />
-      <Footer />
-    </>
-  );
+        <HomepageBanner />
+        <LaunchingSteps />
+        <Testimonial />
+        <AboutProducts />
+        <AdditionalDetails />
+        <CallToAction />
+        <Footer />
+      </>
+    );
 };
 
 export default LandingPage;
