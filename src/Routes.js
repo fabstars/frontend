@@ -10,6 +10,7 @@ import AdminDashboard from "./user/AdminDashboard";
 import AddCategory from "./admin/AddCategory";
 import AddProduct from "./admin/AddProduct";
 import Shop from "./core/Shop";
+import CommingSoon from "./core/components/CreatorDashboard/CommingSoon";
 import Product from "./core/Product";
 import Cart from "./core/Cart";
 import Orders from "./admin/Orders";
@@ -43,6 +44,7 @@ const Routes = () => {
         <Switch>
           <Route path="/" exact component={LandingPage} />
           <PrivateRoute path="/shop" exact component={Shop} />
+          <PrivateRoute path="/commingsoon" exact component={CommingSoon} />
           <Route path="/signin" exact component={CreatorLogin} />
           <Route path="/signup" exact component={CreatorSignup} />
           <Route

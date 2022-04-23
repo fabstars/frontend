@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import ManageOrders from "./ManageOrders";
 import ManageStore from "./ManageStore";
 import ProfileDetails from "./ProfileDetails";
+import Merchandise from "./Merchandise";
 import UserSettings from "./UserSettings";
 import { isAuthenticated, signout } from "../../../auth";
 
@@ -32,6 +33,7 @@ const MainContent = ({ toggle, currentTab }) => {
       {currentTab === "Store" && <ManageStore />}
       {currentTab === "Orders" && <ManageOrders />}
       {currentTab === "Settings" && <UserSettings />}
+      {currentTab === "merchandise" && <Merchandise />}
     </div>
   );
 };
