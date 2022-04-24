@@ -515,7 +515,7 @@ hr.divider2 {
 
 @media (min-width: 800px){
   .bgcolor{
-    background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2_aUPxe46EZmRvdXZfR6kF7Gy8sZ4Ym4I6Beu2BrdcwOBrEIOVoZwgEADsj9WLgUq5vw&usqp=CAU") fixed;
+    /* background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2_aUPxe46EZmRvdXZfR6kF7Gy8sZ4Ym4I6Beu2BrdcwOBrEIOVoZwgEADsj9WLgUq5vw&usqp=CAU") fixed; */
     margin-top: -130px;
     /* background-size: cover; */
   }

@@ -21,9 +21,8 @@ const LandingPage = ({ history }) => {
   useEffect(() => {
     console.log("Subdomain: ", subDomain);
   }, [subDomain]);
-  if (subDomain)
-    return <CreatorStore match={{ params: { slug: subDomain } }} />;
-  else
+
+  if (!subDomain || subDomain === "fabstores" || subDomain === "www")
     return (
       <>
         <header
@@ -156,6 +155,7 @@ const LandingPage = ({ history }) => {
         <Footer />
       </>
     );
+  else return <CreatorStore match={{ params: { slug: subDomain } }} />;
 };
 
 export default LandingPage;
