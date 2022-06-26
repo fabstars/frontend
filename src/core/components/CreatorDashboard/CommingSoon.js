@@ -17,8 +17,8 @@ const CommingSoon = () => {
                                 <span class="countdown-time"><span>00</span><small>days</small></span><span class="countdown-time"><span>00</span><small>hours</small></span>
                                 <span class="countdown-time"><span>00</span><small>minutes</small></span><span class="countdown-time"><span>00</span><small>seconds</small></span>
                             </div> */}
-                            <h3 class="coming-subtitle">We are currently working on an awesome new update. Subscribe to our newsletter to stay updated.</h3>
-                            <form class="coming-form">
+                            <h3 class="coming-subtitle">We are currently <strong>onboarding</strong> some awesome brands for you:) Feel free to tell us your <strong>favorite brand</strong> on 8445814825 to <strong>start earning</strong> from them.</h3>
+                            {/* <form class="coming-form">
                                 <input type="text" placeholder="enter your email" />
                                 <button>
                                     <i class="fas fa-solid fa-paper-plane"></i>
@@ -29,6 +29,9 @@ const CommingSoon = () => {
                                 <a class="fab fa-twitter" href="#"></a>
                                 <a class="fab fa-linkedin" href="#"></a>
                                 <a class="fab fa-instagram" href="#"></a>
+                            </div> */}
+                            <div class="coming-social">
+                                <a class="fab fa-whatsapp" href="https://wa.me/+918445814825" target="_blank"></a>
                             </div>
                         </div>
                     </div>
